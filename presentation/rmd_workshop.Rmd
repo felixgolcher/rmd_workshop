@@ -1,4 +1,5 @@
 ---
+title: Writing Reproducible Research Papers with R Markdown
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -98,80 +99,16 @@ lm4 <- lm(h5_index ~ issues + english + subfield + age, data = df)
 
 <br>
 
-### Resul Umit
+### [Felix Golcher](https://www.linguistik.hu-berlin.de/de/staff/golcherf) | [CRC 1412](https://sfb1412.hu-berlin.de/) | [INF](https://sfb1412.hu-berlin.de/projects/inf/)
 
-### November 2020
+### May 26/27/28 2021
 
 .footnote[
-
-[Skip intro &mdash; To the contents slide](#contents-slide). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="mailto:resuluy@uio.no?subject=R Markdown workshop">I can teach this workshop at your institution &mdash; Email me</a>.
-
+[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; forked from [Resul Umit](https://resulumit.com/)'s [rmarkdown workshop](https://github.com/resulumit/rmd_workshop).
 ]
 
 ---
-## Who am I?
 
-Resul Umit
-
-- post-doctoral researcher at the University of Oslo
-
-- interested in representation, elections, and parliaments
-    - [a recent publication](https://doi.org/10.1080/17457289.2019.1604529):
-    When members of parliament disagree with their principals (country, constituency, party), how do they justify this to them?    
-    
-    - more at [resulumit.com](https://resulumit.com/)
-
----
-## How did I use to write?
-
-First, with .yellow-h[Stata + Word], I was ...
-
-- frustrated with Word
-    - formatting tables, figures, citations, and equations 
-    - managing references
-    
-- tired of switching between programmes/screens
-    - and, worried about making mistakes in between
-    
-- paying for programme licences
-
----
-## How did I use to write?
-
-Then, with .yellow-h[Stata + R + LaTeX], I was ...
-
-- ~~frustrated with Word~~
-    - ~~formatting tables, figures, citations, and equations~~ 
-    - ~~managing references~~
-    
-- tired of switching between programmes/screens
-    - and, worried about making mistakes in between
-    
-- paying for the Stata licence
-
-- converting PDF documents to Word manually
-    - coordinating work with co-authors who don't use LaTeX/PDF
-    - submitting to journals which don't accept LaTeX/PDF
-
----
-## How do I write now?
-
-Now, with .yellow-h[R Markdown], I am ... happy!
-
-- ~~frustrated with Word~~
-    - ~~formatting tables, figures, citations, and equations~~ 
-    - ~~managing references~~
-    
-- ~~tired of switching between programmes/screens~~
-    - ~~and, worried about making mistakes in between~~
-    
-- ~~paying for the Stata licence~~
-
-- ~~converting PDF documents to Word, manually~~
-    - ~~coordinating work with co-authors who don't use LaTeX/PDF~~
-    - ~~submitting to journals which don't accept LaTeX/PDF~~
-
----
 ## R Markdown
 
 - Efficient
@@ -237,7 +174,7 @@ Now, with .yellow-h[R Markdown], I am ... happy!
 ---
 ## The Workshop &mdash; Overview
 
-- Two days, on how to write reproducible research papers with R Markdown
+- 3 days à 2 hours, on how to write reproducible research papers with R Markdown
 
   - 200+ slides, 40+ exercises, and time for converting a real project
 
