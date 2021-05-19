@@ -366,27 +366,56 @@ the result
 ## R Markdown
 
 - Efficient
-
-   - write text, cite sources, tidy data, analyse, table, and plot it in one programme/screen
-   - re-do one, more, or all of these with ease
+   - Combining analysis and text streamlines the thought process.
+   - All (?) work steps in one work environment (Rstudio)
+   - **No** cut'n paste any more
        - decrease the possibility of making mistakes in the process
-       
+       - Each bit of the article is easily tracable.
+       - Consequences of subtle changes propagate everywhere by themselves.
+   - Markdown much easier to learn than LaTeX. Same workflow exists for LaTeX. Even more powerful.
+
 --
 
 - Flexible
-
-    - output to various formats
+    - output to various file formats
         - e.g., HTML, LaTeX, PDF, Word
+        - that is the *same* source gives different formats.
+        - predefined templates/styles exist
+    - output to different modalities
+        - articles
+        - presentations like this one
+        - [interactive documents](https://shiny.rstudio.com/) 
         
 --
 
-- Open access/source
+- Collaboration: As a text based format, (R)Mardown is ideal for versioning, e.g. using git.
 
-   - use for free
-   - create documents accessible to anyone with a computer and internet connection
-   - benefit from the work of a great community of users/developers
-   
 ---
+
+# It's even scriptable &mdash; Use case
+
+**The Problem**
+
+* You test 471 children in their language abilities.
+* After the results are in you want (and promised) to notify the parents.
+* Doing that manually...
+    - ... takes a lot of time
+    - ... is guaranteed to produce errors.
+    - Those are very hard to find.
+    - You don't want to report false results to the parents, do you?
+
+--
+
+**The Solution**
+
+* You write *one* RMarkdown-document.
+* This produces the report for _one_ child.
+* The child's id is given as a variable.
+* You loop through all children.
+* You have 471 reports for 471 children from _one_ source document.
+
+---
+
 ## Reproducibilty &mdash; Before Publication
 
 - Having written a complete draft
