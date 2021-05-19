@@ -76,6 +76,11 @@ lm4 <- lm(h5_index ~ issues + english + subfield + age, data = df)
     width: 38%;
     
 }
+.pull-right-d {
+    float: right;
+    width: 58%;
+    
+}
 
 .medium {
     font-size: 75%
@@ -108,6 +113,255 @@ lm4 <- lm(h5_index ~ issues + english + subfield + age, data = df)
 ]
 
 ---
+
+## A normal situation
+
+.pull-right-c[
+![](../image/word1.png)
+]
+
+.pull-left-c[
+* Lets assume, you write an article. 
+* There is Text, there are Figures, there are numbers.
+* You write the article in Word.
+* The analysis is done in (an) R-script(s)
+* You might have some collaborators.
+* The deadline will be very soon...
+]
+
+--
+
+.pull-left-c[
+* **uuupsi**
+    - We have to exclude 1 experimental subject.
+    - All numbers have to change.
+    - The Figures will have to change as well.
+]
+
+---
+name: findfigure
+
+## Finding the right figure
+
+The directory where (all, really all?) of the figures are, looks like this:
+
+.pull-right-c[
+{{content}}
+]
+
+```
+pictures/
+├── dutch-1.png
+├── dutch-2.png
+├── dutch-3.png
+├── final
+│   ├── dutch-1.png
+│   ├── dutch-2.png
+│   └── dutch-4.png
+├── final-2
+│   ├── dutch-1.png
+│   ├── dutch-2.png
+│   └── dutch-3.png
+└── obsolete
+    ├── dutch-1.png
+    ├── dutch-2.png
+    ├── dutch-3.png
+    ├── great.png
+    └── not-so-great.png
+```
+
+**Which** is the right file?
+
+---
+template: findfigure
+
+Was it this one? 
+
+![](../image/dutch-N01204.png)
+`final/dutch-1.png`
+---
+template: findfigure
+
+Or this one? 
+
+![](../image/dutch-right.png)
+`final-2/dutch-3.png`
+
+---
+template: findfigure
+
+Or that one? 
+
+![](../image/dutch-N01033.png)
+`dutch-1.png`
+
+
+---
+
+# We found the figure &mdash; How was it created?
+
+.pull-left-c[
+* If you created the image in a script, you only have to search all your scripts for that file name.
+* If you used the "export" button in Rstudio, you have to find the place yourself.
+* In any case you have to hope that the script did not change since then.
+* This is how your R-script might look.
+]
+
+--
+
+.pull-right-c[
+
+```{r, eval=FALSE}
+durationsGe %>% as_tibble() %>% 
+  ggplot(aes(cFrequency, 
+             DurationOfPrefix))+
+  geom_point()+
+  scale_x_log10()+
+  scale_y_log10()+
+  geom_smooth(method=lm)+
+  theme_bw()
+
+durationsGe %>% as_tibble() %>% 
+  ggplot(aes(Frequency, 
+             DurationOfPrefix))+
+  geom_point()+
+  scale_x_log10()+
+  geom_smooth(method=lm)+
+  theme_bw()
+```
+]
+
+--
+
+**What now? Which is the right version?**
+
+---
+
+# Adapting the numbers
+
+* Did the p value change?
+* Where was the p value actually computed?
+    - in which script?
+    - at which place?
+    - We found it. Well, maybe.
+        * In the article it says 0.00876
+        * The script gives you 0.00871! What the heck is going on?
+            - Is it really the right place?
+            - Maybe a typo in the article?
+            - The R-version changed?
+            - We actually got the number from some**where??** else?
+
+--
+
+What is the right version again??
+```{r, eval=FALSE}
+m0 <- lme4(DurationOfPrefix ~ Frequency + (1|Speaker) + (1|Word), 
+           durationsGe)
+m2 <- lme4(DurationOfPrefix ~ Frequency + (0|Speaker) + (1|Word), 
+           durationsGe)
+m1 <- lme4(DurationOfPrefix ~ Frequency + (1|Speaker) + (Sex|Word), 
+           durationsGe)
+```
+
+--
+
+THE CLOCK IS TICKING. THE PAPER IS DUE. 
+
+---
+class: center
+
+# The breaking point
+
+* You found all figures and adapted all figures.
+* You think you might have found all numbers. (you have not.)
+* you think you have corrected all numbers. (do you? Really?)
+
+--
+
+🥳
+
+--
+
+A mail from your co-worker arrives. 
+
+--
+
+...
+
+
+--
+
+Word doc attached. 
+
+--
+
+...
+
+--
+
+She adapted the same figures and numbers.
+
+--
+
+...
+
+--
+
+Other figures, other numbers. Just slightly so.
+
+--
+
+💀
+
+---
+name: md1
+# A better world exists
+
+* A RMarkdown document is a text file that mixes descriptive text with R code.
+* It can be converted to numerous output formats (PDF, docx, you name it)
+* Figures and numbers are directly inserted.
+
+.pull-left-c[
+
+{{content}}
+
+]
+
+.pull-right-c[
+
+In our example you only had to insert the line
+
+```{r, eval=F}
+durationsGe <- durationsGe %>% 
+  filter(Speaker != "N01033")
+```
+
+Then recompile.
+]
+
+
+---
+template: md1
+
+```{r, echo = FALSE, out.width = "80%"}
+knitr::include_graphics("../image/md1.png")
+```
+
+the source
+
+---
+template: md1
+
+```{r, echo = FALSE, out.width = "80%"}
+knitr::include_graphics("../image/mdout.png")
+```
+
+the result
+
+
+
+---
+
 
 ## R Markdown
 
