@@ -1,0 +1,71 @@
+---
+title: Durational measurements on the Dutch prefix *ge-*
+author: "Felix Golcher and Alter Ego"
+date: "`r Sys.Date()`"
+fontsize: 10pt
+output:
+  bookdown::pdf_document2:
+    keep_tex:  true
+    toc: false
+  html_document: default
+  bookdown::word_document2:
+    toc: false
+    fig_caption: yes
+bibliography: bib.bib
+---
+
+```{r setup, include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = F,
+                      message = F,
+                      cache = F,
+                      autodep = T)
+options(digits=3)
+
+inline_hook <- function(x) {
+  if (is.numeric(x)) {
+    knitr:::format_sci(x, 'html')
+  } else x
+}
+knitr::knit_hooks$set(inline = inline_hook)
+
+```
+
+```{r, include=F}
+data("durationsGe", package = "languageR")
+library(tidyverse)
+```
+
+```{r, include=FALSE, eval=F}
+durationsGe <- durationsGe %>% filter(Speaker != "N01033")
+```
+
+
+**Abstract:** This is about Dutch prefixes. It uses an example data set from [@baayen08].
+
+```{r, include=FALSE}
+m0 <- lm(DurationOfPrefix~Frequency, durationsGe)
+m0s <- summary(m0)
+m0c <- confint(m0)
+```
+
+# Introduction
+
+```{r blub, echo=FALSE, fig.cap="A very interesting graphical description of the data.", fig.width=5, fig.height=2.5}
+durationsGe %>% as_tibble() %>% 
+  ggplot(aes(Frequency, DurationOfPrefix))+
+  geom_point()+
+  scale_x_log10()+
+  scale_y_log10()+
+  geom_smooth(method=lm)+
+  theme_bw()
+```
+
+
+We tried to figure out if the frequency of a word has an influence on the duration of Dutch suffixes. Intuitively one could assume that with the duration drops with frequency. For this we recruited `r length(unique(durationsGe$Speaker))` Dutch native speakers. They produced `r length(unique(durationsGe$Word))` different words.
+
+Figure \@ref(fig:blub) gives an overview of the data. We clearly see a downward trajectory.
+
+We actually made a significance test. The estimate for the slope is `r coefficients(m0s)[2,1]` with a confidence interval being [`r m0c[2,1]`, `r m0c[2,2]`]. This is not the most impressive result, adn puts the $p$-value of `r signif(coefficients(m0s)[2,4],3)` a bit into perspective.
+
+# References
