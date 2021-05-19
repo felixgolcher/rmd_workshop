@@ -8,7 +8,7 @@ He created the materials for a workshop on writing reproducible research papers 
 
 Felix Golcher adapted for a workshop held for the [CRC 1412 *Register*](https://sfb1412.hu-berlin.de/).
 
-Unless otherwise noted, all material is copyright Felix Golcher, licensed [CC-BY-SA 3.0](https://github.com/resulumit/rmd_workshop/blob/master/LICENCE.md). An easy to read summary of this permissive licence is available on the [Creative Commons website](https://creativecommons.org/licenses/by-sa/3.0/).
+This material is published under [CC-BY-SA 3.0](https://github.com/resulumit/rmd_workshop/blob/master/LICENCE.md). An easy to read summary of this permissive licence is available on the [Creative Commons website](https://creativecommons.org/licenses/by-sa/3.0/).
 
 ## Contents
 
