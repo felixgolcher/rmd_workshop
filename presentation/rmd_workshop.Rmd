@@ -416,43 +416,25 @@ the result
 
 ---
 
-## Reproducibilty &mdash; Before Publication
-
-- Having written a complete draft
-
-    - with data including re-coded variables, tables, figures, and text with references to specific results (e.g., numbers from summary and/or regression statistics)
-
---
-
-- If you and/or your co-authors decide 
-
-    - to reverse a re-coded variable to its previous/original measure
-    - and/or, to exclude a subgroup of observations from analysis
-
---
-
-- How resource intensive would this revision be?
-
-    - how long would this revision take?
-    - how many programmes would be needed for this revision, and how much would they cost?
-    - there is an inverse relationship between this resource intensity and reproducibilty
-    
----
 ## Reproducibilty &mdash; After Publication
 
-- After your paper is published, if others, including your future self, would like to test how robust the results are
+- After your paper is published, others, including your future self, might like to check your results:
 
-    - to reversing a re-coded variable to its previous/original measure
-    - and/or, to excluding a subgroup of observations from analysis
-
+    - Are the correct numbers in the correct context?
+    - What exactly was done?
+        - Which models where computed?
+        - With exactly which parameters?
+    - What subgroups/data might have been excluded from the analysis? Correctly so?
+    
 --
 
-- How resource intensive would this test be?
+- In the traditional approach this is impossible even if the data are public:
+    - You cannot describe what you did so detailed that someone else can reproduce a non-trivial analysis.
+    
+--
 
-    - how accessible is the data, documentation (how was the variable re-coded in the first place?), and the code?
-    - how long would the test take?
-    - how many programmes would be needed for this revision, and how much would they cost?
-    - there is an inverse relationship between this resource intensity and reproducibilty
+- In an RMarkdown based workflow this is easy:
+    - Everything is there.
 
 ---
 ## The Workshop &mdash; Overview
