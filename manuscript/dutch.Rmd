@@ -36,7 +36,12 @@ data("durationsGe", package = "languageR")
 library(tidyverse)
 ```
 
-```{r, include=FALSE, eval=F}
+```{r, include=FALSE, eval=T}
+durationsGe <- durationsGe %>% filter(!is.na(Speaker))
+```
+
+
+```{r, include=FALSE, eval=T}
 durationsGe <- durationsGe %>% filter(Speaker != "N01033")
 ```
 
