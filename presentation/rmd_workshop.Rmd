@@ -395,7 +395,7 @@ the modified result
 
 - Flexible
     - output to various file formats
-        - e.g., HTML, LaTeX, PDF, Word
+        - e.g., HTML, LaTeX, PDF, Word ([caveat](https://twitter.com/patilindrajeets/status/1395298790647771136))
         - that is the *same* source gives different formats.
         - predefined templates/styles exist
     - output to different modalities
