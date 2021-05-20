@@ -122,7 +122,7 @@ lm4 <- lm(h5_index ~ issues + english + subfield + age, data = df)
 
 .pull-left-c[
 * Lets assume, you write an article. 
-* There is Text, there are Figures, there are numbers.
+* There is text, there are Figures, there are numbers.
 * You write the article in Word.
 * The analysis is done in (an) R-script(s)
 * You might have some collaborators.
@@ -135,7 +135,7 @@ lm4 <- lm(h5_index ~ issues + english + subfield + age, data = df)
 * **uuupsi**
     - We have to exclude 1 experimental subject.
     - All numbers have to change.
-    - The Figures will have to change as well.
+    - The figures will have to change as well.
 ]
 
 ---
@@ -143,7 +143,7 @@ name: findfigure
 
 ## Finding the right figure
 
-The directory where (all, really all?) of the figures are, looks like this:
+The directory where all (really all?) of the figures are, looks like this:
 
 .pull-right-c[
 {{content}}
@@ -201,10 +201,10 @@ Or that one?
 # We found the figure &mdash; How was it created?
 
 .pull-left-c[
-* If you created the image in a script, you only have to search all your scripts for that file name.
+* If you created the image in a script, you *only* have to search all your scripts for that file name.
 * If you used the "export" button in Rstudio, you have to find the place yourself.
-* In any case you have to hope that the script did not change since then.
-* This is how your R-script might look.
+* In any case you have to hope that the script did not change since then (**git it**).
+* This is how your R-script might look: 🢂
 ]
 
 --
@@ -233,7 +233,7 @@ durationsGe %>% as_tibble() %>%
 
 --
 
-**What now? Which is the right version?**
+**Which is the right version?**
 
 ---
 
@@ -343,7 +343,7 @@ Then recompile.
 ---
 template: md1
 
-```{r, echo = FALSE, out.width = "80%"}
+```{r, echo = FALSE, out.width = "100%"}
 knitr::include_graphics("../image/md1.png")
 ```
 
@@ -352,13 +352,29 @@ the source
 ---
 template: md1
 
-```{r, echo = FALSE, out.width = "80%"}
+```{r, echo = FALSE, out.width = "85%"}
 knitr::include_graphics("../image/mdout.png")
 ```
 
 the result
 
+---
+template: md1
 
+```{r, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("../image/md2.png")
+```
+
+the modified source
+
+---
+template: md1
+
+```{r, echo = FALSE, out.width = "85%"}
+knitr::include_graphics("../image/md-corr.png")
+```
+
+the modified result
 
 ---
 
@@ -366,10 +382,11 @@ the result
 ## R Markdown
 
 - Efficient
+
    - Combining analysis and text streamlines the thought process.
-   - All (?) work steps in one work environment (Rstudio)
-   - **No** cut'n paste any more
-       - decrease the possibility of making mistakes in the process
+   - The whole workflow in one work environment (Rstudio)
+   - **No** cut'n'paste any more
+       - Decreases the possibility of making mistakes in the process.
        - Each bit of the article is easily tracable.
        - Consequences of subtle changes propagate everywhere by themselves.
    - Markdown much easier to learn than LaTeX. Same workflow exists for LaTeX. Even more powerful.
@@ -410,7 +427,7 @@ the result
 
 * You write *one* RMarkdown-document.
 * This produces the report for _one_ child.
-* The child's id is given as a variable.
+* The child's ID is given as a variable.
 * You loop through all children.
 * You have 471 reports for 471 children from _one_ source document.
 
