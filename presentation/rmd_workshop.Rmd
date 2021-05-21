@@ -835,29 +835,6 @@ tinytex::install_tinytex()
 
 ---
 class: action
-name: rstudio-project
-
-## RStudio Project &mdash; Create from within RStudio 
-
-- RStudio allows for dividing your work with R into separate projects, each with own history etc.
-
-  - [this page](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) has more information on why projects are recommended
-
-<br>
-
-- Create a new RStudio project for the existing<sup>*</sup> workshop directory `...\YOURNAME-rmd` from the RStudio menu:
-
-> `File -> New Project -> Existing Directory -> Browse -> ...\YOURNAME-rmd -> Open`
-
-
-.footnote[
-
-<sup>*</sup> Recall that we have downloaded this earlier from GitHub. [Back to the relevant slide](#download-zip).
-
-]
-
----
-class: action
 
 ## R Markdown Cheat Sheet &mdash; Download from the Internet
 
@@ -911,70 +888,81 @@ class: action
 
 > `File -> New File -> R Markdown -> OK`
 
-- Save your new document:<sup>**</sup>
+- Save your new document:
 
 > `File -> Save`
 
-- Observe that 
+- I recommend to use a fresh directory to save the file in. (e.g. `rmd_workshop`)
+    - usually an RMarkdown script represents a statistical analysis.
+    - There might data. They would go in something like `rmd_workshop/data`
+    - There might be additional images, e.g. in `rmd_workshop/images`
+    - Maybe other files like bibliography style files.
+- If you organize everything in subdirectories below your Rmd-file you can
+    - zip it and share it
+    - push it to git as is
+    - move it around on your computer(s)
+    - and everything still works the same: ✅
 
-    - the document has been saved to your working directory, and
-    - it has the .Rmd extension
-
-.footnote[
-
-<sup>*</sup> This is for demonstration purposes only. Otherwise, we will work with `journals.Rmd`, which you have already downloaded, to save time.
-
-<sup>**</sup> Alternatively, use the `Save` button or the keyboard shortcut (e.g., `Ctrl + S` on Windows). For shortcuts, follow `Tools -> Keyboard Shortcuts Help` or `Tools -> Modify Keyboard Shortcuts...`.
-
-]
-
----
-## R Markdown Document &mdash; Components
-
-.pull-left-c[
-
-Observe also that the document has three components
-
- - .yellow-h[YAML]
-]
-
-.pull-right-c[
-![](../image/yaml.png)
-]
+- Observe that your file automatically got the extension `.Rmd`.
 
 ---
 ## R Markdown Document &mdash; Components
 
+* What you get is a predefined template. 
+* The document has three components
+
+--
+
 .pull-left-c[
 
-Observe also that the document has three components
+* **YAML**: 
+  - Meta information and 
+  - processing instructions 
+  - in a nested key-value-scheme.
 
- - YAML
- - .yellow-h[text]
 ]
 
 .pull-right-c[
+
 ![](../image/yaml.png)
+
+]
+
+--
+
+.pull-left-c[
+
+* **text**: 
+  - Human readable. 
+  - Peppered with basic formatting information. 
+  - the **Markdown** part of R**Markdown**
+
+]
+
+.pull-right-c[
+
 ![](../image/text.png)
+
 ]
 
----
-## R Markdown Document &mdash; Components
+<br>
+
+--
 
 .pull-left-c[
 
-Observe also that the document has three components
+* **code chunks**: 
+  - regions framed by special tags containing R code. 
+  - the **R**part of **R**Markdown
 
- - YAML
- - text
- - .yellow-h[code chunks]
- 
 ]
 
-.pull-right-c[
-![](../image/yaml.png)
-![](../image/text.png)
+.pull-right-c[    
+
+
 ![](../image/chunk.png)
+
+
 ]
 
 ---
@@ -983,14 +971,12 @@ class: action
 ## R Markdown Document &mdash; Compile
 
 .pull-left-c[
-- Click the `Knit` button to compile it, and observe that 
-
-  - the output document has the same name as your .Rmd document
-
-- You may want to delete these newly created files, as we will work with `journals.Rmd` instead to save time. 
-
+- Click the `Knit` button to compile
+  - An output document pops up in another window (or similar things happen)
+  - You find this new document in the directory you placed the Rmd in.
+  - the output document has the same base name as your .Rmd document
+  - the extension should be `html` by default.
 ]
-
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "95%"}
@@ -998,6 +984,18 @@ knitr::include_graphics("../image/first_rmd.png")
 ```
 
 ]
+
+--
+
+.pull-left-c[
+* Click the ▼ to the right of the `Knit` button
+  - choose "knit to pdf" from the dropdown.
+  - you see another document appear
+  - don't be surprised if it's a PDF.
+* For the remainder of the course we will focus on PDF.
+
+]
+
 
 ---
 ## R Markdown Document &mdash; Compilation Process 
@@ -4573,18 +4571,38 @@ name: install-git
 ---
 class: action
 
-## GitHub &mdash; Open an Account
+## Gitlab &mdash; Register with your HU account.
 
-Sign up for GitHub at [https://github.com](https://github.com/)
+- If you have a HU account it's a minute to register at [https://scm.cms.hu-berlin.de/](https://scm.cms.hu-berlin.de/)
 
-- registering an account is free
+- if not, 
+    - you can still open an account:
+    - I can create repositories and invite you to contribute there.
 
-- usernames are public
-      - either choose an anonymous username (e.g., `asdf029348`)
-      - or choose one carefully &mdash; it becomes a part of users' online presence
-      
-- usernames can be changed later
-        
+---
+class: action
+name: rstudio-project
+
+## RStudio Project &mdash; Create from within RStudio 
+
+- RStudio allows for dividing your work with R into separate projects, each with own history etc.
+
+  - [this page](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) has more information on why projects are recommended
+  - You *need* them if you wish to version control your files from within RStudio.
+
+<br>
+
+- Create a new RStudio project for the existing<sup>*</sup> workshop directory from the RStudio menu:
+
+> `File -> New Project -> Existing Directory -> Browse -> `/your/directory/` -> Open`
+
+
+.footnote[
+
+<sup>*</sup> Recall that we have downloaded this earlier from GitHub. [Back to the relevant slide](#download-zip).
+
+]
+
 ---
 class: action
 
