@@ -785,32 +785,6 @@ class: action
 
 ---
 class: action
-name: install-git
-
-## Git &mdash; Download from the Internet and Install
-
-- For Windows, install 'Git for Windows', downloading from [https://gitforwindows.org](https://gitforwindows.org/)
-       - select 'Git from the command line and also from 3rd-party software'
-       
-- For Mac, install 'Git', downloading from [https://git-scm.com/downloads](https://git-scm.com/downloads)
-
----
-class: action
-
-## GitHub &mdash; Open an Account
-
-Sign up for GitHub at [https://github.com](https://github.com/)
-
-- registering an account is free
-
-- usernames are public
-      - either choose an anonymous username (e.g., `asdf029348`)
-      - or choose one carefully &mdash; it becomes a part of users' online presence
-      
-- usernames can be changed later
-        
----
-class: action
 
 ## R and RStudio &mdash; Download from the Internet and Install
 
@@ -4585,6 +4559,32 @@ Version control with Git and GitHub requires
 
 ]
 
+---
+class: action
+name: install-git
+
+## Git &mdash; Download from the Internet and Install
+
+- For Windows, install 'Git for Windows', downloading from [https://gitforwindows.org](https://gitforwindows.org/)
+       - select 'Git from the command line and also from 3rd-party software'
+       
+- For Mac, install 'Git', downloading from [https://git-scm.com/downloads](https://git-scm.com/downloads)
+
+---
+class: action
+
+## GitHub &mdash; Open an Account
+
+Sign up for GitHub at [https://github.com](https://github.com/)
+
+- registering an account is free
+
+- usernames are public
+      - either choose an anonymous username (e.g., `asdf029348`)
+      - or choose one carefully &mdash; it becomes a part of users' online presence
+      
+- usernames can be changed later
+        
 ---
 class: action
 
