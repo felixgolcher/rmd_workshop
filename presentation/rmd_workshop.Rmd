@@ -14,7 +14,7 @@ output:
 name: title-slide
 class: inverse, center, middle
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, cache=FALSE}
 options(htmltools.dir.version = FALSE, crayon.enabled = TRUE)
 
 library(crayon)
@@ -23,6 +23,16 @@ library(dplyr)
 library(ggplot2)
 library(stargazer)
 library(countdown)
+library(RefManageR)
+library(rmarkdown)
+library(tinytex)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(bookdown)
+library(blogdown)
+library(shiny)
+# library(plotly)
 
 # data
 df <- read.csv("../data/journals.csv") %>% 
@@ -37,6 +47,22 @@ lm2 <- lm(h5_index ~ issues + english, data = df)
 lm3 <- lm(h5_index ~ issues + english + subfield, data = df)
 lm4 <- lm(h5_index ~ issues + english + subfield + age, data = df)
 
+knitr::write_bib(file="packages.bib", prefix = "")
+
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           style = "markdown",
+           hyperlink = T,
+           max.names = 1,
+           dashed = FALSE)->bo
+mb <- ReadBib("packages.bib", check = FALSE)
+ct <- function(key, bib=mb, opts=bo){
+  Citet(bib=bib, key, .opts=opts)
+}
+cp <- function(key, bib=mb, opts=bo){
+  Citep(bib=bib, key, .opts=opts)
+}
 ```
 
 <style type="text/css">
@@ -52,6 +78,9 @@ lm4 <- lm(h5_index ~ issues + english + subfield + age, data = df)
    font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
 }
 
+.rightit {
+text-align: right;
+}
 
 .yellow-h{
    background: #ffff88;
@@ -182,7 +211,7 @@ Was it this one?
 ---
 template: findfigure
 
-Or this one? 
+Or this one?
 
 ![](../image/dutch-right.png)
 `final-2/dutch-3.png`
@@ -409,7 +438,24 @@ the modified result
 
 ---
 
-# It's even scriptable &mdash; Use case
+# Extra reason 1: keep it complete!
+
+> There’s nothing worse than discovering three months after the fact that you’ve only stored the results of an important calculation in your workspace, not the calculation itself in your code.
+> .rightit[ 
+[Hadley Wickham](https://r4ds.had.co.nz/workflow-projects.html) ]
+
+--
+
+**If** you have an RMarkdown document, and **if** you make sure it compiles...
+
+--
+
+... **then** that cannot happen.
+
+
+---
+
+# Extra reason 2: It's even scriptable &mdash; Use case
 
 **The Problem**
 
@@ -458,7 +504,7 @@ the modified result
 
 - 3 days à 2 hours, on how to write reproducible research papers with R Markdown
 
-  - 200+ slides, 40+ exercises, and time for converting a real project
+  - A lot of slides, a lot of exercises
 
 --
 
@@ -466,6 +512,8 @@ the modified result
 
   - plus, improving its reproducibility and version-controlling it
   - with a PDF output in mind
+      - default is HTML
+      - Papers or theses are usually not submitted as HTML
 
 --
 
@@ -524,20 +572,20 @@ name: contents-slide
 ---
 ## The Workshop &mdash; Organisation
 
-- Sit in groups of two
+- We will (heavily) use breakoutrooms of 3 to 4 people.
 
   - participants learn as much from their partner as from instructors
-  - switch partners after every second part
+  - from time to time those will be rearranged.
 
-- Type, rather than copy and paste, the code that you will find on these slides
+- You will create your own RMarkdown document(s), not edit something I provide.
 
-  - typing is a part of the learning process
+  - typing and doing it yourself is a part of the learning process
 
 - When you have a question
 
   - ask your partner
   - google together
-  - ask me
+  - ask me & I will join you in your breakoutroom.
 
 ---
 class: action
@@ -558,21 +606,20 @@ Slides with this background colour indicate that your action is required, for
 `r countdown(minutes = 3, seconds = 00, top = 0)`
 
 ---
+
+
 ## The Workshop &mdash; Organisation &mdash; Slides
 
 - Codes and texts that go in R Markdown documents .inline-c[appear as such &mdash; in a different font, on gray background]
     - long codes and texts will have their own line(s)
 
-````md
-`r ''````{r, scatterplot, fig.cap = "A scatterplot of journal metrics."}
-
+```{r, eval=FALSE}
 ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
        geom_point() +
        facet_wrap(. ~ branch) +
-       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield"))    
-
+       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1),
+                             labels = c("Generalist", "Subfield"))    
 ```
-````
 
 ---
 ## The Workshop &mdash; Organisation &mdash; Slides
@@ -596,7 +643,7 @@ ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) 
 ---
 ## The Workshop &mdash; Aims
 
-- To make you aware what is possible with R Markdown
+- To make you aware of what is possible with R Markdown
 
   - we will cover a large breath of issues, not all of it is for long-term memory
       - one reason why the slides are designed for self study as well    
@@ -625,7 +672,7 @@ class: inverse, center, middle
 ---
 ## Course Materials &mdash; Overview
 
-Materials, available at <https://github.com/resulumit/rmd_workshop/tree/materials>, have the following structure
+Materials, available at <https://github.com/felixgolcher/rmd_workshop/tree/materials>, have the following structure
 
 ```
 
@@ -779,60 +826,38 @@ class: action
 ## R Packages &mdash; Install from within RStudio
 
 ```{r eval=FALSE, tidy=FALSE}
-install.packages(c("rmarkdown", "tinytex", "dplyr", "stargazer", "ggplot2"))
-
+install.packages(c("rmarkdown", 
+                   "tinytex",
+                   "tidyverse",
+                   "stargazer"))
 tinytex::install_tinytex()
-
 ```
 
 --
 
-- `rmarkdown` (Allaire et al., 2020), for automating the process of converting R Markdown documents into other formats
+- `rmarkdown` `r cp("rmarkdown")`, for automating the process of converting R Markdown documents into other formats
 
----
-class: action
+--
 
-## R Packages &mdash; Install from within RStudio
-
-```{r eval=FALSE, tidy=FALSE}
-install.packages(c("rmarkdown", "tinytex", "dplyr", "stargazer", "ggplot2"))
-
-tinytex::install_tinytex() #<<
-
-```
-
-- `rmarkdown` (Allaire et al., 2020), for automating the process of converting R Markdown documents into other formats
-
-- `tinytex` (Xie, 2020), for PDF outputs
+- `tinytex` `r cp("tinytex")`, for PDF outputs
     - requires an additional step to install
     - alternative: a TeX/LaTeX system installed on your computer
 
----
-class: action
+--
 
-## R Packages &mdash; Install from within RStudio
-
-```{r eval=FALSE, tidy=FALSE}
-install.packages(c("rmarkdown", "tinytex", "dplyr", "stargazer", "ggplot2"))
-
-tinytex::install_tinytex()
-
-```
-
-
-- `dplyr` (Wickham, 2020a), for data manipulation
-    - alternatives: e.g., `base`, `data.table` (Dowle & Srinivasan, 2019)
+- `tidyverse` `r cp("tidyverse")`, for data manipulation pipes
+    - the modern paradigm for wrangling your data.
 
 --
 
-- `stargazer` (Hlavac, 2018), for tables
-    - alternatives: e.g., `knitr` (Xie, 2020b), `kableExtra` (Zhu, 2019)
+- `stargazer`, `r cp("stargazer")` for tables
+    - alternatives: e.g., `knitr` `r cp("knitr")`, `kableExtra` `r cp("kableExtra")`
     
 --
 
-    
-- `ggplot2` (Wickham, 2020b), for figures
-    - alternatives: e.g., `base`, `plotly` (Sievert et al., 2020)
+  
+- `ggplot2` `r cp("ggplot2")`, for figures
+    - alternatives: e.g., `base` `r cp("base")`, `plotly` `r cp("plotly")`
 
 ---
 class: action
@@ -872,10 +897,6 @@ Downloading process can be initiated from within RStudio
 ---
 ## Other Resources<sup>*</sup>
 
-- Pandoc User's Guide
-
-   - available at [https://pandoc.org/MANUAL.html](https://pandoc.org/MANUAL.html)
-
 - R Markdown: The Definitive Guide (Xie et al., 2019)
 
    - open access at [https://bookdown.org/yihui/rmarkdown](https://bookdown.org/yihui/rmarkdown/)
@@ -884,6 +905,10 @@ Downloading process can be initiated from within RStudio
 - R for Data Science (Wickham and Grolemund, 2019)
   
    - open access at [https://r4ds.had.co.nz](https://r4ds.had.co.nz/)
+- Pandoc User's Guide
+
+   - available at [https://pandoc.org/MANUAL.html](https://pandoc.org/MANUAL.html)
+
    
 .footnote[
 
@@ -1032,17 +1057,12 @@ knitr::include_graphics("../image/first_rmd.png")
 
 --
 
-- R Markdown can produce more than documents,<sup>*</sup> including
-
+- R Markdown can produce more than scientific reports,<sup>*</sup> including
   - presentations, again with `rmarkdown`
-  - books, with `bookdown` (Xie, 2020c)
-  - websites, with `blogdown` (Xie, 2020d)
-
-.footnote[
-
-<sup>*</sup> Here we will focus on research papers only. In a separate workshop, I teach how to create professional websites with R Blogdown.
-
-]  
+  - books, with `bookdown` `r cp("bookdown")`
+  - websites, with `blogdown` `r cp("blogdown")`
+  - interactive web applications, with `shiny` `r cp("shiny")`
+* Here we will focus on research papers only.
 
 ---
 name: part3
@@ -1393,16 +1413,26 @@ output: pdf_document
 ---
 ## YAML &mdash; Strings
 
-These strings depend on (a) where the files are located and (b) how they are named
-
 ```{r, eval = FALSE}
 ---
 ...
 bibliography: references/ref_library.bib                                               #<<
-csl: "C:/Users/resul/Dropbox/teaching/r_markdown/references/chicago_manual_17.csl"     #<<
+csl: /home/flx/hu/statistik/register/rmd_workshop/manuscript/apa_7th.csl     #<<
 ...
 ---
 ```
+
+Those strings can be
+
+* *relative* paths like `references/ref_library.bib`. With RMarkdown they start in the directory where the script resides.
+* *absolute* paths, starting at the directory tree root like 
+  * `/home/flx/hu/statistik/register/rmd_workshop/manuscript/apa_7th.csl` (Linux/Mac) or 
+  * `C:\Users\you\Documents\style.css` (Windows)
+
+But **never ever** use absolute paths in an RMarkdown document
+
+* otherwise you cannot share it
+* **why?** No one will have exactly your directory structure as you.
 
 ---
 ## YAML &mdash; Options and Sub-Options
@@ -5375,4 +5405,11 @@ class: middle, center
 
 pagedown::chrome_print("rmd_workshop.html", output = "rmd_workshop.pdf")
 
+```
+
+---
+# References
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(mb)
 ```
