@@ -5,9 +5,9 @@
 
 *.Rproj
 *.docx
-presentation/*
-!presentation/rmd_workshop.Rmd
-!presentation/rmd_workshop.pdf
+presentation/libs
+presentation/packages.bib
+*.html
 
 *_cache/
 *_files
