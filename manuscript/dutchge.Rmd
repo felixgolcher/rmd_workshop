@@ -7,7 +7,7 @@ bibliography: bib.bib
 csl: apa_7th.csl
 fontsize: 10pt
 output:
-  bookdown::pdf_document2:
+  pdf_document:
     toc: false
 ---
 
