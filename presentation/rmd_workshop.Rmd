@@ -63,6 +63,8 @@ ct <- function(key, bib=mb, opts=bo){
 cp <- function(key, bib=mb, opts=bo){
   Citep(bib=bib, key, .opts=opts)
 }
+
+doc1 <- "`dutchge-1.pdf`"
 ```
 
 <style type="text/css">
@@ -1036,8 +1038,8 @@ class: action
 - Click the `Knit` button to compile
   - An output document pops up in another window (or similar things happen)
   - You find this new document in the directory you placed the Rmd in.
-  - the output document has the same base name as your .Rmd document
-  - the extension should be `html` by default.
+  - the output document has the same base name as your `.Rmd` document
+  - the extension should be `.html` by default.
 ]
 .pull-right-c[
 
@@ -1051,9 +1053,9 @@ knitr::include_graphics("../image/first_rmd.png")
 
 .pull-left-c[
 * Click the ▼ to the right of the `Knit` button
-  - choose "knit to pdf" from the dropdown.
+  - choose "knit to pdf" from the appearing dropdown.
   - you see another document appear
-  - don't be surprised if it's a PDF.
+  - don't be surprised that it's a `PDF`.
 * For the remainder of the course we will focus on PDF.
 
 ]
@@ -1063,9 +1065,13 @@ knitr::include_graphics("../image/first_rmd.png")
 ## R Markdown Document &mdash; Compilation Process 
 
 - When you `Knit`, the following happens: 
-> `.Rmd --knitr--> .md --pandoc--> output`
 
-  - `knitr`<sup>*</sup> executes the code if there is any, converts the resulting document from .Rmd (R Markdown) into .md (Markdown)
+**`.Rmd`** (RMarkdown) $\xrightarrow[\text{runs R code}]{\text{knitr}}$ **`.md`** (Markdown) $\xrightarrow[\text{converts}]{\text{pandoc}}$ whatevery **output** form and format you desire!
+
+  - `knitr`<sup>*</sup> 
+     - executes the code chunks
+     - optionally replacing it with the results 
+     - pure `.md` (Markdown) remains.
 
   - `pandoc`<sup>**</sup> transforms the .md document into your preferred output format(s)
   
@@ -1077,7 +1083,7 @@ knitr::include_graphics("../image/first_rmd.png")
 
 <sup>*</sup> If you had not already have the `knitr` package, it would have been installed together with the `rmarkdown` package.
 
-<sup>**</sup> RStudio comes with a copy of `pandoc` ([http://pandoc.org](http://pandoc.org)), which is not an R package, so that you do not have to install it separately. 
+<sup>**</sup> RStudio comes with a copy of `pandoc` ([http://pandoc.org](http://pandoc.org)), which is __not__ an R package, so that you do not have to install it separately. 
 
 ]
 
@@ -1653,24 +1659,13 @@ class: action
 
 ## Exercises
 
-1) Open `journals.Rmd` and fill in the YAML variables for the mock paper
-- take cues from `reproduce_this.pdf` and/or the slides
+1. Open your `Rmd` file and fill in the YAML variables for the mock paper
 
-<br> 
+2. Compile to `PDF`
 
-2) Add and set one of the variables mentioned as [further settings for PDF outputs](#yaml-further-settings) above
-- i.e., `fontsize`, `linkcolor`, `urlcolor`, `citecolor`, `link-citations`
+3. Cycle through 1. and 2. until your `PDF` reproduces`r doc1` as closely as possible.
+    - Make sure to remove the table of contents.
 
-<br>
-
-3) Add and set a completely new variable not covered so far
--  see, for example, the R Markdown Cheat Sheet
-
-<br>
-
-4) `Knit` your `journals.Rmd`
-- observe the outcome
-    
 `r countdown(minutes = 10, seconds = 00, top = 0)`
 
 ???
