@@ -4,7 +4,7 @@ output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
-      highlightStyle: github
+      _highlightStyle: github
       highlightLines: true
       highlightSpans: true
       countIncrementalSlides: false
@@ -141,6 +141,23 @@ text-align: right;
 [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; forked from [Resul Umit](https://resulumit.com/)'s [rmarkdown workshop](https://github.com/resulumit/rmd_workshop).
 ]
 
+???
+
+```{r, include=FALSE}
+delta <- 5
+tot <- delta
+```
+
+
+This slide alone make count to `r tot` min.
+
+Talk about why we make this workshop.
+
+Your experience in class.
+
+
+
+
 ---
 
 ## A normal situation
@@ -166,6 +183,14 @@ text-align: right;
     - All numbers have to change.
     - The figures will have to change as well.
 ]
+
+???
+
+Normal indeed.
+
+I've seen that! Tell a story
+
+! The article is obviously just a mock fragment to show the formal essence of an article.
 
 ---
 name: findfigure
@@ -200,6 +225,11 @@ pictures/
 ```
 
 **Which** is the right file?
+
+???
+
+Mention that this is a directory tree...
+
 
 ---
 template: findfigure
@@ -263,6 +293,10 @@ durationsGe %>% as_tibble() %>%
 --
 
 **Which is the right version?**
+
+???
+
+What does it mean "to find the place yourself"?
 
 ---
 
@@ -418,13 +452,24 @@ the modified result
        - Decreases the possibility of making mistakes in the process.
        - Each bit of the article is easily tracable.
        - Consequences of subtle changes propagate everywhere by themselves.
-   - Markdown much easier to learn than LaTeX. Same workflow exists for LaTeX. Even more powerful.
+   - Markdown much easier to learn than $\LaTeX$. Same workflow exists for $\LaTeX$. Even more powerful.
+
+???
+
+The caveat
+
+Indrajeet Patil
+@patilindrajeets
+
+Although #rmarkdown creates all sorts of outputs, not everything will work across outputs. E.g. I love including gifs in docs. This works in HTML but fails when knitted to PDF.
+
+✅ How can one make doc robust to multiple outputs?
 
 --
 
 - Flexible
     - output to various file formats
-        - e.g., HTML, LaTeX, PDF, Word ([caveat](https://twitter.com/patilindrajeets/status/1395298790647771136))
+        - e.g., HTML, $\LaTeX$, PDF, Word ([caveat](https://twitter.com/patilindrajeets/status/1395298790647771136))
         - that is the *same* source gives different formats.
         - predefined templates/styles exist
     - output to different modalities
@@ -435,6 +480,7 @@ the modified result
 --
 
 - Collaboration: As a text based format, (R)Mardown is ideal for versioning, e.g. using git.
+
 
 ---
 
@@ -506,6 +552,10 @@ the modified result
 
   - A lot of slides, a lot of exercises
 
+???
+
+XXX overwrite!
+
 --
 
 - Based on converting a mock manuscript written in Word to R Markdown
@@ -546,6 +596,11 @@ the modified result
    - e.g., citing sources
    
 ]
+
+???
+
+XXX overwrite!
+
 
 --
 name: contents-slide
@@ -657,6 +712,10 @@ ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) 
   - practice with a mock manuscript (Parts 3&ndash;9)
   - start converting a real one (Part 10)
     
+???
+
+XXX overwrite!
+
 ---
 name: part1
 class: inverse, center, middle
@@ -696,6 +755,10 @@ rmd_workshop-materials
    
 ```
 
+???
+
+XXX overwrite!
+
 ---
 name: download-zip
 class: action
@@ -719,6 +782,10 @@ class: action
      - e.g., `resul-rmd`
      - this will come handy in Part 9
   
+???
+
+XXX overwrite! This and the following slides
+
 ---
 ## Course Materials &mdash; Contents
 
@@ -794,6 +861,11 @@ class: action
 - Download RStudio from [https://rstudio.com/products/rstudio/download](https://rstudio.com/products/rstudio/download)
     - choose the free version
 
+???
+
+In our case, students have done that by now.
+
+
 ---
 class: action
 
@@ -801,9 +873,7 @@ class: action
 
 ```{r eval=FALSE, tidy=FALSE}
 install.packages(c("rmarkdown", 
-                   "tinytex",
-                   "tidyverse",
-                   "stargazer"))
+                   "tinytex"))
 tinytex::install_tinytex()
 ```
 
@@ -815,23 +885,11 @@ tinytex::install_tinytex()
 
 - `tinytex` `r cp("tinytex")`, for PDF outputs
     - requires an additional step to install
-    - alternative: a TeX/LaTeX system installed on your computer
+    - alternative: a $\TeX$ / $\LaTeX$ system installed on your computer
+    - `tinytex` is much smaller, and no fuss to install.
+    - $\LaTeX$ packages that are not installed, are added on the fly.
+       - That's the promise, anyway.
 
---
-
-- `tidyverse` `r cp("tidyverse")`, for data manipulation pipes
-    - the modern paradigm for wrangling your data.
-
---
-
-- `stargazer`, `r cp("stargazer")` for tables
-    - alternatives: e.g., `knitr` `r cp("knitr")`, `kableExtra` `r cp("kableExtra")`
-    
---
-
-  
-- `ggplot2` `r cp("ggplot2")`, for figures
-    - alternatives: e.g., `base` `r cp("base")`, `plotly` `r cp("plotly")`
 
 ---
 class: action
@@ -904,6 +962,10 @@ class: action
     - and everything still works the same: ✅
 
 - Observe that your file automatically got the extension `.Rmd`.
+
+???
+
+Mention what happens, if you don't
 
 ---
 ## R Markdown Document &mdash; Components
@@ -1007,7 +1069,7 @@ knitr::include_graphics("../image/first_rmd.png")
 
   - `pandoc`<sup>**</sup> transforms the .md document into your preferred output format(s)
   
-     - e.g., HTML, LaTeX, PDF, Word
+     - e.g., HTML, $\LaTeX$, PDF, Word
 
 - This process is automated by the `rmarkdown` package
 
@@ -1180,7 +1242,7 @@ knitr::include_graphics("../image/yaml_html.png")
 Documents as output formats include
 
 - HTML
-- .yellow-h[LaTeX]
+- .yellow-h[$\LaTeX$]
     
 ```{r, eval = FALSE}
 ---
@@ -1206,7 +1268,7 @@ knitr::include_graphics("../image/yaml_latex.png")
 Documents as output formats include
 
 - HTML
-- LaTeX
+- $\LaTeX$
 - .yellow-h[PDF]
     
 ```{r, eval = FALSE}
@@ -1233,7 +1295,7 @@ knitr::include_graphics("../image/yaml_pdf.png")
 Documents as output formats include
 
 - HTML
-- LaTeX
+- $\LaTeX$
 - PDF
 - .yellow-h[Word]
     
@@ -1284,7 +1346,7 @@ knitr::include_graphics("../image/yaml_word.png")
 
 .footnote[
 
-<sup>*</sup> For reasons of simplicity, this workshop focuses on LaTex and/or PDF outputs. Different output formats have slightly different customisations. See [Pandoc User's Guide](https://pandoc.org/MANUAL.html) and/or R Markdown Cheat Sheet.
+<sup>*</sup> For reasons of simplicity, this workshop focuses on $\LaTeX$ and/or PDF outputs. Different output formats have slightly different customisations. See [Pandoc User's Guide](https://pandoc.org/MANUAL.html) and/or R Markdown Cheat Sheet.
 
 ]
 
@@ -1465,7 +1527,7 @@ output:                   #<<
 Notice that
 
 - this specific setting, highlighted, will create multiple outputs
-    - a LaTeX and a PDF document
+    - a $\LaTeX$ and a PDF document
 
 - all but the last option (i.e., `true`) takes a colon
 
@@ -1610,6 +1672,10 @@ class: action
 - observe the outcome
     
 `r countdown(minutes = 10, seconds = 00, top = 0)`
+
+???
+
+Ich denke, das sollte ich rausnehmen.
 
 ---
 name: part4
@@ -2198,7 +2264,7 @@ A pair of carets introduces subscript
 
 Notice that
 
-- the syntax here (Markdown-based) is different than the one for equations (LaTeX-based)
+- the syntax here (Markdown-based) is different than the one for equations ($\LaTeX$-based)
     - e.g., <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">R&#94;2&#94;</span> versus <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;"> mc^{2}</span>
 
 
@@ -3624,7 +3690,7 @@ class: action
 
 - Used widely by academics
 
-- Creates LaTeX code, HTML/CSS code, and ASCII text to be knitted
+- Creates $\LaTeX$ code, HTML/CSS code, and ASCII text to be knitted
 
 - A lot is written on this package. See, for example, 
 
@@ -3700,8 +3766,8 @@ Notice the options of the chunk and the arguments of the function
 --
 
 - with .inline-c[results="asis"], `knitr` will pass through results without reformatting them 
-    - these results are produced in LaTeX, due to <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">type = "latex"</span>
-    - they should remain LaTeX because our outcome document is PDF, converted from LaTeX
+    - these results are produced in $\LaTeX$, due to <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">type = "latex"</span>
+    - they should remain $\LaTeX$ because our outcome document is PDF, converted from $\LaTeX$
     
 --
 
@@ -4132,9 +4198,9 @@ class: inverse, center, middle
 
 - Workarounds available through inclusion of other languages and/or syntaxes in .Rmd documents
 
-    - e.g., incorporating HTML or LaTeX code into R Markdown
+    - e.g., incorporating HTML or $\LaTeX$ code into R Markdown
     - workarounds might be output specific
-       - e.g., LaTeX-based workarounds may work only for LaTeX and PDF outputs
+       - e.g., $\LaTeX$-based workarounds may work only for $\LaTeX$ and PDF outputs
 
 --
 
@@ -4153,7 +4219,7 @@ How can we cross-reference figures, tables, and equations in R Markdown?
 
 #### Solution:
 
-Insert a LaTeX label into the targets (figures, tables, and equations), and then use the .inline-c[\autoref{figure_caption}] syntax in text
+Insert a $\LaTeX$ label into the targets (figures, tables, and equations), and then use the .inline-c[\autoref{figure_caption}] syntax in text
 
 
 ---
@@ -4161,7 +4227,7 @@ name: autoref-figures
 
 ## Functionality Gaps &mdash; Examples &mdash; Cross-references
 
-For .yellow-h[figures], insert a LaTeX label into the .yellow-h[`fig.caption`] option, and use the .inline-c[\autoref{latex_label}] syntax in text
+For .yellow-h[figures], insert a $\LaTeX$ label into the .yellow-h[`fig.caption`] option, and use the .inline-c[\autoref{latex_label}] syntax in text
 
 ````md
 `\autoref{scatter_plot}` visualises the relationship between the two journal metrics.
@@ -4185,7 +4251,7 @@ name: autoref-tables
 
 ## Functionality Gaps &mdash; Examples &mdash; Cross-references
 
-For .yellow-h[Markdown tables], insert a LaTeX label after the table caption, and use the .inline-c[\autoref{latex_label}] syntax in text
+For .yellow-h[Markdown tables], insert a $\LaTeX$ label after the table caption, and use the .inline-c[\autoref{latex_label}] syntax in text
 
 ```md
 See `\autoref{handmade_table}` for further details.
@@ -4214,7 +4280,7 @@ Note that there is a difference in the label syntax for figures and R Markdown t
 
     - e.i., <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">\\\label{scatter_plot}</span> because the label goes into a string
     
-    - the first is an escape operator for the second, LaTeX backslash
+    - the first is an escape operator for the second, $\LaTeX$ backslash
     
 --
    
@@ -4305,7 +4371,7 @@ name: autoref-equation
 
 ## Functionality Gaps &mdash; Examples &mdash; Cross-references
 
-For .yellow-h[equations], insert a LaTeX label in an equation environment, and use the .inline-c[\autoref{latex_label}] syntax in text
+For .yellow-h[equations], insert a $\LaTeX$ label in an equation environment, and use the .inline-c[\autoref{latex_label}] syntax in text
 
 ```md
 \begin{equation}
@@ -4343,7 +4409,7 @@ class: action
 33) Referring to Equations
 - see `reproduce_this.pdf`: page 7
 - apply in `journals.Rmd`: paragraph 22
-   - hint: transform the existing equation from R Markdown to LaTeX syntax, to be able to insert the label
+   - hint: transform the existing equation from R Markdown to $\LaTeX$ syntax, to be able to insert the label
 
 
 `r countdown(minutes = 7, seconds = 30, top = 0)`
@@ -4378,7 +4444,7 @@ R Markdown produces outputs with single-line-spaced text while we might prefer o
 
 #### Solution:
 
-Use the `doublespacing` command from the LaTeX package `setspace` (Carlisle et al., 2011)
+Use the `doublespacing` command from the $\LaTeX$ package `setspace` (Carlisle et al., 2011)
 - because the command comes from a package, we need to add it to YAML with `header-includes`
 - including commands in YAML ensures they are applied throught the output<sup>*</sup>  
 
