@@ -32,6 +32,7 @@ library(kableExtra)
 library(bookdown)
 library(blogdown)
 library(shiny)
+library(xaringan)
 # library(plotly)
 
 # data
@@ -378,6 +379,15 @@ Other figures, other numbers. Just slightly so.
 
 💀
 
+???
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
 ---
 name: md1
 # A better world exists
@@ -441,10 +451,19 @@ knitr::include_graphics("../image/md-corr.png")
 
 the modified result
 
+???
+
+```{r, include=FALSE}
+delta <- 3
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
 ---
 
 
-## R Markdown
+## R Markdown &mdash; Why would you want to use it?
 
 - Efficient
 
@@ -455,17 +474,6 @@ the modified result
        - Each bit of the article is easily tracable.
        - Consequences of subtle changes propagate everywhere by themselves.
    - Markdown much easier to learn than $\LaTeX$. Same workflow exists for $\LaTeX$. Even more powerful.
-
-???
-
-The caveat
-
-Indrajeet Patil
-@patilindrajeets
-
-Although #rmarkdown creates all sorts of outputs, not everything will work across outputs. E.g. I love including gifs in docs. This works in HTML but fails when knitted to PDF.
-
-✅ How can one make doc robust to multiple outputs?
 
 --
 
@@ -479,10 +487,30 @@ Although #rmarkdown creates all sorts of outputs, not everything will work acros
         - presentations like this one
         - [interactive documents](https://shiny.rstudio.com/) 
         
+???
+
+The caveat
+
+Indrajeet Patil
+@patilindrajeets
+
+Although #rmarkdown creates all sorts of outputs, not everything will work across outputs. E.g. I love including gifs in docs. This works in HTML but fails when knitted to PDF.
+
+✅ How can one make doc robust to multiple outputs?
+
 --
 
 - Collaboration: As a text based format, (R)Mardown is ideal for versioning, e.g. using git.
 
+
+???
+
+```{r, include=FALSE}
+delta <- 2
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
 
 ---
 
@@ -527,7 +555,7 @@ Although #rmarkdown creates all sorts of outputs, not everything will work acros
 
 ---
 
-## Reproducibilty &mdash; After Publication
+## Extra reason 3: Reproducibilty &mdash; After Publication
 
 - After your paper is published, others, including your future self, might like to check your results:
 
@@ -546,6 +574,15 @@ Although #rmarkdown creates all sorts of outputs, not everything will work acros
 
 - In an RMarkdown based workflow this is easy:
     - Everything is there.
+
+???
+
+```{r, include=FALSE}
+delta <- 4
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
 
 ---
 ## The Workshop &mdash; Overview
@@ -709,7 +746,7 @@ ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) 
 
 --
 
-- To encourage you to convert into R Markdown 
+- To encourage you to move to R Markdown 
 
   - practice with a mock manuscript (Parts 3&ndash;9)
   - start converting a real one (Part 10)
@@ -717,6 +754,14 @@ ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) 
 ???
 
 XXX overwrite!
+
+
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
 
 ---
 name: part1
@@ -893,6 +938,17 @@ tinytex::install_tinytex()
        - That's the promise, anyway.
 
 
+???
+
+Superschwer zu sagen, weil noch sehr unfertig. Aber gerade dieser Slide könnte etwas dauern.
+
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
 ---
 class: action
 
@@ -904,6 +960,15 @@ Downloading process can be initiated from within RStudio
 
 > `Help -> Cheatsheets -> R Markdown Cheat Sheet` 
 
+
+???
+
+```{r, include=FALSE}
+delta <- 2
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
 
 ---
 ## Other Resources<sup>*</sup>
@@ -926,6 +991,15 @@ Downloading process can be initiated from within RStudio
 <sup>*</sup> During the workshop, R Markdown Cheat Sheet is likely to be more helpful than these resources, which I recommend to be consulted after the workshop.
 
 ]
+
+???
+
+```{r, include=FALSE}
+delta <- 1
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
 
 ---
 name: part2
@@ -968,6 +1042,15 @@ class: action
 ???
 
 Mention what happens, if you don't
+
+Mention Rstudio projects
+
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
 
 ---
 ## R Markdown Document &mdash; Components
@@ -1029,6 +1112,15 @@ Mention what happens, if you don't
 
 ]
 
+???
+
+```{r, include=FALSE}
+delta <- 3
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
 ---
 class: action
 
@@ -1060,6 +1152,23 @@ knitr::include_graphics("../image/first_rmd.png")
 
 ]
 
+???
+
+```{r, include=FALSE}
+delta <- 3
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
+
+break $\Delta$ `r delta`, total `r tot` min.
+
+
 
 ---
 ## R Markdown Document &mdash; Compilation Process 
@@ -1068,24 +1177,18 @@ knitr::include_graphics("../image/first_rmd.png")
 
 **`.Rmd`** (RMarkdown) $\xrightarrow[\text{runs R code}]{\text{knitr}}$ **`.md`** (Markdown) $\xrightarrow[\text{converts}]{\text{pandoc}}$ whatevery **output** form and format you desire!
 
-  - `knitr`<sup>*</sup> 
+- `knitr`<sup>*</sup>
+     - is an R package, a central and powerful one.
      - executes the code chunks
      - optionally replacing it with the results 
      - pure `.md` (Markdown) remains.
 
-  - `pandoc`<sup>**</sup> transforms the .md document into your preferred output format(s)
-  
+- `pandoc`<sup>**</sup> transforms the .md document into your preferred output format(s)
+     - is **not** an R package, but a standalone conversion wonder program
      - e.g., HTML, $\LaTeX$, PDF, Word
-
+     - RStudio comes with a copy of `pandoc` ([http://pandoc.org](http://pandoc.org)), so you do not have to install it separately. 
 - This process is automated by the `rmarkdown` package
 
-.footnote[
-
-<sup>*</sup> If you had not already have the `knitr` package, it would have been installed together with the `rmarkdown` package.
-
-<sup>**</sup> RStudio comes with a copy of `pandoc` ([http://pandoc.org](http://pandoc.org)), which is __not__ an R package, so that you do not have to install it separately. 
-
-]
 
 ---
 ## R Markdown Document &mdash; Notes
@@ -1098,11 +1201,11 @@ knitr::include_graphics("../image/first_rmd.png")
 --
 
 - R Markdown can produce more than scientific reports,<sup>*</sup> including
-  - presentations, again with `rmarkdown`
+  - presentations, for example with `xaringan`  `r cp("xaringan")`, like this one
   - books, with `bookdown` `r cp("bookdown")`
   - websites, with `blogdown` `r cp("blogdown")`
   - interactive web applications, with `shiny` `r cp("shiny")`
-* Here we will focus on research papers only.
+* Here we will focus mostly on research papers, maybe with a digression to presentations.
 
 ---
 name: part3
@@ -1115,6 +1218,15 @@ class: inverse, center, middle
 [Back to the contents slide](#contents-slide).
 
 ]
+
+???
+
+```{r, include=FALSE}
+delta <- 3
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
 
 ---
 ## YAML &mdash; Overview
@@ -1248,7 +1360,8 @@ knitr::include_graphics("../image/yaml_html.png")
 Documents as output formats include
 
 - HTML
-- .yellow-h[$\LaTeX$]
+- .yellow-h[
+$\LaTeX$]
     
 ```{r, eval = FALSE}
 ---
@@ -1473,6 +1586,9 @@ But **never ever** use absolute paths in an RMarkdown document
 
 * otherwise you cannot share it
 * **why?** No one will have exactly your directory structure as you.
+???
+
+We already mentioned something similar: Self contained directories.
 
 ---
 ## YAML &mdash; Options and Sub-Options
@@ -1663,14 +1779,28 @@ class: action
 
 2. Compile to `PDF`
 
-3. Cycle through 1. and 2. until your `PDF` reproduces`r doc1` as closely as possible.
+3. Cycle through 1. and 2. until your `PDF` reproduces `r doc1` as closely as possible.
     - Make sure to remove the table of contents.
 
 `r countdown(minutes = 10, seconds = 00, top = 0)`
 
 ???
 
-Ich denke, das sollte ich rausnehmen.
+```{r, include=FALSE}
+delta <- 10
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
+
 
 ---
 name: part4
