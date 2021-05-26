@@ -9,6 +9,7 @@ output:
     toc: false
 ---
 
+<!-- This quotation has zero connection to Dutch language processing! -->
 > It is said that your life flashes before your eyes just before you die.\newline
 > That is true, it's called Life.”\newline
 > -- Terry Pratchett, The Last Continent
@@ -25,7 +26,7 @@ Figure 1 gives an overview of the data. We clearly see a downward trajectory.
 
 
 ```{r, include=F}
-doc1 <- "this document"
+doc2 <- "this document"
 ```
 
 
@@ -34,7 +35,10 @@ doc1 <- "this document"
 
 **What shall we do?**
 
-It is generally no bad idea to put each sentence on a new line.
-The output text does not show the line break.
-That's why you are supposed to put a line break between sentences in this document as well.
+Update your `Rmd` file so the output matches `r doc2`.
 
+* Avoid very long lines by putting one sentence per line.
+* Pay attention to line breaks and paragraph endings.
+* Add a comment. You can complain about everything, no one will see it.
+
+If you don't remember the syntax, the cheatsheet or google will surely help. If not, I'm there to help.
