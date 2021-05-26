@@ -36,15 +36,124 @@ doc4 <- "this document"
 
 # Methods and Materials
 
-We applied methods to materials.
+We applied [methods](#methods) to [materials](#materials).
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
 
 ## Methods
 
 They where great
 
+Here are the [materials](#materials).
+
+
+Back to [methods and materials](#methods-and-materials)
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
 ## Materials
 
 Subjects were told what to do.
+
+Back to [methods and materials](#methods-and-materials)
 
 \vfill
 **\textcolor{gray}{Template to be reproduced ends here}**
@@ -53,7 +162,8 @@ Subjects were told what to do.
 
 Update your `Rmd` file so the output matches `r doc4`.
 
-* Update YAML header as well
-* Activate automatic section numering in the YAML header.
+* Set the internal links in red.
+* Actually make them red.
+* Set a link to the first author's email address.
 
 If you don't remember the syntax, the cheatsheet or google will surely help. If not, I'm there to help.

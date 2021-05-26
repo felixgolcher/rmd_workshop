@@ -15,15 +15,10 @@ output:
 > That is true, it's called Life.”\newline
 > -- Terry Pratchett, The Last Continent
 
-**Abstract:**
+Abstract:
 This paper is about Dutch prefixes. 
 It uses an example data set from (Baayen 2008).
 
-<<<<<<< HEAD:manuscript/dutchge-2.Rmd
-=======
-# Introduction
-
->>>>>>> ex3:manuscript/dutchge-3.Rmd
 We tried to figure out if the frequency of a word has an influence on the duration of Dutch prefixes. 
 Intuitively one could assume that with the duration drops with frequency.
 For this we recruited 130 Dutch native speakers.
@@ -35,18 +30,6 @@ Figure 1 gives an overview of the data. We clearly see a downward trajectory.
 doc3 <- "this document"
 ```
 
-# Methods and Materials
-
-We applied methods to materials.
-
-## Methods
-
-They where great
-
-## Materials
-
-Subjects were told what to do.
-
 \vfill
 **\textcolor{gray}{Template to be reproduced ends here}**
 
@@ -54,7 +37,8 @@ Subjects were told what to do.
 
 Update your `Rmd` file so the output matches `r doc3`.
 
-* Update `YAML` header as well
-* Activate automatic section numering in the `YAML` header.
+* Avoid very long lines by putting one sentence per line.
+* Pay attention to line breaks and paragraph endings.
+* Add a comment. You can complain about everything, no one will see it.
 
 If you don't remember the syntax, the cheatsheet or google will surely help. If not, I'm there to help.
