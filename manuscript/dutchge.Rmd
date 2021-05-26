@@ -38,7 +38,7 @@ doc3 <- "this document"
 
 We applied [methods](#methods) to [materials](#materials).
 
-It can quite generally be said that $$a+b=b+a$$ where $a$ and $b$ are some real numbers.
+It can quite generally be said that $$a+b=b+a$$ where $a$ and $b$ are some real numbers and $a+b$ is the sum of $a$ and $b$.
 
 
 text
