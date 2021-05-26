@@ -18,7 +18,7 @@ Abstract:
 This paper is about Dutch prefixes. 
 It uses an example data set from (Baayen 2008).
 
-We tried to figure out if the frequency of a word has an influence on the duration of Dutch suffixes. 
+We tried to figure out if the frequency of a word has an influence on the duration of Dutch prefixes. 
 Intuitively one could assume that with the duration drops with frequency.
 For this we recruited 130 Dutch native speakers.
 They produced 421 different words.
