@@ -67,7 +67,7 @@ durationsGe %>% as_tibble() %>%
 ```
 
 
-We tried to figure out if the frequency of a word has an influence on the duration of Dutch suffixes. Intuitively one could assume that with the duration drops with frequency. For this we recruited `r length(unique(durationsGe$Speaker))` Dutch native speakers. They produced `r length(unique(durationsGe$Word))` different words.
+We tried to figure out if the frequency of a word has an influence on the duration of Dutch prefixes. Intuitively one could assume that with the duration drops with frequency. For this we recruited `r length(unique(durationsGe$Speaker))` Dutch native speakers. They produced `r length(unique(durationsGe$Word))` different words.
 
 Figure \@ref(fig:blub) gives an overview of the data. We clearly see a downward trajectory.
 
