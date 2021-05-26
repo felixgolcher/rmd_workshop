@@ -9,8 +9,21 @@ output:
     toc: false
 ---
 
+> It is said that your life flashes before your eyes just before you die.\newline
+> That is true, it's called Life.”\newline
+> -- Terry Pratchett, The Last Continent
 
-Text goes here.
+Abstract: 
+This paper is about Dutch prefixes. 
+It uses an example data set from (Baayen 2008).
+
+We tried to figure out if the frequency of a word has an influence on the duration of Dutch suffixes. 
+Intuitively one could assume that with the duration drops with frequency.
+For this we recruited 130 Dutch native speakers.
+They produced 421 different words.
+Figure 1 gives an overview of the data. We clearly see a downward trajectory.
+
+
 ```{r, include=F}
 doc1 <- "this document"
 ```
@@ -21,21 +34,7 @@ doc1 <- "this document"
 
 **What shall we do?**
 
-1. Open your `Rmd` file and fill in the YAML variables for the mock paper
+It is generally no bad idea to put each sentence on a new line.
+The output text does not show the line break.
+That's why you are supposed to put a line break between sentences in this document as well.
 
-2. Compile to `PDF`
-
-3. Cycle through 1. and 2. until your `PDF` reproduces `r doc1` as closely as possible.
-    - Use an author name of your liking.
-    - Make sure to remove the table of contents.
-    - Pay attention to the font size.
-    - Make the date string dynamic. R hint:
-```{r}
-Sys.Date()
-```
-
-Getting help:
-
-* Ask your room mates
-* Google
-* Don't hesitate to call me in.
