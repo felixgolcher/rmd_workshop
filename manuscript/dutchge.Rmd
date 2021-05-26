@@ -1,6 +1,6 @@
 ---
-title: Durational measurements on the Dutch prefix ge-
-subtitle: Using old data from Harald Baayen's languageR package
+title: Durational measurements on the Dutch prefix *ge-*
+subtitle: Using old data from Harald Baayen's `languageR` package
 author: Felix Golcher and Alter Ego
 date: "`r Sys.Date()` (this version)"
 fontsize: 12pt
@@ -14,9 +14,11 @@ output:
 > That is true, it's called Life.”\newline
 > -- Terry Pratchett, The Last Continent
 
-Abstract: 
+**Abstract:**
 This paper is about Dutch prefixes. 
 It uses an example data set from (Baayen 2008).
+
+# Introduction
 
 We tried to figure out if the frequency of a word has an influence on the duration of Dutch suffixes. 
 Intuitively one could assume that with the duration drops with frequency.
