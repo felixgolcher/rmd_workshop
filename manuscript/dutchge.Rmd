@@ -1,13 +1,15 @@
 ---
 title: Durational measurements on the Dutch prefix *ge-*
 subtitle: Using old data from Harald Baayen's `languageR` package
-author: Felix Golcher and Alter Ego
+author: "[Felix Golcher](mailto:felix.golcher@hu-berlin.de) and Alter Ego"
 date: "`r Sys.Date()` (this version)"
 fontsize: 12pt
+linkcolor: red
 output:
   pdf_document:
     toc: false
     number_sections: true
+    keep_tex: false
 ---
 
 <!-- This quotation has zero connection to Dutch language processing! -->
@@ -34,15 +36,124 @@ doc3 <- "this document"
 
 # Methods and Materials
 
-We applied methods to materials.
+We applied [methods](#methods) to [materials](#materials).
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
 
 ## Methods
 
 They where great
 
+Here are the [materials](#materials).
+
+
+Back to [methods and materials](#methods-and-materials)
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
 ## Materials
 
 Subjects were told what to do.
+
+Back to [methods and materials](#methods-and-materials)
 
 \vfill
 **\textcolor{gray}{Template to be reproduced ends here}**
