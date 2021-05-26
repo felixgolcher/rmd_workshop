@@ -31,7 +31,7 @@ Figure 1 gives an overview of the data. We clearly see a downward trajectory.
 
 
 ```{r, include=F}
-doc5 <- "this document"
+doc6 <- "this document"
 ```
 
 # Methods and Materials
@@ -41,7 +41,6 @@ We applied [methods](#methods) to [materials](#materials).
 It can quite generally be said that $$a+b=b+a$$ where $a$ and $b$ are some real numbers and $a+b$ is the sum of $a$ and $b$.
 
 
-text
 
 text
 
@@ -55,25 +54,15 @@ text
 
 text
 
-text
+There are
 
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
+1. things that are not dashes
+4. things that are dashes
+    - short dashes: -
+        a. they are basically not dashes at all, but minus signs.
+        z. a fact that is rarely relevant.
+    - longer dashes: --
+    - really long dashes: ---
 
 ## Methods
 
@@ -163,9 +152,9 @@ Back to [methods and materials](#methods-and-materials)
 
 **What shall we do?**
 
-Update your `Rmd` file so the output matches `r doc5`.
+Update your `Rmd` file so the output matches `r doc6`.
 
-* Make the contact information of the corresponding author a footnote.
-* Add the equation with it's inline information.
+* It's about the list before "2.1 Methods"
+* Use non consecutive numbers and letters.
 
 If you don't remember the syntax, the cheatsheet or google will surely help. If not, I'm there to help.
