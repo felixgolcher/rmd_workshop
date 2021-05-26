@@ -31,7 +31,7 @@ Figure 1 gives an overview of the data. We clearly see a downward trajectory.
 
 
 ```{r, include=F}
-doc3 <- "this document"
+doc5 <- "this document"
 ```
 
 # Methods and Materials
@@ -163,9 +163,9 @@ Back to [methods and materials](#methods-and-materials)
 
 **What shall we do?**
 
-Update your `Rmd` file so the output matches `r doc3`.
+Update your `Rmd` file so the output matches `r doc5`.
 
-* Update `YAML` header as well
-* Activate automatic section numering in the `YAML` header.
+* Make the contact information of the corresponding author a footnote.
+* Add the equation with it's inline information.
 
 If you don't remember the syntax, the cheatsheet or google will surely help. If not, I'm there to help.
