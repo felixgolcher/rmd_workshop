@@ -1,0 +1,124 @@
+---
+title: Durational measurements on the Dutch prefix *ge-*
+subtitle: Using old data from Harald Baayen's `languageR` package
+author: "Felix Golcher^[[Corresponding](mailto:felix.golcher@hu-berlin.de) author, <felix.golcher@hu-berlin.de>]&nbsp; and Alter Ego" # we need the html space &nbsp; because of the behaviour of the article class in latex.
+date: "`r Sys.Date()` (this version)"
+fontsize: 12pt
+linkcolor: red
+bibliography: bib.bib
+csl: apa_7th.csl
+output:
+  bookdown::pdf_document2:
+    toc: false
+    number_sections: true
+    keep_tex: false
+---
+
+```{r setup, include=F}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+library(tidyverse) # meta package: dplyr and other %>%-packages
+library(stargazer) # for tables
+
+data("durationsGe", package = "languageR")
+```
+
+
+<!-- This quotation has zero connection to Dutch language processing! -->
+> It is said that your life flashes before your eyes just before you die.\newline
+> That is true, it's called Life.”\newline
+> -- Terry Pratchett, The Last Continent
+
+**Abstract:**
+This paper is about Dutch prefixes. 
+It uses an example data set from @Pluymaekers2005, cited by @baayen08 [126,338].
+
+# Introduction
+
+```{r blub, echo=FALSE, fig.cap="A very interesting graphical description of the data.", fig.width=5, fig.height=2.5}
+ggplot(durationsGe,
+       aes(Frequency, DurationOfPrefix))+
+  geom_point()+
+  scale_x_log10()+
+  scale_y_log10()+
+  geom_smooth(method=lm)+
+  theme_bw()
+```
+
+
+We tried to figure out if the frequency of a word has an influence on the duration of Dutch prefixes. 
+Intuitively one could assume that with the duration drops with frequency.
+For this we recruited **`r length(unique(durationsGe$Speaker))`** Dutch native speakers.
+They produced **`r length(unique(durationsGe$Word))`** different words.
+Figure \@ref(fig:blub) gives an overview of the data. We clearly see a downward trajectory.
+
+
+```{r, include=F}
+doc9 <- "this document"
+```
+
+Scintist            Nobel prices           Birthyear Death  
+----------------  -----------------    ------------- ---------
+Emmy Noether      0                    1882          1935    
+Rosalind Franklin 0                    1920          1958            
+Vera Rubin        0                    1928          2016
+                                                                               
+: Scientists of the 20th century.(\#tab:scientists)
+
+Table \@ref(tab:scientists) lists three women who helped to shape the world as it is.
+
+# Methods and Materials
+
+We applied [methods](#methods) to [materials](#materials).
+
+It can quite generally be said that $$a+b=b+a$$ where $a$ and $b$ are some real numbers and $a+b$ is the sum of $a$ and $b$.
+
+There are
+
+1. things that are not dashes
+4. things that are dashes
+    - short dashes: -
+        a. they are basically not dashes at all, but minus signs.
+        z. This fact is rarely relevant.
+    - longer dashes: --
+    - really long dashes: ---
+
+## Methods
+
+They where great
+
+Here are the [materials](#materials).
+
+Back to [methods and materials](#methods-and-materials)
+
+## Materials
+
+Subjects were told what to do.
+
+Back to [methods and materials](#methods-and-materials)
+
+\vfill
+**\textcolor{gray}{Template to be reproduced ends here}**
+
+**What shall we do?**
+
+Update your `Rmd` file so the output matches `r doc9`.
+
+Add the figure.
+
+The code for it could be
+
+```{r, eval=FALSE, echo=T}
+ggplot(durationsGe,
+       aes(Frequency, DurationOfPrefix))+
+  geom_point()+
+  scale_x_log10()+
+  scale_y_log10()+
+  geom_smooth(method=lm)+
+  theme_bw()
+```
+
+If you don't remember the syntax, the cheatsheet or google will surely help. If not, I'm there to help.
+
+# References
