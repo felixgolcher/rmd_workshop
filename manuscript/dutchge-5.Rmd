@@ -8,7 +8,6 @@ linkcolor: red
 output:
   pdf_document:
     toc: false
-    number_sections: true
     keep_tex: false
 ---
 

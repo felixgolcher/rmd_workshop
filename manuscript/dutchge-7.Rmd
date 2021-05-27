@@ -10,7 +10,6 @@ csl: apa_7th.csl
 output:
   pdf_document:
     toc: false
-    number_sections: true
     keep_tex: false
 ---
 
