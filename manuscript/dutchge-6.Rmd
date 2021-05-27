@@ -60,7 +60,7 @@ There are
 4. things that are dashes
     - short dashes: -
         a. they are basically not dashes at all, but minus signs.
-        z. a fact that is rarely relevant.
+        z. This fact is rarely relevant.
     - longer dashes: --
     - really long dashes: ---
 
@@ -155,6 +155,6 @@ Back to [methods and materials](#methods-and-materials)
 Update your `Rmd` file so the output matches `r doc6`.
 
 * It's about the list before "2.1 Methods"
-* Use non consecutive numbers and letters.
+* Use nonconsecutive numbers and letters.
 
 If you don't remember the syntax, the cheatsheet or google will surely help. If not, I'm there to help.
