@@ -33,9 +33,10 @@ library(bookdown)
 library(blogdown)
 library(shiny)
 library(xaringan)
-# library(plotly)
+library(plotly) 
 
 # data
+data("durationsGe", package = "languageR")
 df <- read.csv("../data/journals.csv") %>% 
       mutate(subfield = as.factor(subfield), 
              english = as.factor(english),
@@ -66,6 +67,18 @@ cp <- function(key, bib=mb, opts=bo){
 }
 
 doc1 <- "`dutchge-1.pdf`"
+doc2 <- "`dutchge-2.pdf`"
+doc3 <- "`dutchge-3.pdf`"
+doc4 <- "`dutchge-4.pdf`"
+doc5 <- "`dutchge-5.pdf`"
+doc6 <- "`dutchge-6.pdf`"
+doc7 <- "`dutchge-7.pdf`"
+doc8 <- "`dutchge-8.pdf`"
+doc9 <- "`dutchge-9.pdf`"
+
+knitr::opts_chunk$set(cache=T,
+                      warning=F,
+                      message=F)
 ```
 
 <style type="text/css">
@@ -382,11 +395,11 @@ Other figures, other numbers. Just slightly so.
 ???
 
 ```{r, include=FALSE}
-delta <- 7
+delta <- 17
 tot <- tot + delta
 ```
 
-estimate $\Delta$ `r delta`, total `r tot` min.
+estimate $\Delta$ `r delta`, total `r tot` min. Experience. The story takes time to tell.
 
 ---
 name: md1
@@ -591,15 +604,11 @@ estimate $\Delta$ `r delta`, total `r tot` min.
 
   - A lot of slides, a lot of exercises
 
-???
-
-XXX overwrite!
-
 --
 
-- Based on converting a mock manuscript written in Word to R Markdown
+- Based on back engineering RMarkdown from `PDF`s provided to you.
 
-  - plus, improving its reproducibility and version-controlling it
+  - (If we make it there) improving its reproducibility and version-controlling it
   - with a PDF output in mind
       - default is HTML
       - Papers or theses are usually not submitted as HTML
@@ -610,9 +619,9 @@ XXX overwrite!
 
   - does not cover programming with R
       - e.g., writing functions    
-<br>
   - ability to regress, plot, and table in R will be very helpful
-      - but not absolutely necessary &mdash; these skills can be developed after learning R Markdown as well
+      - but not absolutely necessary &mdash; these skills are kindof independent.
+  - **If you get stuck because of R problems I will provide you the code. Just ask**
         
 ---
 ## The Workshop &mdash; Contents
@@ -636,11 +645,6 @@ XXX overwrite!
    
 ]
 
-???
-
-XXX overwrite!
-
-
 --
 name: contents-slide
 
@@ -649,18 +653,24 @@ name: contents-slide
 [Part 6. Adding Code, Figures, and Tables](#part6)
    - e.g., plotting data
 
-[Part 7. Addressing Functionality Gaps](#part7)
+[Part 7. Cache Functionality](#part8)
+   - don't recompute everything with every compilation
+
+[Part 8. Reusing Code](#part8)
+   - e.g., building up figures, child documents
+   
+[Part 9. Fancy Templates](#part8)
+   - e.g., producing publication ready papers
+
+[Part 10. Addressing Functionality Gaps](#part7)
    - e.g., adjusting line spacing
 
-[Part 8. Using Version Control](#part8)
+[Part 11. Using Version Control](#part8)
    - e.g., integrating Git and GitHub
 
-[Part 9. Collaborating with Others](#part9)
+[Part 12. Collaborating with Others](#part9)
    - e.g., working simultaneously with co-authors
 
-[Part 10. Working on a Real Project](#part10)
-   - e.g., converting a work-in-progress of yours
-   
 ]
 
 ---
@@ -693,8 +703,7 @@ Slides with this background colour indicate that your action is required, for
     
 - completing the exercises
     - e.g., managing references in R Markdown
-    - there are 40+ exercises
-    - these slides have countdown timers
+    - these slides (usually) have countdown timers
     
     
 `r countdown(minutes = 3, seconds = 00, top = 0)`
@@ -748,13 +757,9 @@ ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) 
 
 - To encourage you to move to R Markdown 
 
-  - practice with a mock manuscript (Parts 3&ndash;9)
-  - start converting a real one (Part 10)
+  - Having practiced lowers the threshold of actually using it.
+  - Having understood the power of it raises motivation
     
-???
-
-XXX overwrite!
-
 
 ```{r, include=FALSE}
 delta <- 5
@@ -775,179 +780,17 @@ class: inverse, center, middle
 
 ]
 
----
-## Course Materials &mdash; Overview
 
-Materials, available at <https://github.com/felixgolcher/rmd_workshop/tree/materials>, have the following structure
-
-```
-
-rmd_workshop-materials
-   |
-   |- manuscript
-   |  |
-   |  |- reproduce_this.pdf
-   |  |- journals.Rmd
-   |  |- references.bib
-   |  |- apa_7th.csl
-   |
-   |- data
-   |  |
-   |  |- journals.csv
-   |
-   |- image
-   |  |
-   |  |- google_scholar.png
-   
-   
-```
-
-???
-
-XXX overwrite!
 
 ---
 name: download-zip
 class: action
 
-## Course Materials &mdash; Download from the Internet
+## Course Materials &mdash; Download from Moodle
 
-- Download the materials from <https://github.com/resulumit/rmd_workshop/tree/materials>
-
-  - on the webpage, follow
-
-> `Code -> Download ZIP`
-
-<br>
-
-- Unzip and rename the folder
-
-  - unzip to a location that is not synced
-     - e.g., perhaps Documents, but not Dropbox
-  
-  - rename the folder as `YOURNAME-rmd`
-     - e.g., `resul-rmd`
-     - this will come handy in Part 9
-  
-???
-
-XXX overwrite! This and the following slides
-
----
-## Course Materials &mdash; Contents
-
-- `manuscript\reproduce_this.pdf`
-
-    - the document, formatted in Word but saved as PDF, that we will re-create with R Markdown 
-    - randomly generated sentences, with figures and tables from randomly a generated dataset<sup>*</sup>
-    - key sections in need of attention are highlighted yellow
-    
-.footnote[
-
-<sup>*</sup> The text, _Lorem ipsum_, is generated with the `stringi` package (Gagolewski, 2020) while the dataset is created with the `fabricatr` package (Blair et al., 2019). 
-
-]
-
----
-## Course Materials &mdash; Contents
-
-- `manuscript\reproduce_this.pdf`
-    - the document, formatted in Word but saved as PDF, that we will re-create with R Markdown 
-    - randomly generated sentences, with figures and tables from randomly generated dataset
-    - key sections in-need of attention are highlighted
-
-- `manuscript\journals.Rmd`
-    - the R Markdown document that we will work on
-    - includes unformatted text from `reproduce_this.pdf` to save time
-    - major components, such as paragraphs and tables, are numbered and marked in comments to facilitate navigation
-
---
-
-- `manuscript\references.bib` 
-
-    - a BibTeX document with three fabricated references
-
---
-
-- `manuscript\apa_7th.csl`
-
-    - a Citation Style Language document, with APA (7th Edition) referencing style (Wiernik, 2020)
-
----
-## Course Materials &mdash; Contents  
-
-`data\journals.csv`
-- a dataset created with the `fabricatr` package (Blair et al., 2019), imagined to explore the `Google Scholar` rankings of fictitious journals
-    
-- includes the following variables 
-    - **name**: journals (1090 random titles)
-    - **origin**: geographic origins (five continents)
-    - **branch**: major discipline of journals (four branches)
-    - **since**: time of first publication (years)
-    - **h5_index**: H5 Index (integers)
-    - **h5_median**: H5 Median (integers)
-    - **english**: English (1) *vs.* other-language (0) journals
-    - **subfield**: subfield (1) *vs.* generalist (0) journals
-    - **issues**: number of issues published per year (integers)
-
----
-## Course Materials &mdash; Contents  
-
-- `image\google_scholar.png`
-
-    - a screeenshot image of the [Google Scholar homapage](https://scholar.google.ch/)
-
----
-class: action
-
-## R and RStudio &mdash; Download from the Internet and Install
-
-- Download R from [https://cloud.r-project.org](https://cloud.r-project.org)
-    - choose the version for your operating system
-
-- Download RStudio from [https://rstudio.com/products/rstudio/download](https://rstudio.com/products/rstudio/download)
-    - choose the free version
-
-???
-
-In our case, students have done that by now.
-
-
----
-class: action
-
-## R Packages &mdash; Install from within RStudio
-
-```{r eval=FALSE, tidy=FALSE}
-install.packages(c("rmarkdown", 
-                   "tinytex"))
-tinytex::install_tinytex()
-```
-
---
-
-- `rmarkdown` `r cp("rmarkdown")`, for automating the process of converting R Markdown documents into other formats
-
---
-
-- `tinytex` `r cp("tinytex")`, for PDF outputs
-    - requires an additional step to install
-    - alternative: a $\TeX$ / $\LaTeX$ system installed on your computer
-    - `tinytex` is much smaller, and no fuss to install.
-    - $\LaTeX$ packages that are not installed, are added on the fly.
-       - That's the promise, anyway.
-
-
-???
-
-Superschwer zu sagen, weil noch sehr unfertig. Aber gerade dieser Slide könnte etwas dauern.
-
-```{r, include=FALSE}
-delta <- 5
-tot <- tot + delta
-```
-
-estimate $\Delta$ `r delta`, total `r tot` min.
+- Download `exercises.zip` from our moodle page.
+- Unzip
+- Place the files in any folder, preferably one especially for this workshop.
 
 ---
 class: action
@@ -1146,8 +989,13 @@ knitr::include_graphics("../image/first_rmd.png")
 .pull-left-c[
 * Click the ▼ to the right of the `Knit` button
   - choose "knit to pdf" from the appearing dropdown.
-  - you see another document appear
-  - don't be surprised that it's a `PDF`.
+  - A `PDF` viewer should pop up
+  - if you get an error about a missing $\LaTeX$ installation:
+    - install `tinytex` `r cp("tinytex")`
+```{r eval=FALSE, tidy=FALSE}
+install.packages(c("rmarkdown"))
+tinytex::install_tinytex()
+```
 * For the remainder of the course we will focus on PDF.
 
 ]
@@ -1155,11 +1003,11 @@ knitr::include_graphics("../image/first_rmd.png")
 ???
 
 ```{r, include=FALSE}
-delta <- 3
+delta <- 5
 tot <- tot + delta
 ```
 
-estimate $\Delta$ `r delta`, total `r tot` min.
+estimate $\Delta$ `r delta`, total `r tot` min. (Hard to say becaus of this installation)
 
 ```{r, include=FALSE}
 delta <- 5
@@ -1360,8 +1208,7 @@ knitr::include_graphics("../image/yaml_html.png")
 Documents as output formats include
 
 - HTML
-- .yellow-h[
-$\LaTeX$]
+- .yellow-h[LaTeX] <!-- \LaTeX produces strange errors here. -->
     
 ```{r, eval = FALSE}
 ---
@@ -1388,7 +1235,7 @@ Documents as output formats include
 
 - HTML
 - $\LaTeX$
-- .yellow-h[PDF]
+- .yellow-h[`PDF`]
     
 ```{r, eval = FALSE}
 ---
@@ -1724,6 +1571,14 @@ Notice that
 
 ]
 
+**Remark**
+
+* The strange quotation mark like things around the code .yellow-h["&#96;"] are called "backticks".
+* They are usually only used as *grave accent*.
+* How to find?
+  - German QWERTY: upper right corner
+  - American QWERTY: upper left corner
+
 ---
 ## YAML &mdash; R Code
 
@@ -1742,6 +1597,15 @@ csl: apa_7th.csl
 output: pdf_document
 ---
 ```
+
+**Remark** (repeat)
+
+* The strange quotation mark like things around the code .yellow-h["&#96;"] are called "backticks".
+* They are usually only used as *grave accent*.
+* How to find?
+  - German QWERTY: upper right corner
+  - American QWERTY: upper left corner
+
 
 ]
 
@@ -1773,14 +1637,28 @@ name: yaml-further-settings
 ---
 class: action
 
-## Exercises
+## Exercise
 
 1. Open your `Rmd` file and fill in the YAML variables for the mock paper
 
 2. Compile to `PDF`
 
 3. Cycle through 1. and 2. until your `PDF` reproduces `r doc1` as closely as possible.
+    - Use an author name of your liking.
     - Make sure to remove the table of contents.
+    - Pay attention to the font size.
+    - Make the date string dynamic. R hint:
+```{r}
+Sys.Date()
+```
+
+Getting help:
+
+* Ask your room mates
+* Google
+* Don't hesitate to call me in.
+
+The task description is added to `r doc1` as well.
 
 `r countdown(minutes = 10, seconds = 00, top = 0)`
 
@@ -1818,46 +1696,60 @@ class: inverse, center, middle
 ## Syntax &mdash; Overview
 
 - R Markdown follows the syntax in Pandoc's Markdown 
-
+   - That is quite important, since Markdown is not fully defined as `HTML` or `PDF`.   
    - for the complete rules of the syntax, see [Pandoc User's Guide](https://pandoc.org/MANUAL.html)
    - for a useful summary of the syntax, see the R Markdown Cheat Sheet
 
 ---
 ## Syntax &mdash; Lines
 
-Multiple spaces on a given line are reduced to one
+Multiple spaces on a given line are reduced to one:
 
 ```{r eval = FALSE}
 This is a sentence followed by four spaces.    This is another sentence on the same line.
-
 ```
 
 .out-t[This is a sentence followed by four spaces.    This is another sentence on the same line.]
 
-<br>
-
-Line endings with fewer than two spaces are ignored
+Line endings with fewer than two spaces are ignored:
 
 ```{r eval = FALSE}
-This is a sentence followed by one space.
-This is another sentence on a new line.
+It is generally no bad idea to put each sentence on a new line.
+The output text does not show the line break.
+But versioning programs like git work on a line by line basis.
+By dividing the text into more than one line per paragraph we avoid conflicts.
+Those might otherwise arise whenever your collaborators edit a different sentence 
+within the same long paragraph.
 ```
 
-.out-t[This is a sentence followed by one space. This is another sentence on a new line.]
+.out-t[It is generally no bad idea to put each sentence on a new line.
+The output text does not show the line break.
+But versioning programs like git work on a line by line basis.
+By dividing the text into more than one line per paragraph
+we avoid conflicts.
+Those might otherwise arise whenever your collaborators edit a different sentence 
+within the same long paragraph.
+]
 
 ---
-## Syntax &mdash; Hard Brakes
+## Syntax &mdash; Hard Breakes
 
-Two or more spaces at the end of lines introduce hard brakes, forcing a new line
+* Two or more spaces at the end of lines 
+* or the tag `<br>` (for `html`) / `\newline` (for $\LaTeX$)
+
+introduce hard brakes, forcing a new line
 
 ```{r eval = FALSE}
-This is a sentence followed by two spaces.  
-This is another sentence on a new line.
+This is a sentence followed by two spaces.`  `
+This is another sentence on a new line.<br>
+This is another sentence on another line.
 ```
 
 .out-t[This is a sentence followed by two spaces.  
-This is another sentence on a new line.]
- 
+This is another sentence on a new line.<br>
+This is another sentence on another line.
+]
+
 ---
 ## Syntax &mdash; Line Blocks
 
@@ -1951,28 +1843,43 @@ This is the first sentence of a new paragraph as it is preceded by a blank line.
 second sentence of that paragraph, which is followed by a blank line.
 
 ]
+???
+
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min. (7 slides, but short ones)
 
 ---
 class: action
 
-## Exercises
+## Exercise
 
-5) Hard Brakes
+Update your `Rmd` file so the output matches `r doc2`.
 
-- see `reproduce_this.pdf`: page 1 
-- apply in `journals.Rmd`: paragraph 1
-
-<br>
-
-6) Line Blocks / Block Quotes
-
-- see `reproduce_this.pdf`: page 1
-- apply in `journals.Rmd`: block quote, between paragraphs 1 and 2   
-<br>
-- see `reproduce_this.pdf`: page 5
-- apply in `journals.Rmd`: hypothesis 1, between paragraphs 14 and 15; hypothesis 2, between paragraphs 16 and 17
+* Avoid very long lines by putting one sentence per line.
+* Pay attention to line breaks and paragraph endings.
+* Add a comment. You can complain about everything, no one will see it.
 
 `r countdown(minutes = 5, seconds = 00, top = 0)`  
+
+???
+
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min. (2nd ex, less time)
+
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
 
 ---
 ## Syntax &mdash; Headers
@@ -1989,11 +1896,11 @@ The number sign .yellow-h[&#x23;] introduces headers; lower levels are created w
 
 ]
 
-.inline-c[&#x23;&#x23; 1. Introduction] becomes
+.inline-c[&#x23;&#x23; 1. Research Review] becomes
 
 .out-t[
 
-## 1. Introduction
+## 1. Research Review
 
 ]
 
@@ -2001,56 +1908,65 @@ The number sign .yellow-h[&#x23;] introduces headers; lower levels are created w
 
 .pull-right[
 
-.inline-c[&#x23;&#x23;&#x23; 3.1 Introduction] becomes
+.inline-c[&#x23;&#x23;&#x23; 3.1.2 Materials] becomes
 
 .out-t[
 
-### 3.1 Introduction
+### 3.1.2 Materials
 
 ]
 
-.inline-c[&#x23;&#x23;&#x23;&#x23; Introduction] becomes
+.inline-c[&#x23;&#x23;&#x23;&#x23; 4th order subsection] becomes
 
 .out-t[
 
-#### Introduction
+#### 4th order subsection
 
 ]
 
-.inline-c[&#x23;&#x23;&#x23;&#x23;&#x23; Introduction] becomes
+.inline-c[&#x23;&#x23;&#x23;&#x23;&#x23; 5th order subsection] becomes
 
 .out-t[
 
-##### Introduction
+##### 5th order subsection
 
 ]
 
 ]
+
+???
+
+How the headers are actually rendered heavily depends on the output format.
+
+* HTML: usually no auto numbering
+* PDF: usually auto numbering of everything
 
 ---
 ## Syntax &mdash; Emphases 
 
-A pair of single asterisk .yellow-h[&#42;] or underscores .yellow-h[&#95;] introduces italics
+* A pair of single asterisk .yellow-h[&#42;] or underscores .yellow-h[&#95;] introduces italics
 
 <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#42;italics&#42;</span> becomes .out-t[*italics*]    
 
 <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#95;italics&#95;</span> becomes .out-t[*italics*] as well
 
-<br>
 
-A pair of double asterisk or underscores introduces bold  
+* A pair of double asterisk or underscores introduces bold  
 
 <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#42;&#42;bold&#42;&#42;</span> becomes .out-t[**bold**]
 
 <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#95;&#95;bold&#95;&#95;</span> becomes .out-t[**bold**] as well
 
-<br>
-
-These two rules can be combined
+* These two rules can be combined
 
 <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#42;&#42;&#95;bolditalics&#95;&#42;&#42;</span> becomes .out-t[**_bolditalics_**]
 
 <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#95;&#42;&#42;bolditalics&#42;&#42;&#95;</span> becomes .out-t[_**bolditalics**_]  as well
+
+* Typewriter font (inline code, file names, R package names, etc) 
+
+<span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#96;package</span><span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#96;</span> becomes .out-t[`package`]
+
 
 ---
 ## Syntax &mdash; Strikethrough
@@ -2073,28 +1989,43 @@ Strikethrough can be combined with italics or bold
 
 <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#126;&#126;&#42;strikeitalitcs&#42;&#126;&#126;</span> or <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#126;&#126;&#95;strikeitalitcs&#95;&#126;&#126;</span>, they both become .out-t[*~~strikeitalitcs~~*] as well
 
+???
+
+```{r, include=FALSE}
+delta <- 2
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min. (3 small slides)
+
 ---
 class: action
 
-## Exercises
+## Exercise
 
-7) Headers
+Update your `Rmd` file so the output matches `r doc3`.
 
-- see `reproduce_this.pdf`: pages 1 to 11
-    - 11 headers, Abstract to References    
-<br>    
-- apply in `journals.Rmd`
+* Update `YAML` header as well
+* Activate automatic section numering in the `YAML` header.
 
-<br>
+???
 
-8) Emphases
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
 
-- see `reproduce_this.pdf`: pages 1 and 2
-    - bold and italics    
-<br>
-- apply in `journals.Rmd`: paragraph 2
+estimate $\Delta$ `r delta`, total `r tot` min.
 
-`r countdown(minutes = 3, seconds = 00, top = 0)`
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
+
+`r countdown(minutes = 5, seconds = 00, top = 0)`
 
 ---
 name: internal-links
@@ -2122,7 +2053,7 @@ Multi-word headers need hyphenation
 
 You can link text to URLs
 
-<span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#91;visit my website](https&#58;//resulumit.com/)</span> becomes .out-t[[visit my website](https://resulumit.com/)]
+<span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#91;visit my website](https&#58;//www.linguistik.hu-berlin.de/de/staff/golcherf)</span> becomes .out-t[[visit my website](https://www.linguistik.hu-berlin.de/de/staff/golcherf)]
 
 <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#91;https&#58;//resulumit.com](https&#58;//resulumit.com/)</span> becomes .out-t[[https://resulumit.com](https://resulumit.com/)]
 
@@ -2134,9 +2065,9 @@ You can link text to URLs
 
 You can also link text to an email address
 
-<span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#91;email me](mailto&#58;resuluy@uio.no)</span><sup>*</sup> becomes .out-t[[email me](mailto:resuluy@uio.no)]
+<span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#91;email me](mailto&#58;felix.golcher@hu-berlin.de)</span><sup>*</sup> becomes .out-t[[email me](mailto:felix.golcher@hu-berlin.de)]
 
-<span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#60;resuluy@uio.no&#62;</span> becomes .out-t[<resuluy@uio.no>]
+<span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">&#60;felix.golcher@hu-berlin.de&#62;</span> becomes .out-t[<felix.golcher@hu-berlin.de>]
 
 .footnote[
 
@@ -2144,28 +2075,45 @@ You can also link text to an email address
 
 ]
 
+???
+
+```{r, include=FALSE}
+delta <- 2
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+
 ---
 class: action
 
-## Exercises
+## Exercise
 
-9) Links &mdash; Internal
+Update your `Rmd` file so the output matches `r doc4`.
 
-- see `reproduce_this.pdf`: page 2 
-      - the link to the Literature Review section    
-<br>
-- apply in `journals.Rmd`: paragraph 4
+* Set the internal links in red.
+* Actually make them red.
+* Set a link to the first author's email address.
 
-<br>
+???
 
-10) Links &mdash; External
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
 
-- see `reproduce_this.pdf`: page 1
-    - email and website links in one of the footnotes    
-<br>
-- apply in `journals.Rmd`: title page items
-  
-`r countdown(minutes = 3, seconds = 00, top = 0)`  
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
+
+`r countdown(minutes = 5, seconds = 00, top = 0)`
 
 ---
 ## Syntax &mdash; Equations
@@ -2250,24 +2198,43 @@ Notice that
 - the caret sign comes .yellow-h[after] the left square bracket
 - this syntax works in text, but not in YAML
 
+???
+
+```{r, include=FALSE}
+delta <- 2
+tot <- tot + delta
+```
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
 ---
 class: action
 
-## Exercises
+## Exercise
 
-11) Equations
+Update your `Rmd` file so the output matches `r doc5`.
 
-- see `reproduce_this.pdf`: page 7 
-- apply in `journals.Rmd`: paragraph 22; block equation, between paragraphs 22 and 23
+* Make the contact information of the corresponding author a footnote.
+* Add the equation with it's inline information.
 
-<br> 
+???
 
-12) Footnotes
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
 
-- see `reproduce_this.pdf`: page 2 
-- apply in `journals.Rmd`: paragraph 3
+estimate $\Delta$ `r delta`, total `r tot` min.
 
-`r countdown(minutes = 3, seconds = 00, top = 0)`  
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
+
+`r countdown(minutes = 5, seconds = 00, top = 0)`
 
 ---
 ## Syntax &mdash; Lists
@@ -2320,7 +2287,7 @@ List items can be numbered
 
 ```{r eval=FALSE}
 1. books
-2. articles
+3. articles
     - published
     - under review
         + revised and resubmitted
@@ -2330,13 +2297,15 @@ List items can be numbered
 .out-t[
 
 1. books
-2. articles
+3. articles
     - published
     - under review
         + revised and resubmitted
     - work in progress
 
 ]
+
+**Remark:** The numbering has not to be ordered correctly. If you move around items, they are renumbered correctly in the output.
 
 ---
 ## Syntax &mdash; Dashes
@@ -2399,28 +2368,31 @@ Notice that
 ---
 class: action
 
-## Exercises
+## Exercise
 
-13) Lists
+Update your `Rmd` file so the output matches `r doc6`.
 
-- see `reproduce_this.pdf`: page 3 
-- apply in `journals.Rmd`: list, between paragraphs 10 and 11
+* It's about the list before "2.1 Methods"
+* Use nonconsecutive numbers and letters.
 
-<br>
+???
 
-14) Dashes
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
 
-- see `reproduce_this.pdf`: page 2
-- apply in `journals.Rmd`: paragraph 6
+estimate $\Delta$ `r delta`, total `r tot` min.
 
-<br>
+```{r, include=FALSE}
+delta <- 5
+tot <- tot + delta
+```
 
-15) Sub- and Super-scripts
+solution $\Delta$ `r delta`, total `r tot` min.
 
-  - see `reproduce_this.pdf`: page 2
-  - apply in `journals.Rmd`: paragraph 5
 
-`r countdown(minutes = 3, seconds = 00, top = 0)`  
+`r countdown(minutes = 5, seconds = 00, top = 0)`
 
 ---
 name: part5
@@ -2457,7 +2429,7 @@ class: inverse, center, middle
 
 .pull-right-c[
 
-```{r, echo = FALSE, out.width = "95%"}
+```{r, echo = FALSE, out.width = "100%"}
 knitr::include_graphics("../image/bib.png")
 ```
 
@@ -2539,8 +2511,6 @@ knitr::include_graphics("../image/csl.png")
 ## References &mdash; In-text Citation Syntax &mdash; Author-Date
 
 All citations keys take the 'at' sign .yellow-h[@] while square brackets and/or minus signs introduce variation
-
-<br>
 
 .inline-c[[@bennett2015]] becomes .out-t[(Bennett, 2015)] in APA 7<sup>th</sup> edition
 
@@ -2633,29 +2603,39 @@ linkcolor: blue        #<<
 ---
 class: action
 
-## Exercises
+## Exercise
 
-16) Add an entry to `references.bib` for the following book
-- *R Markdown: The Definitive Guide* by Xie and co-authors
+Update your `Rmd` file so the output matches `r doc7`.
 
-<br>
+* add 
+  - a `bibliography` variable to the `YAML` header, pointing to the `.bib` file in `exercises.zip`
+  - a `cls` variable to the `YAML` header, pointing to the `.cls` file in `exercises.zip`
+  - **Remember** what we said about absolute and relative paths.
+* Add the two citations in the abstract
+  - hint: the second one needs something like `@citekey [pages]`
+* Don't forget a header for the references section
 
-17) Reproduce the citations and reference list in the mock paper
-- see `reproduce_this.pdf`: pages 3 and 11
-- apply in `journals.Rmd`: paragraph 7 to 9
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
 
-<br>
+`r countdown(minutes = mn, seconds = 30, top = 0)`
 
-18) Change the reference style
-- download the .csl file for your favourite style from [https://www.zotero.org/styles](https://www.zotero.org/styles) 
-- put it into your working directory
-- update the YAML variable
+???
 
-<br>
 
-19) Link the citations to the reference list
+estimate $\Delta$ `r delta`, total `r tot` min.
 
-`r countdown(minutes = 7, seconds = 30, top = 0)`
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
 
 ---
 name: part6
@@ -2682,12 +2662,13 @@ Most codes go inside code chunks
 
 ````md
 `r ''````{r}
-
-df <- read.csv("../image/journals.csv") %>% 
-      mutate(age = 2020 - since,
-             english = factor(english),
-             subfield = factor(subfield))
-
+data("durationsGe", package = "languageR")
+durationsGe %>% as_tibble() %>% 
+  ggplot(aes(Frequency, DurationOfPrefix))+
+  geom_point()+
+  scale_x_log10()+
+  scale_y_log10()+
+  geom_smooth(method=lm)
 ```
 ````
 
@@ -2695,8 +2676,11 @@ Codes can also go in line with text
 - e.g., code that results in a single statistic
 
 ```{r, eval=FALSE, tidy=FALSE}
-The average H5 Index for the journals in the dataset is \`r mean(df$h5_index)`.
+The average duration of the prefix was \`r mean(durationsGe$DurationOfPrefix)`.
 ```
+
+Which compiles to .out-t[The average duration of the prefix was `r mean(durationsGe$DurationOfPrefix)`.]
+
 
 ---
 ## Code Chunks &mdash; Overview
@@ -2720,17 +2704,27 @@ The average H5 Index for the journals in the dataset is \`r mean(df$h5_index)`.
 ---
 ## Code Chunks &mdash; Labels
 
-It is recommended to label the code chunks, which are otherwise automatically numbered
-- informative labels can be helpful for navigating through error messages as well as filenames of plots and cache
-    - in the example below, the chunk is labelled as `data_import`
+It is recommended to label the code chunks, which are otherwise automatically numbered.
+- informative labels can be helpful 
+  - for navigating through error messages as
+  - well as filenames of plots and cache
+  - in the example below, the chunk is labelled as `data_import`
 <br>
-- but note that duplicate labels lead to an error during compilation
+- but **note** that duplicate labels lead to an error during compilation
+
+```{r, include=FALSE}
+durationsGe %>%
+  filter(!is.na(Speaker)) %>% 
+  select(-NumberSegmentsOnset) -> durationsGe
+```
 
 
 ````md
-`r ''````{r, `data_import`}
+`r ''````{r `data_import`}
 
-df <- read_csv("data/journals.csv")
+data("durationsGe", package = "languageR") # import data durationsGe from languageR
+durationsGe %>% # remove one column
+  select(-NumberSegmentsOnset) -> durationsGe
 
 ```
 ````
@@ -2740,19 +2734,23 @@ df <- read_csv("data/journals.csv")
 
 - Code chunks take options, listed on the same line with the first delimiter, in curly brackets
 
-    - avoid spaces around the equal sign <span style="background-color: #ffff88;">=</span> between option tags and values
-        - such spaces might lead to errors    
-<br>
-    - in the example below, the chunk is labelled as `setup`, and and the `include` option is set to `FALSE`
-        - with this option and value, nothing from this chunk will be included in the output document
+- avoid spaces around the equal sign <span style="background-color: #ffff88;">=</span> between option tags and values
+  - such spaces might lead to errors
+- in the example below, the chunk is labelled as **`setup`**, and and the **`include`** option is set to **`FALSE`**.
+
 
 ````md
-`r ''````{r, setup, `include=FALSE`}
+`r ''````{r setup, `include=FALSE`}
+
+some code
 
 ```
 ````
-<br>
 
+- $\Rightarrow$ Nothing from this chunk will be included in the output document.
+  - The computations will be done nevertheless.
+  - This is extremely helpful for writing publications.
+  - you don't want your data import and cleaning clutter up your document.
 - The list of options is available at <https://yihui.org/knitr/options>
 
     - R Markdown Cheat Sheet provides a helpful list as well
@@ -2763,62 +2761,67 @@ df <- read_csv("data/journals.csv")
 
 Options have default values
 
-- e.g., for `echo`, the default is `TRUE`
-      - `echo`: should the source code printed in the output?
-      - `TRUE`: yes it should   
+- e.g., for **`echo`**, the default is **`TRUE`**
+      - **`echo`**: should the source code printed in the output?
+      - **`TRUE`**: yes it should   
 <br>
 - therefore the following two chunks have the same function
 
 ````md
 `r ''````{r}
-
+some code
 ```
 ````
 
 ````md
 `r ''````{r, `echo=TRUE`}
-
+some code
 ```
 ````
+
+* You might want to change that default for a research paper:
+```{r}
+knitr::opts_chunk$set(echo=FALSE) # placed in the 1st code chunk
+```
+
+
 ---
+
 ## Code Chunks &mdash; Options &mdash; Defaults
 
-This chunk prints two things in the output document &mdash; (a) the code and (b) the head of the data frame
+The following chunk prints two things in the output document:
 
 ````md
 `r ''````{r}
-
-head(df)
-
+head(durationsGe, 4)
 ```
 ````
 
+1) the code itself
+
 .out-t[
-
-`head(df)`
-
+`head(durationsGe, 4)`
 ]
 
-<hr style="height:10px; visibility:hidden;" />
+2) the head of the data frame (The first lines, 4 in this case)
+
 
 .out-t[
 
 ```{r, echo=FALSE}
-head(df)
+head(durationsGe,4)
 ```
 
 ]
 
 ---
-## Code Chunks &mdash; Options
+## Code Chunks &mdash; Suppress Code Echo
 
 Setting .inline-c[echo=FALSE] prevents the code from being displayed in the output document
 
 ````md
 `r ''````{r ... `echo=FALSE`}
-
-head(df)
-
+head(durationsGe, 4)
 ```
 ````
 
@@ -2828,21 +2831,19 @@ This chunk therefore prints one thing in the output document &mdash; the head of
 .out-t[
 
 ```{r, include=TRUE, echo=FALSE}
-head(df)
+head(durationsGe, 4)
 ```
 
 ]
 
 ---
-## Code Chunks &mdash; Other Useful Options
+## Code Chunks &mdash; Suppress Output Display
 
 Prevent the result(s) of the source code from being displayed in the output document
 
 ````md
 `r ''````{r ... `results="hide"`}
-
-head(df)
-
+head(durationsGe, 4)
 ```
 ````
 
@@ -2850,115 +2851,68 @@ This chunk therefore prints one thing in the output document &mdash; the source 
 
 .out-t[
 
-`head(df)`
+`head(durationsGe, 4)`
 
 ]
 
 Setting .inline-c[results="asis"] passes the results as they are produced by the code &mdash; `pandoc` does not transform these. In creating tables for PDF output with the `stargazer` package, this option is a must.
 
 ---
+## Code Chunks &mdash; Suppress Both
+
+Consequently, both options combined result in the output document being silent about the whole chunk.
+
+````md
+`r ''````{r ... `results="hide"`, `echo=FALSE`}
+head(durationsGe, 4)
+```
+````
+
+There is nothing in the output document.
+
+* You would not (normally) do that with code that *only does* output something.
+* A helpful option to completely silent chunks is **`include=FALSE`**
+
+---
 ## Code Chunks &mdash; Other Useful Options
 
-Cache results for future compilations 
+**`cache=TRUE`**: Store results for future compilations 
 
 ````md
 `r ''````{r ... `cache=TRUE`}
-
+some code that might run days
 ```
 ````
 
 --
 
-Prevent R from running the code in the chunk altogether 
+**`eval=FALSE`**: Prevent R from running the code in the chunk altogether 
 
 ````md
 `r ''````{r ... `eval=FALSE`}
-
+some code I want to show being wrong in class
 ```
 ````
 
 --
 
-Prevent messages and/or warnings from being displayed in the output
+**`error/message/warning=TRUE`**: Prevent messages and/or warnings from being displayed in the output
 
 ````md
 `r ''````{r ... `error=FALSE`, `message=FALSE`, `warning=FALSE`}
-
+chatty code being silenced
 ```
 ````
 
----
-## Code Chunks &mdash; Other Useful Options
-
-Define the .yellow-h[actual dimensions] of figures, in inches
-
-````md
-`r ''````{r ... `fig.height=6`, `fig.width=9`}
-
-```
-````
-
---
-
-Define the size of figures .yellow-h[as they appear in the output document], with `out.width` and/or `out.height`
-
-````md
-`r ''````{r ... `out.width="50%"`}
-
-```
-````
-
---
-
-Define the alignment of figures &mdash; `left`, `right`, or `center`
-
-````md
-`r ''````{r ... `fig.align="center"`}
-
-```
-````
-
----
-## Code Chunks &mdash; Other Useful Options
-
-Define captions for figures
-
-````md
-`r ''````{r ... `fig.caption="A Scatter Plot"`}
-
-```
-````
-
---
-
-Set the resolution for figures
-
-````md
-`r ''````{r ... `dpi=300`}
-
-```
-````
-
---
-
-Set extra options, such as angle, that output format would accept for figures
-
-````md
-`r ''````{r ... `out.extra="angle=45"`}
-
-```
-````
 
 ---
 ## Code Chunks &mdash; The Setup Chunk
 
-It is recommended to use the first code chunk for general setup, where you can
+Conventionally, the first code chunk is used for general setup, where you can
 
 - define .yellow-h[your own defaults] for chunk options, with `knitr::opts_chunk$set()`
     - avoids repeating chunk options    
-<br>
 - load the necessary packages    
-<br>
 - import raw data
 
 ````md
@@ -2981,7 +2935,7 @@ df_raw <- read.csv("journals.csv")
 ---
 ## Code Chunks &mdash; The Data Chunk
 
-I recommend using the second chunk for the main operations<sup>*</sup> on raw data
+Often, the second chunk is used for the main operations on raw data
 - e.g., for data cleaning and other transformations
 - some minor transformations could be left to lower chunks
     - e.g., capitalizing variable names for figures
@@ -2992,59 +2946,6 @@ I recommend using the second chunk for the main operations<sup>*</sup> on raw da
 df <- df_raw `%>%`
       `...`
 
-```
-````
-
-.footnote[
-
-<sup>*</sup> I will be using the pipe operator <span style="background-color: #ffff88; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;"><code>%>%</code></span> and other functions from the `dplyr` package for such operations in the following slides.
-
-]
-
-
----
-## Code Chunks &mdash; The Data Chunk
-
-Transform `subfield` and `english` into factor variables
-- despite being numeric &mdash; i.e., 0s and 1s &mdash; they are meant to be categorical variables
-
-````md
-`r ''````{r, data, echo=FALSE ...}
-
-df <- df_raw `%>%`
-      `mutate(subfield = as.factor(subfield),` 
-             `english = as.factor(english))`
-
-```
-````
-
----
-## Code Chunks &mdash; The Data Chunk
-
-Create a new variable `age`, based on the existing variable `since`, to be used in regression models later on
-
-````md
-`r ''````{r, data, echo=FALSE ...}
-
-df <- df_raw %>%
-      mutate(subfield = as.factor(subfield), 
-             english = as.factor(english),
-             `age = 2020 - since`)
-
-```
-````
---
-
-Drop the `since` variable, so that it won't appear in our summary statistics table later on
-
-````md
-`r ''````{r, data, echo=FALSE ...}
-
-df <- df_raw %>%
-      mutate(subfield = as.factor(subfield), 
-             english = as.factor(english),
-             age = 2020 - since) `%>%`
-      `select(-since)`
 ```
 ````
 
@@ -3064,57 +2965,84 @@ Code can also be incorporated in text, with the <span style="background-color: #
 
 ```{r, eval=FALSE, tidy=FALSE}
 If we multiply _pi_ by 5, we get \`r pi * 5`.
-
 ```
 
 .out-t[If we multiply _pi_ by 5, we get `r pi * 5`.]
 
 <hr style="height:10px; visibility:hidden;" />
+--
 
 ```{r, eval=FALSE, tidy=FALSE}
-The average H5 Index for the journals in the dataset is \`r mean(df$h5_index)`, which would 
-round to \`r round(mean(df$h5_index), digits = 1)`.
+The average duration of the prefix was \`r mean(durationsGe$DurationOfPrefix)` s, which would 
+round to \`r signif(mean(durationsGe$DurationOfPrefix), 3) s`.
 ```
 
-.out-t[The average H5 Index for the journals in the dataset is `r mean(df$h5_index)`, which would round to `r round(mean(df$h5_index), digits = 1)`.]
+.out-t[The average duration of the prefix was `r mean(durationsGe$DurationOfPrefix)` s, which would 
+round to `r signif(mean(durationsGe$DurationOfPrefix), 3)` s.]
 
 <hr style="height:10px; visibility:hidden;" />
+--
 
 ```{r, eval=FALSE, tidy=FALSE}
-__Only \`r nrow(subset(df, english == 0))` journals__ in the dataset are published in a language
-other than English.
+There were \`r length(unique(durationsGe$Speaker))` speakers in the data set.
 ```
 
-.out-t[__Only `r nrow(subset(df, english == 0))` journals__ in the dataset are published in a language other than English.]
+.out-t[There were `r length(unique(durationsGe$Speaker))` speakers in the data set.]
+
+<hr style="height:10px; visibility:hidden;" />
+--
+
+**Recommendation**: All (each and every) numbers should be rendered by inline code and **not** copypasted. Otherwise, you are giving away the advantages of the whole thing.
 
 ---
 class: action
 
-## Exercises
+## Exercise
 
-20) Setup Chunk
-- introduce a setup chunk with one or more defaults chunk options, with `knitr::opts_chunk$set()`
-- load the packages that we will need &mdash; `dplyr`, `ggplot2`, and `stargazer`
-- import raw data
+Update your `Rmd` file so the output matches `r doc8`.
 
-<br>
+```{r, include=F}
+sleep <- sleep[1:10,]
+```
 
-21) Data Chunk
-- introduce a data chunk to transform `subfield` and `english` into factors
-- create a new variable `age`, based on `since`
-- drop `since` from the data frame
-
-<br>
-
-22) Inline code
-
-- see `reproduce_this.pdf`: page 6
-    - i.e., 1091 observations    
-<br>    
-- apply in `journals.Rmd`: paragraph 21
-    - hint: use the `nrow` function
+* add a setup chunk
+  - set the default chunk options `echo`, `warning`, and `message` to `FALSE`
+  - load the packages `tidyverse` and `stargazer`.
+     - install them if they are not yet installed.
+  - add the following line of code to load the data we need:
+```{r, eval=F}
+data("durationsGe", package = "languageR")
+```
+- Render the two bold faced numbers as inline code
+  - hint: Example code
+```{r}
+a <- c(1,2,1)
+length(unique(a)) # count different values in a vector
+sleep$extra # access a column of a data frame
+```
   
-`r countdown(minutes = 7, seconds = 30, top = 0)`  
+
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
+
+`r countdown(minutes = 7, seconds = sec, top = 0)`  
+
+???
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
+
 
 ---
 class: center, middle
@@ -3136,34 +3064,38 @@ The syntax <span style="background-color: #e5e5e5; border-radius: 3px; padding: 
 
 ]
 
+???
+
+xxx this should be moved to the other markdown stuff, just after links.
+
 ---
 ## Figures &mdash; Images &mdash; Markdown Syntax
 
 ```{r, eval=FALSE}
-![A screenshot of the Google Scholar homepage](../image/google_scholar.png)
+![The CRC logo](../image/crc1412.png)
 ```
 
 ```{r, echo=FALSE, fig.align="center", out.width="65%"}
 
-knitr::include_graphics("../image/google_scholar.png")
+knitr::include_graphics("../image/crc1412.png")
 ```
 
-<center>Figure 1: A screenshot of the Google Scholar homepage.</center>
+<center>Figure 1: The CRC logo.</center>
 ---
 ## Figures &mdash; Images &mdash; Markdown Syntax
 
 Figures are numbered automatically
 
 ```{r, eval=FALSE}
-![A screenshot of the Google Scholar homepage](../image/google_scholar.png)
+![The CRC logo](../image/crc1412.png)
 ```
 
 ```{r, echo=FALSE, fig.align="center", out.width="65%"}
 
-knitr::include_graphics("../image/google_scholar.png")
+knitr::include_graphics("../image/crc1412.png")
 ```
 
-<center>.yellow-h[Figure 1]: A screenshot of the Google Scholar homepage. </center>
+<center>.yellow-h[Figure 1]: The CRC logo. </center>
 
 ---
 ## Figures &mdash; Images &mdash; Markdown Syntax
@@ -3171,15 +3103,15 @@ knitr::include_graphics("../image/google_scholar.png")
 The syntax can accept `width` or `height` attributes as follows
 
 ```{r, eval=FALSE}
-![A screenshot of the Google Scholar homepage](../image/google_scholar.png)`{ width=40% }`
+![The CRC logo](../image/crc1412.png)`{ width=40% }`
 ```
 
 ```{r, echo=FALSE, fig.align="center", out.width="40%"}
 
-knitr::include_graphics("../image/google_scholar.png")
+knitr::include_graphics("../image/crc1412.png")
 ```
 
-<center>Figure 1: A screenshot of the Google Scholar homepage.</center>
+<center>Figure 1: The CRC logo.</center>
 ---
 ## Figures &mdash; Images &mdash; `knitr`
 
@@ -3199,19 +3131,19 @@ The `knitr` package offers a capable alternative with the `include_graphics()` f
 The `knitr` package offers a capable alternative with the `include_graphics()` function
 
 ````md
-`r ''````{r, screenshot, echo=FALSE, fig.cap="A screenshot of the Google Scholar homepage."}
+`r ''````{r, screenshot, echo=FALSE, fig.cap="The CRC logo."}
 
-knitr::include_graphics("../image/google_scholar.png")
+knitr::include_graphics("../image/crc1412.png")
 
 ```
 ````
 
 ```{r, echo=FALSE, out.width="55%"}
 
-knitr::include_graphics("../image/google_scholar.png")
+knitr::include_graphics("../image/crc1412.png")
 ```
 
-<center>Figure 1: A screenshot of the Google Scholar homepage.</center> 
+<center>Figure 1: The CRC logo.</center> 
 
 ---
 ## Figures &mdash; Images &mdash; `knitr`
@@ -3221,17 +3153,17 @@ Size is defined with the chunk options `out.width` or `out.hight`
 ````md
 `r ''````{r ... `out.width="40%"`}
 
-knitr::include_graphics("../image/google_scholar.png")
+knitr::include_graphics("../image/crc1412.png")
 
 ```
 ````
 
 ```{r, echo=FALSE, out.width="40%"}
 
-knitr::include_graphics("../image/google_scholar.png")
+knitr::include_graphics("../image/crc1412.png")
 ```
 
-<center>Figure 1: A screenshot of the Google Scholar homepage.</center> 
+<center>Figure 1: The CRC logo.</center> 
 
 ---
 ## Figures &mdash; Images &mdash; `knitr`
@@ -3242,33 +3174,31 @@ Most other chunk options are common with figures plotted within R Markdown, such
 ````md
 `r ''````{r ... `fig.align="center"`}
 
-knitr::include_graphics("../image/google_scholar.png")
+knitr::include_graphics("../image/crc1412.png")
 
 ```
 ````
 
 ```{r, echo=FALSE, fig.align="center", out.width="40%"}
 
-knitr::include_graphics("../image/google_scholar.png")
+knitr::include_graphics("../image/crc1412.png")
 ```
 
-<center>Figure 1: A screenshot of the Google Scholar homepage.</center> 
+<center>Figure 1: The CRC logo.</center> 
 
 ---
 class: action
 
 ## Exercise
 
-23) Images
-- see `reproduce_this.pdf`: figure 1 on page 10
-- apply in `journals.Rmd`: figure 1, between paragraphs 19 and 20
+We skip this. It's similar to what we did before. Dynamic images are much more interesting.
 
-`r countdown(minutes = 3, seconds = 00, top = 0)`
+`r countdown(minutes = 0, seconds = 00, top = 0)`
 
 ---
-## Figures &mdash; `ggplot2` &mdash; Overview
+## Figures &mdash; `ggplot2` `r cp("ggplot2")` &mdash; Overview
 
-- A powerful package for visualising data 
+- A very, very powerful package for visualising data 
 
 - Used widely, not only by academics, but also by large corporations such as the New York Times
 
@@ -3280,9 +3210,165 @@ class: action
     - this [webinar](https://www.youtube.com/watch?v=h29g21z0a68) by one of its authors, Thomas Lin Pedersen  
     - these [extensions](https://exts.ggplot2.tidyverse.org/), maintained by the `ggplot2` community
 
-- Among its alternatives are the `base` and `plotly` packages
+- Among its alternatives are the `base` and `plotly` `r cp("plotly")` packages
+- We are not talking about R here so `ggplot` will not be covered explicitely.
+
+???
+
+We will skip the ggplot slides.
+
+They are there
 
 ---
+
+## Code Chunks with Figures
+
+.pull-left-c[
+
+Whenever a code chunk contains code producing a figure, the figure is rendered in the output document.
+
+````md
+`r ''````{r ... }
+(ggplot(durationsGe, aes(Frequency, 
+                         DurationOfPrefix))+
+   geom_point()+
+   scale_x_log10()+
+   scale_y_log10()+
+   geom_smooth(method=lm)+
+   theme_bw() -> `gg1`) ## save plot in variable
+```
+````
+
+```{r fig1, eval=F, include=F}
+(ggplot(durationsGe, aes(Frequency, 
+                         DurationOfPrefix))+
+   geom_point()+
+   scale_x_log10()+
+   scale_y_log10()+
+   geom_smooth(method=lm)+
+   theme_bw() -> gg1) ## save plot in variable
+```
+
+**Remark**: Usually you will set the chunk to **`echo=FALSE`**. You don't want to have the figure producing code in your output document.
+
+]
+
+.pull-right-c[
+
+```{r fig1a, echo=F, ref.label="fig1"}
+```
+
+]
+
+???
+
+We have saved the plot!
+
+---
+## Code Chunks with Figures &mdash; Useful Options
+
+Define the .yellow-h[actual dimensions] of figures, in inches
+
+````md
+`r ''````{r ... `fig.height=2`, `fig.width=8`}
+gg1 # we saved the plot we saw earlier under this name
+```
+````
+
+```{r, fig.height=2, fig.width=8, echo=F}
+gg1
+```
+
+--
+
+````md
+`r ''````{r ... `fig.height=10`, `fig.width=2`}
+gg1 # still the same variable
+```
+````
+
+```{r, fig.height=10, fig.width=2, echo=F}
+gg1
+```
+
+
+
+---
+## Code Chunks with Figures &mdash; Useful Options
+
+Define the size of figures .yellow-h[as they appear in the output document], with `out.width` and/or `out.height`
+
+````md
+`r ''````{r ... `out.width="33%"`}
+gg1 # again, the same variable.
+```
+````
+
+```{r, out.width="33%", echo=F}
+gg1
+```
+
+
+---
+## Code Chunks with Figures &mdash; Useful Options
+
+Define the alignment of figures &mdash; `left`, `right`, or `center`
+
+````md
+`r ''````{r ... `fig.align="center"`}
+gg1
+```
+````
+
+```{r, out.width="33%", echo=F, fig.align="center"}
+gg1
+```
+
+---
+## Code Chunks with Figures &mdash; Other Useful Options
+
+.pull-left-c[
+
+Define captions for figures
+
+````md
+`r ''````{r ... `fig.caption="Our Dutch Data"`}
+gg1
+```
+````
+
+```{r, out.width="50%", echo=F, fig.align="center", fig.caption="Our Dutch Data"}
+gg1
+```
+.center[Our Dutch Data] <!-- not in xaringan -->
+]
+
+.pull-right-c[
+**Remark**: 
+* If the caption is shown and if the figure is prefixed by "Figure" and if it is numbered, all depends on the output format.
+* In `pdf_document` the `YAML` option **`number_sections: true`** activates figure numbering as well.
+]
+
+---
+## Code Chunks with Figures &mdash; Other Useful Options
+
+Set the resolution for figures (we choose a ridiculously low one for sake of demponstration)
+
+````md
+`r ''````{r ... `dpi=20`}
+gg1
+```
+````
+
+```{r, out.width="30%", echo=F, fig.align="center", dpi=20}
+gg1
+```
+
+
+
+---
+
+
 ## Figures &mdash; `ggplot2` &mdash; Basics
 
 1) The `ggplot` function and the `data` argument
@@ -3504,23 +3590,73 @@ Figure 1. A scatterplot of journal metrics.
 ---
 class: action
 
-## Exercises
+## Exercise
 
-24) Barplot
-- see `reproduce_this.pdf`: figure 2 on page 7
-- apply in `journals.Rmd`: figure 2, between paragraphs 21 and 22
+Update your `Rmd` file so the output matches `r doc9`.
 
-<br>
+Add the figure.
 
-25) Scatterplot
-- see `reproduce_this.pdf`: figure 3 on page 9
-- apply in `journals.Rmd`: figure 3, between paragraphs 27 and 28
+The code for it would be
 
+```{r blubber, eval=FALSE}
+ggplot(durationsGe,
+       aes(Frequency, DurationOfPrefix))+
+  geom_point()+
+  scale_x_log10()+
+  scale_y_log10()+
+  geom_smooth(method=lm)+
+  theme_bw()
+```
 
-`r countdown(minutes = 10, seconds = 00, top = 0)`
+Adapt the code chunk options until it looks about right.
+
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
+
+`r countdown(minutes = 7, seconds = sec, top = 0)`  
+
+???
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
 
 ---
+## Cross references
 
+Here comes one reason, why chunk labels are so important sometimes
+
+````md
+`r ''````{r goodfig, fig.cap = "Our beautiful data."}
+ggplot(durationsGe,
+       aes(Frequency, DurationOfPrefix))+
+  geom_point()+
+  scale_x_log10()+
+  scale_y_log10()+
+  geom_smooth(method=lm)+
+  theme_bw()
+```
+````
+
+--
+
+`Figure \@ref(fig:blub) gives an overview of the data. We clearly see a downward trajectory.`
+
+Would render as
+
+Figure 1 gives an overview of the data. We clearly see a downward trajectory.
+
+---
 class: center, middle
 
 # Tables
@@ -3798,14 +3934,12 @@ class: action
 
 ## Exercise
 
-26) Markdown Tables
-- see `reproduce_this.pdf`: table 1 on page 4
-- apply in `journals.Rmd`: table 1, between paragraphs 11 and 12
+We skip this. It is again a bit similar.
 
 `r countdown(minutes = 5, seconds = 00, top = 0)`
 
 ---
-## Tables &mdash; `stargazer` &mdash; Overview
+## Tables &mdash; `stargazer` `r cp("stargazer")` &mdash; Overview
 
 - A capable package for creating tables to present
 
