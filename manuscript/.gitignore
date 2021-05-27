@@ -1,2 +1,4 @@
 dutch.*
 !dutch.Rmd
+libs/
+packages.bib
