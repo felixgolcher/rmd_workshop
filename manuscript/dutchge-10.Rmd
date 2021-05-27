@@ -8,7 +8,7 @@ linkcolor: red
 bibliography: bib.bib
 csl: apa_7th.csl
 output:
-  pdf_document:
+  bookdown::pdf_document2:
     toc: false
     number_sections: true
     keep_tex: false
