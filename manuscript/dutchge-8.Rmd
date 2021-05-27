@@ -93,12 +93,12 @@ sleep <- sleep[1:10,]
   - load the packages `tidyverse` and `stargazer`.
      - install them if they are not yet installed.
   - add the following line of code to load the data we need:
-```{r, eval=F}
+```{r, eval=F, echo=TRUE}
 data("durationsGe", package = "languageR")
 ```
 - Render the two bold faced numbers as inline code
   - hint: Example code
-```{r}
+```{r, echo=TRUE}
 a <- c(1,2,1)
 length(unique(a)) # count different values in a vector
 sleep$extra # access a column of a data frame
