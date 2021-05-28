@@ -34,7 +34,7 @@ library(blogdown)
 library(shiny)
 library(xaringan)
 library(plotly) 
-
+library(kableExtra)
 # data
 data("durationsGe", package = "languageR")
 df <- read.csv("../data/journals.csv") %>% 
@@ -76,6 +76,8 @@ doc7 <- "`dutchge-7.pdf`"
 doc8 <- "`dutchge-8.pdf`"
 doc9 <- "`dutchge-9.pdf`"
 doc10 <- "`dutchge-10.pdf`"
+doc11 <- "`dutchge-11.pdf`"
+doc12 <- "`dutchge-12.pdf`"
 
 knitr::opts_chunk$set(cache=T,
                       warning=F,
@@ -2781,7 +2783,7 @@ some code
 ````
 
 * You might want to change that default for a research paper:
-```{r}
+```{r, eval=FALSE}
 knitr::opts_chunk$set(echo=FALSE) # placed in the 1st code chunk
 ```
 
@@ -3734,7 +3736,7 @@ The following syntax, outside code chunks, introduces tables that `pandoc` can r
 
 <br>
 
-```{r eval=FALSE, tidy=FALSE}
+```{r eval=FALSE, tidy=FALSE, echo=T}
 
 First Column  Second Column 
 ------------  ------------- 
@@ -3758,6 +3760,13 @@ Third cell    Third cell
 
 
 ]
+
+???
+
+* Actually, the whole thing should be moved to the markdown part, as should the static figures.
+* If we do that, however, the logic for cross references has to get set straight.
+* It has to be introduced wherever it then occurs first.
+
 
 ---
 ## Tables &mdash; Markdown Syntax
@@ -3802,7 +3811,7 @@ A line starting with a colon, placed before or after tables, introduces captions
 
 .pull-left[
 
-```{r eval=FALSE, tidy=FALSE, collapse=FALSE}
+```{md}
 
     Centered         Right-Aligned 
 ----------------  ----------------
@@ -3818,7 +3827,7 @@ Third cell        Third cell
 
 .pull-right[
 
-<center>Table 1: A hand-made table with R Markdown</center> 
+.center[Table 1: A hand-made table with R Markdown]
 <br>
 
 | &nbsp;&nbsp;&nbsp; Centered  &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Right-Aligned |               
@@ -3839,16 +3848,16 @@ The caption line itself needs to be surrounded by empty lines
 
 .pull-left[
 
-```{r eval=FALSE, tidy=FALSE}
+```{md}
 
     Centered         Right-Aligned 
 ----------------  ----------------
 First cell        First cell      
 Second cell       Second cell   
 Third cell        Third cell  
-                                                                               #<<
+`                                   `
 : A hand-made table with R Markdown                                      
-                                                                               #<<
+`                                   `
 ```
 
 ]
@@ -3870,7 +3879,7 @@ Third cell        Third cell
 ---
 ## Tables &mdash; Markdown Syntax
 
-Tables are numbered automatically
+Tables are numbered automatically, if your output format supports that.
 
 <br>
 
@@ -3984,6 +3993,7 @@ Grid tables can be aligned as well, with colons at the boundaries of the header 
 | Second cell | Second cell with a<br>long text | 
 | Third cell | Third cell | 
 
+<!--- The spaces are to space out the table. -->
 
 ]
 
@@ -3994,13 +4004,83 @@ Grid tables can be aligned as well, with colons at the boundaries of the header 
 ]
 
 ---
+## Tables and Cross References
+
+
+.pull-left[
+
+```{r eval=FALSE, tidy=FALSE, echo=T}
+
+First Column  Second Column 
+------------  ------------- 
+First cell    First cell      
+Second cell   Second cell   
+Third cell    Third cell  
+
+: A simple table. (\#tab:simple)
+
+```
+
+]
+
+.pull-right[
+
+<center>.yellow-h[Table 3]: A simple table.</center> 
+<br>
+
+|  First Column | Second Column |                     
+|:------------- |:--------------| 
+| First cell |  First cell |            
+| Second cell |  Second cell |         
+| Third cell |  Third cell |          
+
+
+]
+
+<br>
+
+This syntax allows to get the numbers automatically right, again:
+
+<br>
+
+.inline-c[`Table \@ref(tab:simple) actually has no real content.`]
+
+would render as
+
+.out-t[**Table 3** actually has no real content.]
+
+
+---
 class: action
 
 ## Exercise
 
-We skip this. It is again a bit similar.
+Update your `Rmd` file so the output matches `r doc11`.
 
-`r countdown(minutes = 5, seconds = 00, top = 0)`
+* Add the Table
+* Take care of the cross reference to it.
+
+
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
+
+`r countdown(minutes = 7, seconds = sec, top = 0)`  
+
+???
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
 
 ---
 ## Tables &mdash; `stargazer` `r cp("stargazer")` &mdash; Overview
@@ -4012,6 +4092,7 @@ We skip this. It is again a bit similar.
     - regression models
 
 - Used widely by academics
+    - Alternatives notably include the `kableExtra` package `r cp("kableExtra")`.
 
 - Creates $\LaTeX$ code, HTML/CSS code, and ASCII text to be knitted
 
@@ -4275,15 +4356,84 @@ stargazer(data = df, type = "html", summary = TRUE, flip = TRUE,
 ]
 
 ---
+## `Stargazer` Tables and Cross References
+
+
+.pull-left[
+
+```{r eval=FALSE, tidy=FALSE, echo=T}
+
+stargazer(sleep, type="latex", 
+          title="Student's sleep data", 
+          `label="tab:student"`,
+          omit.summary.stat = c("p25",
+                                "p75"))
+
+```
+
+]
+
+--
+
+.pull-right[
+
+.center[.yellow-h[Table 5]: Student's sleep data]
+
+```{r, results="asis", echo=F}
+stargazer(sleep, type="html", 
+          #title="Student's sleep data", 
+          #label="tab:student",
+          omit.summary.stat = c("p25",
+                                "p75"))
+```
+]
+
+--
+
+<br>
+
+The **`label`** allows to get the numbers automatically right here as well:
+
+--
+
+.inline-c[`Table `.yellow-h[&nbsp;\@ref(tab:student)&nbsp;]` shows very famous data. Gosset used them to introduce the t-Test.`]
+
+--
+
+would render as
+
+.out-t[**Table 5** shows very famous data. Gosset used them to introduce the t-Test.]
+
+---
 class: action
 
 ## Exercise
 
-27) Summary Statistics Tables
-- see `reproduce_this.pdf`: table 2 on page 8
-- apply in `journals.Rmd`: table 2, between paragraphs 23 and 24
+Update your `Rmd` file so the output matches `r doc12`.
 
-`r countdown(minutes = 5, seconds = 00, top = 0)`
+* Add the second Table.
+* Take care of the cross reference to it.
+
+
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
+
+`r countdown(minutes = 7, seconds = sec, top = 0)`  
+
+???
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
 
 ---
 ## Tables &mdash; `stargazer` &mdash; Regression Tables
