@@ -93,21 +93,13 @@ Back to [methods and materials](#methods-and-materials)
 
 **What shall we do?**
 
-Update your `Rmd` file so the output matches `r doc9`.
+Update your `Rmd` file so the output matches this document.
 
-Add the figure.
+Make the reference to Figure 1 a dynamic cross reference:
 
-The code for it could be
-
-```{r, eval=FALSE, echo=T}
-ggplot(durationsGe,
-       aes(Frequency, DurationOfPrefix))+
-  geom_point()+
-  scale_x_log10()+
-  scale_y_log10()+
-  geom_smooth(method=lm)+
-  theme_bw()
-```
+* Change the `output` variable.
+* Name the chunk.
+* Create the reference.
 
 If you don't remember the syntax, the cheatsheet or google will surely help. If not, I'm there to help.
 
