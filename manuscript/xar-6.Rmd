@@ -1,0 +1,63 @@
+---
+title: "Reuse Code"
+subtitle: "A Small Presentation"
+author: "You and Me"
+institute: "CRC 1412"
+date: "`r Sys.Date()` (today)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, include=FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+
+## Reuse Case 1
+
+.pull-left[
+```{r goodfig, eval=F}
+ggplot(diamonds,
+       aes(carat, price, 
+           col=color))+
+  geom_point()
+```
+]
+
+.pull-right[
+```{r, ref.label="goodfig", echo=FALSE}
+```
+]
+
+If everything went fine, every change in the left chunk pertains to the right as well.
+
+---
+
+## Task description
+
+* Recreate the following slide.
+* Use the `ref.label` syntax.
+* That is: **Do not** copy code.
+
+---
+
+## Reuse Case 2
+
+```{r lm1}
+lm(extra~group, sleep)
+```
+
+```{r}
+sleep %>% filter(ID != "3") -> sleep
+```
+
+
+```{r, ref.label="lm1"}
+```
+

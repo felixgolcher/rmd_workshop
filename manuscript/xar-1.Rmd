@@ -1,0 +1,18 @@
+---
+title: "Reuse Code"
+subtitle: "A Small Presentation"
+author: "You and Me"
+institute: "CRC 1412"
+date: "`r Sys.Date()` (today)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+# Slide 1
+
+Recreate Me!

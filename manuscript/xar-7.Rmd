@@ -1,0 +1,152 @@
+---
+title: "Reuse Code"
+subtitle: "A Small Presentation"
+author: "You and Me"
+institute: "CRC 1412"
+date: "`r Sys.Date()` (today)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, include=FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+## trial
+
+.pull-left[
+links
+]
+
+.pull-right[
+rechts
+]
+
+--
+
+unten unten unten unten untenunten unten unten
+
+---
+
+## Reuse Case 1
+
+
+.pull-left[
+```{r goodfig, eval=F}
+ggplot(diamonds,
+       aes(carat, price, 
+           col=color))+
+  geom_point()
+```
+]
+
+.pull-right[
+```{r, ref.label="goodfig", echo=FALSE}
+```
+]
+
+If everything went fine, every change in the left chunk pertains to the right as well.
+
+---
+
+
+## Reuse Case 2
+
+```{r lm1}
+lm(extra~group, sleep)
+```
+
+```{r}
+sleep %>% filter(ID != "3") -> sleep
+```
+
+
+```{r, ref.label="lm1"}
+```
+
+---
+
+## Task description
+
+* Recreate the following 6 slides.
+* Use the `<<chunklabel>>` syntax.
+* Build the figure incrementally.
+* That is: **Do not** copy code.
+* schematic description:
+
+````md
+`r ''````{r chunk1}
+oldcode
+```
+````
+
+````md
+`r ''````{r chunk2}
+<<chunk1>>
+newcode
+```
+````
+* And then one more level nesting.
+* Version a just sets `echo` to false.
+
+---
+
+## Reuse case 3 -- `<<`chunklabel`>>`-Syntax -- Take 1
+
+```{r, include=F}
+fh <- 5
+```
+
+
+```{r p1, fig.height=fh}
+plot(sleep$group, sleep$extra, axes=F)
+```
+
+---
+
+## Reuse case 3 -- `<<`chunklabel`>>`-Syntax -- Take 2
+
+
+```{r p2, fig.height=fh}
+<<p1>>
+axis(1)
+```
+
+
+---
+
+## Reuse case 3 -- `<<`chunklabel`>>`-Syntax -- Take 3
+
+
+```{r p3, fig.height=fh}
+<<p2>>
+axis(2)
+```
+
+---
+
+## Reuse case 3 -- `<<`chunklabel`>>`-Syntax -- Take 1a
+
+```{r p1, echo=F, fig.height=fh}
+```
+
+---
+
+## Reuse case 3 -- `<<`chunklabel`>>`-Syntax -- Take 2a
+
+```{r p2, echo=F, fig.height=fh}
+```
+
+---
+
+## Reuse case 3 -- `<<`chunklabel`>>`-Syntax -- Take 3a
+
+```{r p3, echo=F, fig.height=fh}
+```
+

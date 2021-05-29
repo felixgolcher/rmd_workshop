@@ -1,0 +1,48 @@
+---
+title: "Reuse Code"
+subtitle: "A Small Presentation"
+author: "You and Me"
+institute: "CRC 1412"
+date: "`r Sys.Date()` (today)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, include=FALSE}
+library(ggplot2)
+```
+
+
+## Task description
+
+* The last solution had a drawback:
+  - The same code was repeated for the second version of the chunk
+  - If you change the first version and forget the second, it'l be inconsistent.
+* Reuse the code of the first block explicitely in the second.
+  - Use the chunk option `ref.label` for that.
+  - Remember: You have to give the first chunk a name for that.
+
+---
+
+## Reuse Case 1
+
+.pull-left[
+```{r goodfig, eval=F}
+ggplot(diamonds,
+       aes(carat, price, 
+           col=color))+
+  geom_point()
+```
+]
+
+.pull-right[
+```{r, ref.label="goodfig", echo=FALSE}
+```
+]
+
+If everything went fine, every change in the left chunk pertains to the right as well.
