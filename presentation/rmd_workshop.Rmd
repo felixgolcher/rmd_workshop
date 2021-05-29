@@ -78,6 +78,7 @@ doc9 <- "`dutchge-9.pdf`"
 doc10 <- "`dutchge-10.pdf`"
 doc11 <- "`dutchge-11.pdf`"
 doc12 <- "`dutchge-12.pdf`"
+rmd1 <- "`variable-xrc.Rmd`"
 
 knitr::opts_chunk$set(cache=T,
                       warning=F,
@@ -3044,9 +3045,67 @@ tot <- tot + delta
 ```
 
 solution $\Delta$ `r delta`, total `r tot` min.
+---
+
+## Code Chunk Options as Variables
+
+````md
+`r ''````{r}
+# echoornot can be TRUE or FALSE
+echoornot <- `TRUE`
+```
+````
 
 
+````md
+`r ''````{r, echo=`echoornot` ...}
+message("will I be there?")
+```
+````
 
+* The source code of this chunk does
+  - show up, **if** `echoornot` is set to TRUE
+  - **otherwise** it will not show up in the output document.
+* You can insert anything that can be evaluated to TRUE or FALSE:
+  - **`echo=Sys.Date() == "2021-05-28"`** (show that chunk only today)
+  - **`eval=1>7`** (never evaluate)
+  - **`message=!knitr::is_html_output()`** (Don't show messages in [`HTML` output](https://bookdown.org/yihui/rmarkdown-cookbook/multi-formats.html))
+
+
+---
+class: action
+
+## Exercise
+
+* Open document `r rmd1`.
+* Add another code chunk above the two existing ones.
+* Define a variable there
+  - It is supposed to take the two values `TRUE` or `FALSE`.
+  - What value you actually give it, is arbitrary
+* Add the options `echo` and `eval` in a way, that always
+  - exactly one chunk is "echoed", but not "evaluated"
+  - the other chunk is not "echoed", but "evaluated"
+
+
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
+
+`r countdown(minutes = 7, seconds = sec, top = 0)`  
+
+???
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
 ---
 class: center, middle
 
