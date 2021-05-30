@@ -37,7 +37,7 @@ library(plotly)
 library(kableExtra)
 # data
 data("durationsGe", package = "languageR")
-df <- read.csv("../data/journals.csv") %>% 
+df <- read.csv("data/journals.csv") %>% 
       mutate(subfield = as.factor(subfield), 
              english = as.factor(english),
              age = 2020 - since) %>%
@@ -183,7 +183,7 @@ Your experience in class.
 ## A normal situation
 
 .pull-right-c[
-![](../image/word1.png)
+![](image/word1.png)
 ]
 
 .pull-left-c[
@@ -256,14 +256,14 @@ template: findfigure
 
 Was it this one? 
 
-![](../image/dutch-N01204.png)
+![](image/dutch-N01204.png)
 `final/dutch-1.png`
 ---
 template: findfigure
 
 Or this one?
 
-![](../image/dutch-right.png)
+![](image/dutch-right.png)
 `final-2/dutch-3.png`
 
 ---
@@ -271,7 +271,7 @@ template: findfigure
 
 Or that one? 
 
-![](../image/dutch-N01033.png)
+![](image/dutch-N01033.png)
 `dutch-1.png`
 
 
@@ -436,7 +436,7 @@ Then recompile.
 template: md1
 
 ```{r, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("../image/md1.png")
+knitr::include_graphics("image/md1.png")
 ```
 
 the source
@@ -445,7 +445,7 @@ the source
 template: md1
 
 ```{r, echo = FALSE, out.width = "85%"}
-knitr::include_graphics("../image/mdout.png")
+knitr::include_graphics("image/mdout.png")
 ```
 
 the result
@@ -454,7 +454,7 @@ the result
 template: md1
 
 ```{r, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("../image/md2.png")
+knitr::include_graphics("image/md2.png")
 ```
 
 the modified source
@@ -463,7 +463,7 @@ the modified source
 template: md1
 
 ```{r, echo = FALSE, out.width = "85%"}
-knitr::include_graphics("../image/md-corr.png")
+knitr::include_graphics("image/md-corr.png")
 ```
 
 the modified result
@@ -918,7 +918,7 @@ estimate $\Delta$ `r delta`, total `r tot` min.
 
 .pull-right-c[
 
-![](../image/yaml.png)
+![](image/yaml.png)
 
 ]
 
@@ -935,7 +935,7 @@ estimate $\Delta$ `r delta`, total `r tot` min.
 
 .pull-right-c[
 
-![](../image/text.png)
+![](image/text.png)
 
 ]
 
@@ -954,7 +954,7 @@ estimate $\Delta$ `r delta`, total `r tot` min.
 .pull-right-c[    
 
 
-![](../image/chunk.png)
+![](image/chunk.png)
 
 
 ]
@@ -983,7 +983,7 @@ class: action
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "95%"}
-knitr::include_graphics("../image/first_rmd.png")
+knitr::include_graphics("image/first_rmd.png")
 ```
 
 ]
@@ -1199,7 +1199,7 @@ output: html_document #<<
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "95%"}
-knitr::include_graphics("../image/yaml_html.png")
+knitr::include_graphics("image/yaml_html.png")
 ```
 
 ]
@@ -1225,7 +1225,7 @@ output: latex_document #<<
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "95%"}
-knitr::include_graphics("../image/yaml_latex.png")
+knitr::include_graphics("image/yaml_latex.png")
 ```
 
 ]
@@ -1252,7 +1252,7 @@ output: pdf_document #<<
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "95%"}
-knitr::include_graphics("../image/yaml_pdf.png")
+knitr::include_graphics("image/yaml_pdf.png")
 ```
 
 ]
@@ -1280,7 +1280,7 @@ output: word_document #<<
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "95%"}
-knitr::include_graphics("../image/yaml_word.png")
+knitr::include_graphics("image/yaml_word.png")
 ```
 
 ]
@@ -1339,7 +1339,7 @@ output: pdf_document
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "95%"}
-knitr::include_graphics("../image/yaml_pdf.png")
+knitr::include_graphics("image/yaml_pdf.png")
 ```
 
 ]
@@ -1365,7 +1365,7 @@ output: pdf_document
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "95%"}
-knitr::include_graphics("../image/yaml2.png")
+knitr::include_graphics("image/yaml2.png")
 ```
 
 ]
@@ -1392,7 +1392,7 @@ output: pdf_document
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "95%"}
-knitr::include_graphics("../image/yaml3.png")
+knitr::include_graphics("image/yaml3.png")
 ```
 
 ]
@@ -1467,7 +1467,7 @@ output:                   #<<
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("../image/yaml4.png")
+knitr::include_graphics("image/yaml4.png")
 ```
 
 ]
@@ -1534,7 +1534,7 @@ output: pdf_document
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "95%"}
-knitr::include_graphics("../image/yaml5.png")
+knitr::include_graphics("image/yaml5.png")
 ```
 
 ]
@@ -1616,7 +1616,7 @@ output: pdf_document
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "95%"}
-knitr::include_graphics("../image/yaml6.png")
+knitr::include_graphics("image/yaml6.png")
 ```
 
 ]
@@ -2434,7 +2434,7 @@ class: inverse, center, middle
 .pull-right-c[
 
 ```{r, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("../image/bib.png")
+knitr::include_graphics("image/bib.png")
 ```
 
 ]
@@ -2463,7 +2463,7 @@ knitr::include_graphics("../image/bib.png")
 .pull-right-c[
 
 ```{r, echo=FALSE, out.width="100%"}
-knitr::include_graphics("../image/bib1.png")
+knitr::include_graphics("image/bib1.png")
 ```
 
 ]
@@ -2506,7 +2506,7 @@ knitr::include_graphics("../image/bib1.png")
 .pull-right-c[
 
 ```{r, echo=FALSE, out.width="95%"}
-knitr::include_graphics("../image/csl.png")
+knitr::include_graphics("image/csl.png")
 ```
 
 ]
@@ -3134,12 +3134,12 @@ xxx this should be moved to the other markdown stuff, just after links.
 ## Figures &mdash; Images &mdash; Markdown Syntax
 
 ```{r, eval=FALSE}
-![The CRC logo](../image/crc1412.png)
+![The CRC logo](image/crc1412.png)
 ```
 
 ```{r, echo=FALSE, fig.align="center", out.width="65%"}
 
-knitr::include_graphics("../image/crc1412.png")
+knitr::include_graphics("image/crc1412.png")
 ```
 
 <center>Figure 1: The CRC logo.</center>
@@ -3149,12 +3149,12 @@ knitr::include_graphics("../image/crc1412.png")
 Figures are numbered automatically
 
 ```{r, eval=FALSE}
-![The CRC logo](../image/crc1412.png)
+![The CRC logo](image/crc1412.png)
 ```
 
 ```{r, echo=FALSE, fig.align="center", out.width="65%"}
 
-knitr::include_graphics("../image/crc1412.png")
+knitr::include_graphics("image/crc1412.png")
 ```
 
 <center>.yellow-h[Figure 1]: The CRC logo. </center>
@@ -3165,12 +3165,12 @@ knitr::include_graphics("../image/crc1412.png")
 The syntax can accept `width` or `height` attributes as follows
 
 ```{r, eval=FALSE}
-![The CRC logo](../image/crc1412.png)`{ width=40% }`
+![The CRC logo](image/crc1412.png)`{ width=40% }`
 ```
 
 ```{r, echo=FALSE, fig.align="center", out.width="40%"}
 
-knitr::include_graphics("../image/crc1412.png")
+knitr::include_graphics("image/crc1412.png")
 ```
 
 <center>Figure 1: The CRC logo.</center>
@@ -3195,14 +3195,14 @@ The `knitr` package offers a capable alternative with the `include_graphics()` f
 ````md
 `r ''````{r, screenshot, echo=FALSE, fig.cap="The CRC logo."}
 
-knitr::include_graphics("../image/crc1412.png")
+knitr::include_graphics("image/crc1412.png")
 
 ```
 ````
 
 ```{r, echo=FALSE, out.width="55%"}
 
-knitr::include_graphics("../image/crc1412.png")
+knitr::include_graphics("image/crc1412.png")
 ```
 
 <center>Figure 1: The CRC logo.</center> 
@@ -3215,14 +3215,14 @@ Size is defined with the chunk options `out.width` or `out.hight`
 ````md
 `r ''````{r ... `out.width="40%"`}
 
-knitr::include_graphics("../image/crc1412.png")
+knitr::include_graphics("image/crc1412.png")
 
 ```
 ````
 
 ```{r, echo=FALSE, out.width="40%"}
 
-knitr::include_graphics("../image/crc1412.png")
+knitr::include_graphics("image/crc1412.png")
 ```
 
 <center>Figure 1: The CRC logo.</center> 
@@ -3236,14 +3236,14 @@ Most other chunk options are common with figures plotted within R Markdown, such
 ````md
 `r ''````{r ... `fig.align="center"`}
 
-knitr::include_graphics("../image/crc1412.png")
+knitr::include_graphics("image/crc1412.png")
 
 ```
 ````
 
 ```{r, echo=FALSE, fig.align="center", out.width="40%"}
 
-knitr::include_graphics("../image/crc1412.png")
+knitr::include_graphics("image/crc1412.png")
 ```
 
 <center>Figure 1: The CRC logo.</center> 
