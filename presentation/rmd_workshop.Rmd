@@ -142,7 +142,11 @@ text-align: right;
 
 .action {
     background-color: #f2eecb;
-  
+}
+
+
+.skipped {
+    background-color: #eeeeee;
 }
 
 
@@ -654,28 +658,19 @@ name: contents-slide
 
 .pull-right[
 
-[Part 6. Adding Code, Figures, and Tables](#part6)
-   - e.g., plotting data
+[Part 6. The R of Rmarkdown](#part6)
+   - Code Chunks and Inline Code
 
-[Part 7. Cache Functionality](#part8)
-   - don't recompute everything with every compilation
-
-[Part 8. Reusing Code](#part8)
-   - e.g., building up figures, child documents
-   
-[Part 9. Fancy Templates](#part8)
-   - e.g., producing publication ready papers
-
-[Part 10. Addressing Functionality Gaps](#part7)
+[Part 7. Addressing Functionality Gaps](#part7)
    - e.g., adjusting line spacing
 
-[Part 11. Using Version Control](#part8)
+[Part 8. Using Version Control](#part8)
    - e.g., integrating Git and GitHub
 
-[Part 12. Collaborating with Others](#part9)
+[Part 9. Collaborating with Others](#part9)
    - e.g., working simultaneously with co-authors
-
 ]
+
 
 ---
 ## The Workshop &mdash; Organisation
@@ -1719,7 +1714,7 @@ Line endings with fewer than two spaces are ignored:
 
 ```{r eval = FALSE}
 It is generally no bad idea to put each sentence on a new line.
-The output text does not show the line break.
+The output text does not show the line breaks.
 But versioning programs like git work on a line by line basis.
 By dividing the text into more than one line per paragraph we avoid conflicts.
 Those might otherwise arise whenever your collaborators edit a different sentence 
@@ -2399,6 +2394,427 @@ solution $\Delta$ `r delta`, total `r tot` min.
 `r countdown(minutes = 5, seconds = 00, top = 0)`
 
 ---
+## Static Figures & Images &mdash; Markdown Syntax
+
+The syntax <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">!&#91;Figure Caption&#93;(figure.extension)</span> embeds images, and/or figures produced elsewhere,<sup>*</sup> into .Rmd documents
+ 
+- similar to the link syntax, only this time it is preceded by an exclamation mark .yellow-h[!]
+- goes outside code chunks, on a new line
+- simple, but not very customisable
+    
+.footnote[
+
+<sup>*</sup> Ideally, reproducible papers should produce their own images with data and code. However, there might be situations where this is not possible.
+
+]
+
+???
+
+xxx Cross references should be introduced here. Than it is a bit interesting at least.
+
+---
+## Figures &mdash; Images &mdash; Markdown Syntax
+
+```{r, eval=FALSE}
+![The CRC logo](image/crc1412.png)
+```
+
+```{r, echo=FALSE, fig.align="center", out.width="65%"}
+
+knitr::include_graphics("image/crc1412.png")
+```
+
+<center>Figure 1: The CRC logo.</center>
+---
+## Figures &mdash; Images &mdash; Markdown Syntax
+
+Figures are numbered automatically, **if** the `output` format supports that.
+
+```{r, eval=FALSE}
+![The CRC logo](image/crc1412.png)
+```
+
+```{r, echo=FALSE, fig.align="center", out.width="65%"}
+knitr::include_graphics("image/crc1412.png")
+```
+
+<center>.yellow-h[Figure 1]: The CRC logo. </center>
+
+---
+## Figures &mdash; Images &mdash; Markdown Syntax
+
+The syntax can accept `width` or `height` attributes as follows
+
+```{r, eval=FALSE}
+![The CRC logo](image/crc1412.png)`{ width=40% }`
+```
+
+```{r, echo=FALSE, fig.align="center", out.width="40%"}
+knitr::include_graphics("image/crc1412.png")
+```
+
+<center>Figure 1: The CRC logo.</center>
+???
+
+We don't have an exersise here (yet?).
+
+---
+## Static Tables &mdash; Markdown Syntax
+
+The following syntax, outside code chunks, introduces tables that `pandoc` can recognise
+
+.pull-left[
+
+<br>
+
+```{r eval=FALSE, tidy=FALSE, echo=T}
+
+First Column  Second Column 
+------------  ------------- 
+First cell    First cell      
+Second cell   Second cell   
+Third cell    Third cell  
+
+```
+
+]
+
+.pull-right[
+
+<br>
+
+|  First Column | Second Column |                     
+|:------------- |:--------------| 
+| First cell |  First cell |            
+| Second cell |  Second cell |         
+| Third cell |  Third cell |          
+
+
+]
+
+???
+
+XXX
+* the logic for cross references has to get set straight.
+* It has to be introduced wherever it then occurs first.
+* The order of exercises might have to be adjusted to the movement of this section more to the front.
+
+
+---
+## Tables &mdash; Markdown Syntax
+
+The position of headers, relative to their line underneath, defines column alignments
+
+.pull-left[
+
+<br>
+
+```{r eval=FALSE, tidy=FALSE}
+
+Left-Aligned          Centered   
+----------------  ----------------
+First cell        First cell      
+Second cell       Second cell   
+Third cell        Third cell  
+
+```
+
+]
+
+.pull-right[
+
+<br>
+
+| Left-Aligned &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Centered  &nbsp;&nbsp;&nbsp; |               
+|:-------------------------------------  | :-----------------------------------: | 
+| First cell | First cell | 
+| Second cell| Second cell | 
+| Third cell | Third  cell |       
+
+
+]
+
+---
+## Tables &mdash; Markdown Syntax
+
+A line starting with a colon, placed before or after tables, introduces captions
+
+<br>
+
+.pull-left[
+
+```{md}
+
+    Centered         Right-Aligned 
+----------------  ----------------
+First cell        First cell      
+Second cell       Second cell   
+Third cell        Third cell  
+                                                                               
+: A hand-made table with R Markdown                                      #<<
+    
+```
+
+]
+
+.pull-right[
+
+.center[Table 1: A hand-made table with R Markdown]
+<br>
+
+| &nbsp;&nbsp;&nbsp; Centered  &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Right-Aligned |               
+|:----------------------------------------------: | --------------------------------------------------: | 
+| First cell | First cell | 
+| Second cell| Second cell | 
+| Third cell | Third  cell |       
+
+
+]
+
+---
+## Tables &mdash; Markdown Syntax
+
+The caption line itself needs to be surrounded by empty lines
+
+<br>
+
+.pull-left[
+
+```{md}
+
+    Centered         Right-Aligned 
+----------------  ----------------
+First cell        First cell      
+Second cell       Second cell   
+Third cell        Third cell  
+`                                   `
+: A hand-made table with R Markdown                                      
+`                                   `
+```
+
+]
+
+.pull-right[
+
+<center>Table 1: A hand-made table with R Markdown</center> 
+<br>
+
+| &nbsp;&nbsp;&nbsp; Centered  &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Right-Aligned |               
+|:----------------------------------------------: | --------------------------------------------------: | 
+| First cell | First cell | 
+| Second cell| Second cell | 
+| Third cell | Third  cell |       
+
+
+]
+
+---
+## Tables &mdash; Markdown Syntax
+
+Tables are numbered automatically, if your output format supports that.
+
+<br>
+
+.pull-left[
+
+```{r eval=FALSE, tidy=FALSE}
+
+: A hand-made table with R Markdown 
+
+    Centered         Right-Aligned 
+----------------  ----------------
+First cell        First cell      
+Second cell       Second cell   
+Third cell        Third cell  
+                                                                               
+```
+
+]
+
+.pull-right[
+
+<center>.yellow-h[Table 1]: A hand-made table with R Markdown</center> 
+<br>
+
+| &nbsp;&nbsp;&nbsp; Centered  &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Right-Aligned |               
+|:----------------------------------------------: | --------------------------------------------------: | 
+| First cell | First cell | 
+| Second cell| Second cell | 
+| Third cell | Third  cell |       
+
+
+]
+
+---
+## Tables &mdash; Markdown Syntax
+
+Grid tables, with the following syntax, can handle complex cells with multiple lines and/or lists
+
+.pull-left[
+
+```{r eval=FALSE, tidy=FALSE}
++--------------------+--------------------+
+| First Column       | Second Column      | 
++====================+====================+
+| - First item       | First cell         | 
+| - Second item      |                    | 
+| - Third item       |                    |
++--------------------+--------------------+
+|Second cell         | Second cell with a | 
+|                    | long text          | 
++--------------------+--------------------+
+| Third cell         | Third cell         | 
+|                    |                    | 
++--------------------+--------------------+
+
+: A grid table with multi-line cells                                                         
+```
+
+]
+
+.pull-right[
+
+<br>
+<center>Table 1: A grid table with multi-line cells</center> 
+<br>
+
+| First Column &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Second Column &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+|:------------------------------------------  |:--------------------------------------------------| 
+| - First item <br> - Second item <br> - Third item | First cell                                        |         
+| Second cell                                       | Second cell with a long<br>text                   | 
+| Third cell                                        | Third cell                                        | 
+
+]
+
+---
+## Tables &mdash; Markdown Syntax
+
+Grid tables can be aligned as well, with colons at the boundaries of the header separator<sup>*</sup>
+
+.pull-left[
+
+```{r eval=FALSE, tidy=FALSE}
++--------------------+--------------------+
+| Left-Aligned       | Centered           | 
++:===================+:==================:+ #<<
+| - First item       | First cell         | 
+| - Second item      |                    | 
+| - Third item       |                    |
++--------------------+--------------------+
+|Second cell         | Second cell with a | 
+|                    | long text          | 
++--------------------+--------------------+
+| Third cell         | Third cell         | 
+|                    |                    | 
++--------------------+--------------------+
+
+: A grid table with multi-line cells                                                         
+```
+
+]
+
+.pull-right[
+
+<br>
+<center>Table 1: A grid table with multi-line cells</center> 
+<br>
+
+| Left-Aligned &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;Centered &nbsp;&nbsp; |
+|:--------------------------------------|:---------------------------------:| 
+| - First item <br> - Second item <br> - Third item | First cell |         
+| Second cell | Second cell with a<br>long text | 
+| Third cell | Third cell | 
+
+<!--- The spaces are to space out the table. -->
+
+]
+
+.footnote[
+
+<sup>*</sup> Use .yellow-h[:=] for left-aligned, .yellow-h[:=:] for centered, .yellow-h[=:] for right-aligned columns. 
+
+]
+
+---
+## Tables and Cross References
+
+
+.pull-left[
+
+```{r eval=FALSE, tidy=FALSE, echo=T}
+
+First Column  Second Column 
+------------  ------------- 
+First cell    First cell      
+Second cell   Second cell   
+Third cell    Third cell  
+
+: A simple table. (\#tab:simple)
+
+```
+
+]
+
+.pull-right[
+
+<center>.yellow-h[Table 3]: A simple table.</center> 
+<br>
+
+|  First Column | Second Column |                     
+|:------------- |:--------------| 
+| First cell |  First cell |            
+| Second cell |  Second cell |         
+| Third cell |  Third cell |          
+
+
+]
+
+<br>
+
+This syntax allows to get the numbers automatically right, again:
+
+<br>
+
+.inline-c[`Table \@ref(tab:simple) actually has no real content.`]
+
+would render as
+
+.out-t[**Table 3** actually has no real content.]
+
+
+---
+class: action
+
+## Exercise
+
+Update your `Rmd` file so the output matches `r doc11`.
+
+* Add the Table
+* Take care of the cross reference to it.
+
+
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
+
+`r countdown(minutes = 7, seconds = sec, top = 0)`  
+
+???
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
+
+---
 name: part5
 class: inverse, center, middle
 
@@ -2645,18 +3061,13 @@ solution $\Delta$ `r delta`, total `r tot` min.
 name: part6
 class: inverse, center, middle
 
-# Part 6. Adding Code, Figures, and Tables
+# Part 6. The R of Rmarkdown: Code Chunks and Inline Code
 
 .footnote[
 
 [Back to the contents slide](#contents-slide).
 
 ]
-
----
-class: center, middle
-
-# Code, in and outside Chunks
 
 ---
 ## Code &mdash; Overview
@@ -3107,86 +3518,22 @@ tot <- tot + delta
 
 solution $\Delta$ `r delta`, total `r tot` min.
 ---
-class: center, middle
+## More flexible, but static Figures &mdash; Images &mdash; `knitr`
 
-# Figures
-
----
-## Figures &mdash; Images &mdash; Markdown Syntax
-
-The syntax <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">!&#91;Figure Caption&#93;(figure.extension)</span> embeds images, and/or figures produced elsewhere,<sup>*</sup> into .Rmd documents
- 
-- similar to the link syntax, only this time it is preceded by an exclamation mark .yellow-h[!]
-- goes outside code chunks, on a new line
-- simple, but not very customisable
-    
-.footnote[
-
-<sup>*</sup> Ideally, reproducible papers should produce their own images with data and code. However, there might be situations where this is not possible.
-
-]
-
-???
-
-xxx this should be moved to the other markdown stuff, just after links.
-
----
-## Figures &mdash; Images &mdash; Markdown Syntax
-
-```{r, eval=FALSE}
-![The CRC logo](image/crc1412.png)
-```
-
-```{r, echo=FALSE, fig.align="center", out.width="65%"}
-
-knitr::include_graphics("image/crc1412.png")
-```
-
-<center>Figure 1: The CRC logo.</center>
----
-## Figures &mdash; Images &mdash; Markdown Syntax
-
-Figures are numbered automatically
-
-```{r, eval=FALSE}
-![The CRC logo](image/crc1412.png)
-```
-
-```{r, echo=FALSE, fig.align="center", out.width="65%"}
-
-knitr::include_graphics("image/crc1412.png")
-```
-
-<center>.yellow-h[Figure 1]: The CRC logo. </center>
-
----
-## Figures &mdash; Images &mdash; Markdown Syntax
-
-The syntax can accept `width` or `height` attributes as follows
-
-```{r, eval=FALSE}
-![The CRC logo](image/crc1412.png)`{ width=40% }`
-```
-
-```{r, echo=FALSE, fig.align="center", out.width="40%"}
-
-knitr::include_graphics("image/crc1412.png")
-```
-
-<center>Figure 1: The CRC logo.</center>
----
-## Figures &mdash; Images &mdash; `knitr`
-
-The `knitr` package offers a capable alternative with the `include_graphics()` function
+The `knitr` package offers a capable alternative to markdown syntax with the `include_graphics()` function
 
 - this goes inside code chunks
     - use the function with the double-colon operator <span style="background-color: #ffff88">::</span>     
         - e.g., `knitr::include_graphics("figure.extension")`    
 <br>
 - this is more customisable, through the use of code chunks
-    - size is defined with the `out.width` or `out.hight` options
+    - size is defined with the **`out.width`** or **`out.hight`** options
         - rather than `fig.height` and/or `fig.width`
-    
+
+???
+
+That had to be moved back here to the dynamic part because it involves code chunks. But it is now a bit strange here. Maybe we can skip this with a short mentioning.
+
 ---
 ## Figures &mdash; Images &mdash; `knitr`
 
@@ -3194,14 +3541,11 @@ The `knitr` package offers a capable alternative with the `include_graphics()` f
 
 ````md
 `r ''````{r, screenshot, echo=FALSE, fig.cap="The CRC logo."}
-
 knitr::include_graphics("image/crc1412.png")
-
 ```
 ````
 
 ```{r, echo=FALSE, out.width="55%"}
-
 knitr::include_graphics("image/crc1412.png")
 ```
 
@@ -3214,14 +3558,11 @@ Size is defined with the chunk options `out.width` or `out.hight`
 
 ````md
 `r ''````{r ... `out.width="40%"`}
-
 knitr::include_graphics("image/crc1412.png")
-
 ```
 ````
 
 ```{r, echo=FALSE, out.width="40%"}
-
 knitr::include_graphics("image/crc1412.png")
 ```
 
@@ -3235,14 +3576,11 @@ Most other chunk options are common with figures plotted within R Markdown, such
 
 ````md
 `r ''````{r ... `fig.align="center"`}
-
 knitr::include_graphics("image/crc1412.png")
-
 ```
 ````
 
 ```{r, echo=FALSE, fig.align="center", out.width="40%"}
-
 knitr::include_graphics("image/crc1412.png")
 ```
 
@@ -3258,9 +3596,9 @@ We skip this. It's similar to what we did before. Dynamic images are much more i
 `r countdown(minutes = 0, seconds = 00, top = 0)`
 
 ---
-## Figures &mdash; `ggplot2` `r cp("ggplot2")` &mdash; Overview
+## Dynamic Figures with `ggplot2` &mdash; Overview
 
-- A very, very powerful package for visualising data 
+- `ggplot2` is a very, very powerful package for visualising data.
 
 - Used widely, not only by academics, but also by large corporations such as the New York Times
 
@@ -3429,7 +3767,7 @@ gg1
 
 
 ---
-
+class: skipped
 
 ## Figures &mdash; `ggplot2` &mdash; Basics
 
@@ -3460,6 +3798,8 @@ ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) 
 ```
 
 ---
+class: skipped
+
 ## Figures &mdash; `ggplot2`
 
 Put the code in a chunk, and give it a caption
@@ -3491,6 +3831,8 @@ Figure 1. A scatterplot of journal metrics.
 ]
 
 ---
+class: skipped
+
 ## Figures &mdash; `ggplot2`
 
 Add facets for subgroups, e.g., `branch`
@@ -3524,6 +3866,8 @@ Figure 1. A scatterplot of journal metrics.
 ]
 
 ---
+class: skipped
+
 ## Figures &mdash; `ggplot2`
 
 Scale the colour to improve the legend
@@ -3560,6 +3904,8 @@ Figure 1. A scatterplot of journal metrics.
 ]
 
 ---
+class: skipped
+
 ## Figures &mdash; `ggplot2`
 
 Change the theme
@@ -3600,6 +3946,8 @@ Figure 1. A scatterplot of journal metrics.
 ]
 
 ---
+class: skipped
+
 ## Figures &mdash; `ggplot2`
 
 Improve the axis labels, e.g., with capital first letters
@@ -3641,6 +3989,7 @@ Figure 1. A scatterplot of journal metrics.
 
 
 ---
+class: skipped
 
 ## Figures &mdash; `ggplot2` &mdash; Notes
 
@@ -3782,367 +4131,7 @@ solution $\Delta$ `r delta`, total `r tot` min.
 
 
 ---
-class: center, middle
-
-# Tables
-
----
-## Tables &mdash; Markdown Syntax
-
-The following syntax, outside code chunks, introduces tables that `pandoc` can recognise
-
-.pull-left[
-
-<br>
-
-```{r eval=FALSE, tidy=FALSE, echo=T}
-
-First Column  Second Column 
-------------  ------------- 
-First cell    First cell      
-Second cell   Second cell   
-Third cell    Third cell  
-
-```
-
-]
-
-.pull-right[
-
-<br>
-
-|  First Column | Second Column |                     
-|:------------- |:--------------| 
-| First cell |  First cell |            
-| Second cell |  Second cell |         
-| Third cell |  Third cell |          
-
-
-]
-
-???
-
-* Actually, the whole thing should be moved to the markdown part, as should the static figures.
-* If we do that, however, the logic for cross references has to get set straight.
-* It has to be introduced wherever it then occurs first.
-
-
----
-## Tables &mdash; Markdown Syntax
-
-The position of headers, relative to their line underneath, defines column alignments
-
-.pull-left[
-
-<br>
-
-```{r eval=FALSE, tidy=FALSE}
-
-Left-Aligned          Centered   
-----------------  ----------------
-First cell        First cell      
-Second cell       Second cell   
-Third cell        Third cell  
-
-```
-
-]
-
-.pull-right[
-
-<br>
-
-| Left-Aligned &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Centered  &nbsp;&nbsp;&nbsp; |               
-|:-------------------------------------  | :-----------------------------------: | 
-| First cell | First cell | 
-| Second cell| Second cell | 
-| Third cell | Third  cell |       
-
-
-]
-
----
-## Tables &mdash; Markdown Syntax
-
-A line starting with a colon, placed before or after tables, introduces captions
-
-<br>
-
-.pull-left[
-
-```{md}
-
-    Centered         Right-Aligned 
-----------------  ----------------
-First cell        First cell      
-Second cell       Second cell   
-Third cell        Third cell  
-                                                                               
-: A hand-made table with R Markdown                                      #<<
-    
-```
-
-]
-
-.pull-right[
-
-.center[Table 1: A hand-made table with R Markdown]
-<br>
-
-| &nbsp;&nbsp;&nbsp; Centered  &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Right-Aligned |               
-|:----------------------------------------------: | --------------------------------------------------: | 
-| First cell | First cell | 
-| Second cell| Second cell | 
-| Third cell | Third  cell |       
-
-
-]
-
----
-## Tables &mdash; Markdown Syntax
-
-The caption line itself needs to be surrounded by empty lines
-
-<br>
-
-.pull-left[
-
-```{md}
-
-    Centered         Right-Aligned 
-----------------  ----------------
-First cell        First cell      
-Second cell       Second cell   
-Third cell        Third cell  
-`                                   `
-: A hand-made table with R Markdown                                      
-`                                   `
-```
-
-]
-
-.pull-right[
-
-<center>Table 1: A hand-made table with R Markdown</center> 
-<br>
-
-| &nbsp;&nbsp;&nbsp; Centered  &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Right-Aligned |               
-|:----------------------------------------------: | --------------------------------------------------: | 
-| First cell | First cell | 
-| Second cell| Second cell | 
-| Third cell | Third  cell |       
-
-
-]
-
----
-## Tables &mdash; Markdown Syntax
-
-Tables are numbered automatically, if your output format supports that.
-
-<br>
-
-.pull-left[
-
-```{r eval=FALSE, tidy=FALSE}
-
-: A hand-made table with R Markdown 
-
-    Centered         Right-Aligned 
-----------------  ----------------
-First cell        First cell      
-Second cell       Second cell   
-Third cell        Third cell  
-                                                                               
-```
-
-]
-
-.pull-right[
-
-<center>.yellow-h[Table 1]: A hand-made table with R Markdown</center> 
-<br>
-
-| &nbsp;&nbsp;&nbsp; Centered  &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Right-Aligned |               
-|:----------------------------------------------: | --------------------------------------------------: | 
-| First cell | First cell | 
-| Second cell| Second cell | 
-| Third cell | Third  cell |       
-
-
-]
-
----
-## Tables &mdash; Markdown Syntax
-
-Grid tables, with the following syntax, can handle complex cells with multiple lines and/or lists
-
-.pull-left[
-
-```{r eval=FALSE, tidy=FALSE}
-+--------------------+--------------------+
-| First Column       | Second Column      | 
-+====================+====================+
-| - First item       | First cell         | 
-| - Second item      |                    | 
-| - Third item       |                    |
-+--------------------+--------------------+
-|Second cell         | Second cell with a | 
-|                    | long text          | 
-+--------------------+--------------------+
-| Third cell         | Third cell         | 
-|                    |                    | 
-+--------------------+--------------------+
-
-: A grid table with multi-line cells                                                         
-```
-
-]
-
-.pull-right[
-
-<br>
-<center>Table 1: A grid table with multi-line cells</center> 
-<br>
-
-| First Column &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Second Column &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-|:------------------------------------------  |:--------------------------------------------------| 
-| - First item <br> - Second item <br> - Third item | First cell                                        |         
-| Second cell                                       | Second cell with a long<br>text                   | 
-| Third cell                                        | Third cell                                        | 
-
-]
-
----
-## Tables &mdash; Markdown Syntax
-
-Grid tables can be aligned as well, with colons at the boundaries of the header separator<sup>*</sup>
-
-.pull-left[
-
-```{r eval=FALSE, tidy=FALSE}
-+--------------------+--------------------+
-| Left-Aligned       | Centered           | 
-+:===================+:==================:+ #<<
-| - First item       | First cell         | 
-| - Second item      |                    | 
-| - Third item       |                    |
-+--------------------+--------------------+
-|Second cell         | Second cell with a | 
-|                    | long text          | 
-+--------------------+--------------------+
-| Third cell         | Third cell         | 
-|                    |                    | 
-+--------------------+--------------------+
-
-: A grid table with multi-line cells                                                         
-```
-
-]
-
-.pull-right[
-
-<br>
-<center>Table 1: A grid table with multi-line cells</center> 
-<br>
-
-| Left-Aligned &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;Centered &nbsp;&nbsp; |
-|:--------------------------------------|:---------------------------------:| 
-| - First item <br> - Second item <br> - Third item | First cell |         
-| Second cell | Second cell with a<br>long text | 
-| Third cell | Third cell | 
-
-<!--- The spaces are to space out the table. -->
-
-]
-
-.footnote[
-
-<sup>*</sup> Use .yellow-h[:=] for left-aligned, .yellow-h[:=:] for centered, .yellow-h[=:] for right-aligned columns. 
-
-]
-
----
-## Tables and Cross References
-
-
-.pull-left[
-
-```{r eval=FALSE, tidy=FALSE, echo=T}
-
-First Column  Second Column 
-------------  ------------- 
-First cell    First cell      
-Second cell   Second cell   
-Third cell    Third cell  
-
-: A simple table. (\#tab:simple)
-
-```
-
-]
-
-.pull-right[
-
-<center>.yellow-h[Table 3]: A simple table.</center> 
-<br>
-
-|  First Column | Second Column |                     
-|:------------- |:--------------| 
-| First cell |  First cell |            
-| Second cell |  Second cell |         
-| Third cell |  Third cell |          
-
-
-]
-
-<br>
-
-This syntax allows to get the numbers automatically right, again:
-
-<br>
-
-.inline-c[`Table \@ref(tab:simple) actually has no real content.`]
-
-would render as
-
-.out-t[**Table 3** actually has no real content.]
-
-
----
-class: action
-
-## Exercise
-
-Update your `Rmd` file so the output matches `r doc11`.
-
-* Add the Table
-* Take care of the cross reference to it.
-
-
-```{r, include=FALSE}
-mn <- 7
-sec <- 30
-delta <- mn + sec/60
-tot <- tot + delta
-```
-
-`r countdown(minutes = 7, seconds = sec, top = 0)`  
-
-???
-
-estimate $\Delta$ `r delta`, total `r tot` min.
-
-```{r, include=FALSE}
-delta <- 7
-tot <- tot + delta
-```
-
-solution $\Delta$ `r delta`, total `r tot` min.
-
-
----
-## Tables &mdash; `stargazer` `r cp("stargazer")` &mdash; Overview
+## Dynamic Tables with `stargazer` `r cp("stargazer")` &mdash; Overview
 
 - A capable package for creating tables to present
 
@@ -4525,6 +4514,10 @@ stargazer(data = lm(h5_index ~ subfield, data = df), type = "html")
 ```
 ]
 ]
+
+???
+
+That's actually how far I got so far.
 
 ---
 ## Tables &mdash; `stargazer` &mdash; Regression Tables

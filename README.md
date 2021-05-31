@@ -17,68 +17,44 @@ The workshop is divided into ten parts. Most parts include exercises &mdash; 40+
 
 |[]() |      |
 |------|------|
-| **Part 1. Getting the Tools Ready** <br /> - e.g., downloading course material | **Part 6. Adding Code, Figures, and Tables** <br /> - e.g., plotting data | 
+| **Part 1. Getting the Tools Ready** <br /> - e.g., downloading course material | **Part 6. The R of Rmarkdown: Code Chunks and Inline Code** <br /> - e.g., plotting data | 
 | **Part 2. Introducing R Markdown** <br /> - e.g., creating a new document | **Part 7. Addressing Functionality Gaps** <br /> - e.g., adjusting line spacing | 
 | **Part 3. Setting Metadata** <br /> - e.g., defining output format | **Part 8. Using Version Control** <br /> - e.g., integrating Git and GitHub | 
 | **Part 4. Writing Text** <br /> - e.g., adding emphasis to text | **Part 9. Collaborating with Others** <br /> - e.g., working simultaneously with co-authors | 
 | **Part 5. Managing References** <br /> - e.g., citing sources | **Part 10. Working on a Real Project** <br /> - e.g., converting a work-in-progress of yours |
 
-   
+The parts
 
-##  Material
+* Part A. Cache Functionality
+   - don't recompute everything with every compilation
+* Part B. Reusing Code
+   - e.g., building up figures, child documents
+* Part C. Fancy Templates
+   - e.g., producing publication ready papers
+
+are not yet produced. A exists as an idea only, there are exercises for B and C is essentially done by showing people the `rticles` package.
+
+At the moment the parts are quite different in size.
+
+I got through part 6 and a bit of Part B. in 3 days a 120 Minutes.
+
+
+##  Exercise Branch
+
+Exercises and solutions can be found in the `exercises branch`.
+
+## Files and directories.
 
 Below are the workshop materials kept in this repository.
 
-- `manuscript\reproduce_this.pdf`
-    - a document, formatted in Word but saved as PDF, to be re-created with R Markdown 
-    - random sentences in the document are generated with the `stringi` package  (Gagolewski, 2020)
-    - figures and tables are based on a fabricated dataset (`journals.csv`, see below)
-    - key sections in-need of attention are highlighted
-
-- `manuscript\journals.Rmd`
-    - an R Markdown document to work on during the workshop
-        - includes unformatted text from `reproduce_this.pdf` to save time
-        - major components, such as paragraphs and tables, are numbered and marked in comments to facilitate navigation
-        
-- `manuscript\references.bib` 
-    - a BibTeX document with three fabricated references
-    
-- `manuscript\apa_7th.csl`
-    - a Citation Style Language document, with APA (7th Edition) referencing style (Wiernik, 2020)
-
-- `data\journals.csv`
-
-    - a dataset created with the `fabricatr` package (Blair et al., 2019), imagined to explore the Google Scholar rankings of fictitious journals
-    
-    - includes the following variables 
-        - **name**: journals (1090 random titles)
-        - **origin**: geographic origins (five continents)
-        - **branch**: major discipline of journals (four branches)
-        - **since**: time of first publication (years)
-        - **h5_index**: H5 Index (integers)
-        - **h5_median**: H5 Median (integers)
-        - **english**: English (1) *vs.* other-language (0) journals
-        - **subfield**: subfield (1) *vs.* generalist (0) journals
-        - **issues**: number of issues published per year (integers)
-   
-
-- `image\google_scholar.png`
-    - a screeenshot image of the Google Scholar homapage, copyright Google, LLC 
-
-- `presentation\rmd_workshop.pdf`
-    - slides in PDF format
-    - HTML version is available at <https://resulumit.com/teaching/rmd_workshop.html>
-        - offers, among others, the ability to scroll across long codes on some slides
-
-- `presentation\rmd_workshop.Rmd`
-    - an R Markdown file behind the slides, produced with the `xaringan` package (Xie, 2020)
-        
+- `presentation/rmd_workshop.Rmd`: an R Markdown file behind the slides, produced with the `xaringan` package (Xie, 2020)
+- `presentation/data`: containing some example data on journal statistics.
+- `presentation/image`: static images used in the `Rmd` file.
 - `test\run_this.R`
     - an R script that 
         - installs the packages needed for the workshop
         - attempts to knit an R Markdown into PDF file
     - useful for tasking participants with a pre-workshop setup
-        
 - `test\the_test.Rmd`
     - an R Markdown file, to be used for the attempt in `test\run_this.R`
 
