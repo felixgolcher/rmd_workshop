@@ -750,22 +750,20 @@ ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) 
   - we will cover a large breadth of issues, not all of it is for long-term memory
       - one reason why the slides are designed for self study as well    
 <br>
-  - awareness of what is possible, `Google`, and perseverance are all we need
+  - awareness of what is possible, `Google`, and perseverance are all we need.
 
 --
 
 - To encourage you to move to R Markdown 
 
   - Having practiced lowers the threshold of actually using it.
-  - Having understood the power of it raises motivation
+  - Having understood the power of it raises motivation.
     
 
 ```{r, include=FALSE}
 delta <- 5
 tot <- tot + delta
 ```
-
-estimate $\Delta$ `r delta`, total `r tot` min.
 
 ---
 name: part1
@@ -873,11 +871,10 @@ class: action
     - There might data. They would go in something like `rmd_workshop/data`
     - There might be additional images, e.g. in `rmd_workshop/images`
     - Maybe other files like bibliography style files.
-- If you organize everything in subdirectories below your Rmd-file you can
+- If you put everything in subfolders below your Rmd-file you can (and all still works the same: ✅)
     - zip it and share it
     - push it to git as is
     - move it around on your computer(s)
-    - and everything still works the same: ✅
 
 - Observe that your file automatically got the extension `.Rmd`.
 
