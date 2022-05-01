@@ -747,7 +747,7 @@ ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) 
 
 - To make you aware of what is possible with R Markdown
 
-  - we will cover a large breath of issues, not all of it is for long-term memory
+  - we will cover a large breadth of issues, not all of it is for long-term memory
       - one reason why the slides are designed for self study as well    
 <br>
   - awareness of what is possible, `Google`, and perseverance are all we need
