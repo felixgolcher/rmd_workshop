@@ -582,7 +582,7 @@ estimate $\Delta$ `r delta`, total `r tot` min.
 
     - Are the correct numbers in the correct context?
     - What exactly was done?
-        - Which models where computed?
+        - Which models were computed?
         - With exactly which parameters?
     - What subgroups/data might have been excluded from the analysis? Correctly so?
     
