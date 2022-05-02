@@ -50,13 +50,6 @@ Below are the workshop materials kept in this repository.
 - `presentation/rmd_workshop.Rmd`: an R Markdown file behind the slides, produced with the `xaringan` package (Xie, 2020)
 - `presentation/data`: containing some example data on journal statistics.
 - `presentation/image`: static images used in the `Rmd` file.
-- `test\run_this.R`
-    - an R script that 
-        - installs the packages needed for the workshop
-        - attempts to knit an R Markdown into PDF file
-    - useful for tasking participants with a pre-workshop setup
-- `test\the_test.Rmd`
-    - an R Markdown file, to be used for the attempt in `test\run_this.R`
 
  
 ## References
