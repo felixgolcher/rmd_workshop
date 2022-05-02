@@ -2,6 +2,9 @@
 title: Writing Reproducible Research Papers with R Markdown
 output:
   xaringan::moon_reader:
+    pandoc_args: [
+      "--title-prefix", "Workshop"
+    ]
     lib_dir: libs
     nature:
       _highlightStyle: github
@@ -152,6 +155,14 @@ text-align: right;
 
 </style>
 
+```{r, include=F, cache=FALSE}
+datestring <- "6 May 2022"
+timeframe <- "3 blocks of about 90 minutes each"
+demologo <- "image/rueg2.png"
+if(file.exists("config.R"))
+  source("config.R")
+```
+
 
 # Writing Reproducible Research Papers with R Markdown
 
@@ -159,7 +170,7 @@ text-align: right;
 
 ### [Felix Golcher](https://www.linguistik.hu-berlin.de/de/staff/golcherf) | [CRC 1412](https://sfb1412.hu-berlin.de/) | [INF](https://sfb1412.hu-berlin.de/projects/inf/)
 
-### May 26/27/28 2021
+### `r datestring`
 
 .footnote[
 [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; forked from [Resul Umit](https://resulumit.com/)'s [rmarkdown workshop](https://github.com/resulumit/rmd_workshop).
@@ -608,7 +619,7 @@ estimate $\Delta$ `r delta`, total `r tot` min.
 ---
 ## The Workshop &mdash; Overview
 
-- 3 days à 2 hours, on how to write reproducible research papers with R Markdown
+- `r timeframe`, on how to write reproducible research papers with R Markdown
 
   - A lot of slides, a lot of exercises
 
@@ -675,7 +686,7 @@ name: contents-slide
 ---
 ## The Workshop &mdash; Organisation
 
-- We will (heavily) use breakoutrooms of 3 to 4 people.
+- We will (often) work in groups of (around) 3 to 4 people.
 
   - participants learn as much from their partner as from instructors
   - from time to time those will be rearranged.
@@ -688,7 +699,7 @@ name: contents-slide
 
   - ask your partner
   - google together
-  - ask me & I will join you in your breakoutroom.
+  - call me and I will happily help
 
 ---
 class: action
@@ -2412,48 +2423,32 @@ xxx Cross references should be introduced here. Than it is a bit interesting at 
 ---
 ## Figures &mdash; Images &mdash; Markdown Syntax
 
-```{r, eval=FALSE}
-![The CRC logo](image/crc1412.png)
-```
+.inline-c[!<span>[</span>The CRC logo<span>]</span>(`r demologo`)]
 
-```{r, echo=FALSE, fig.align="center", out.width="65%"}
 
-knitr::include_graphics("image/crc1412.png")
-```
+![The CRC logo](`r demologo`)
 
-<center>Figure 1: The CRC logo.</center>
 ---
 ## Figures &mdash; Images &mdash; Markdown Syntax
 
 Figures are numbered automatically, **if** the `output` format supports that.
 
-```{r, eval=FALSE}
-![The CRC logo](image/crc1412.png)
-```
+.inline-c[!<span>[</span>The CRC logo<span>]</span>(`r demologo`)]
 
-```{r, echo=FALSE, fig.align="center", out.width="65%"}
-knitr::include_graphics("image/crc1412.png")
-```
-
+![The CRC logo](`r demologo`)
 <center>.yellow-h[Figure 1]: The CRC logo. </center>
+
 
 ---
 ## Figures &mdash; Images &mdash; Markdown Syntax
 
-The syntax can accept `width` or `height` attributes as follows
+The syntax **can** accept `width` or `height` attributes as follows
 
 ```{r, eval=FALSE}
 ![The CRC logo](image/crc1412.png)`{ width=40% }`
 ```
 
-```{r, echo=FALSE, fig.align="center", out.width="40%"}
-knitr::include_graphics("image/crc1412.png")
-```
-
-<center>Figure 1: The CRC logo.</center>
-???
-
-We don't have an exersise here (yet?).
+But very often it does not... 
 
 ---
 ## Static Tables &mdash; Markdown Syntax
@@ -3153,9 +3148,7 @@ durationsGe %>% # remove one column
 
 ````md
 `r ''````{r setup, `include=FALSE`}
-
 some code
-
 ```
 ````
 
@@ -3381,7 +3374,7 @@ If we multiply _pi_ by 5, we get \`r pi * 5`.
 
 .out-t[If we multiply _pi_ by 5, we get `r pi * 5`.]
 
-<hr style="height:10px; visibility:hidden;" />
+<hr style="height:5px; visibility:hidden;" />
 --
 
 ```{r, eval=FALSE, tidy=FALSE}
@@ -3392,7 +3385,7 @@ round to \`r signif(mean(durationsGe$DurationOfPrefix), 3) s`.
 .out-t[The average duration of the prefix was `r mean(durationsGe$DurationOfPrefix)` s, which would 
 round to `r signif(mean(durationsGe$DurationOfPrefix), 3)` s.]
 
-<hr style="height:10px; visibility:hidden;" />
+<hr style="height:5px; visibility:hidden;" />
 --
 
 ```{r, eval=FALSE, tidy=FALSE}
@@ -3401,7 +3394,6 @@ There were \`r length(unique(durationsGe$Speaker))` speakers in the data set.
 
 .out-t[There were `r length(unique(durationsGe$Speaker))` speakers in the data set.]
 
-<hr style="height:10px; visibility:hidden;" />
 --
 
 **Recommendation**: All (each and every) numbers should be rendered by inline code and **not** copypasted. Otherwise, you are giving away the advantages of the whole thing.
@@ -3425,8 +3417,7 @@ sleep <- sleep[1:10,]
 ```{r, eval=F}
 data("durationsGe", package = "languageR")
 ```
-- Render the two bold faced numbers as inline code
-  - hint: Example code
+- Render the two bold faced numbers as inline code. Example code:
 ```{r}
 a <- c(1,2,1)
 length(unique(a)) # count different values in a vector
