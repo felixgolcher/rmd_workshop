@@ -11,7 +11,7 @@ output:
   bookdown::pdf_document2:
     toc: false
     number_sections: true
-    keep_tex: true
+    keep_tex: false
 ---
 
 ```{r setup, include=F}
