@@ -1,0 +1,10 @@
+---
+name: download-zip
+class: action
+
+## Course Materials &mdash; Download from Moodle
+
+- Download `exercises.zip` from our moodle page.
+- Unzip
+- Place the files in any folder, preferably one especially for this workshop.
+

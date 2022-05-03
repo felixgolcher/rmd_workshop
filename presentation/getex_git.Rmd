@@ -1,0 +1,16 @@
+---
+name: git-exp
+class: action
+
+## Setting up the exercise environment
+
+* The exercises are provided via git: (I prefer https)
+  - https://scm.cms.hu-berlin.de/golchefe/rmd_workshop.git
+  - git@scm.cms.hu-berlin.de:golchefe/rmd_workshop.git
+* The exercises are in numbered directories such as `exercises/03`.
+* You work in groups.
+* Each group creates its own branch and works exclusively on it.
+* But the groups see each other's branches and thus can share and merge code.
+* This way we practice collaborating with git as well, which is always a good idea.
+* Most of the exercises build on top of each other.
+  - you can copy the solutions from `exercises/01` as starting point to `exercises/02` for example.

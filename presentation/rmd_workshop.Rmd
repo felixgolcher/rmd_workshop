@@ -159,6 +159,7 @@ text-align: right;
 datestring <- "6 May 2022"
 timeframe <- "3 blocks of about 90 minutes each"
 demologo <- "image/rueg2.png"
+getex <- "getex_git.Rmd"
 if(file.exists("config.R"))
   source("config.R")
 ```
@@ -788,17 +789,8 @@ class: inverse, center, middle
 
 ]
 
-
-
----
-name: download-zip
-class: action
-
-## Course Materials &mdash; Download from Moodle
-
-- Download `exercises.zip` from our moodle page.
-- Unzip
-- Place the files in any folder, preferably one especially for this workshop.
+```{r, child=getex}
+```
 
 ---
 class: action
