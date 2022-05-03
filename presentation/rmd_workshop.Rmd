@@ -4703,7 +4703,7 @@ class: inverse, center, middle
 
 --
 
-- There are no exclusive list of gaps or workarounds
+- There are no exclusive lists of gaps or workarounds
 
     - these are specific to the output you want to achieve, problems you encounter
     - after writing a few manuscripts with R Markdown, you will have addressed most typical gaps in your workflow
@@ -4718,7 +4718,7 @@ How can we cross-reference figures, tables, and equations in R Markdown?
 
 #### Solution:
 
-Insert a $\LaTeX$ label into the targets (figures, tables, and equations), and then use the .inline-c[\autoref{figure_caption}] syntax in text
+Insert a $\LaTeX$ label into the targets (figures, tables, and equations), and then use the .inline-c[\autoref{fig:figlabel}] syntax in text
 
 
 ---
@@ -4726,13 +4726,13 @@ name: autoref-figures
 
 ## Functionality Gaps &mdash; Examples &mdash; Cross-references
 
-For .yellow-h[figures], insert a $\LaTeX$ label into the .yellow-h[`fig.caption`] option, and use the .inline-c[\autoref{latex_label}] syntax in text
+For .yellow-h[figures], insert a $\LaTeX$ label into the .yellow-h[`fig.caption`] option, and use the .inline-c[\autoref{fig:figlabel}] syntax in text
 
 ````md
-`\autoref{scatter_plot}` visualises the relationship between the two journal metrics.
+`\autoref{fig:plot1}` visualises the relationship between the two journal metrics.
 
 
-`r ''````{r ... fig.caption = "A Scatter Plot `\\label{scatter_plot}`"}
+`r ''````{r ... fig.caption = "A Scatter Plot `\\label{fig:plot1}`"}
 
 ggplot(data = df) + 
        geom_point(...
@@ -4750,13 +4750,13 @@ name: autoref-tables
 
 ## Functionality Gaps &mdash; Examples &mdash; Cross-references
 
-For .yellow-h[Markdown tables], insert a $\LaTeX$ label after the table caption, and use the .inline-c[\autoref{latex_label}] syntax in text
+For .yellow-h[Markdown tables], insert a $\LaTeX$ label after the table caption, and use the .inline-c[\autoref{tab:tablabel}] syntax in text
 
 ```md
-See `\autoref{handmade_table}` for further details.
+See `\autoref{tab:handmade}` for further details.
 
 
-: A hand-made table with R Markdown `\label{handmade_table}`
+: A hand-made table with R Markdown `\label{tab:handmade}`
 
 +--------------------+--------------------+
 | Left-Aligned       | Centered           | 
@@ -4777,7 +4777,7 @@ Note that there is a difference in the label syntax for figures and R Markdown t
 
 - we use a double backslash .yellow-h[&#92; &#92;] to label figures
 
-    - e.i., <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">\\\label{scatter_plot}</span> because the label goes into a string
+    - i.e., <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">\\\label{fig:plot}</span> because the label goes into a string
     
     - the first is an escape operator for the second, $\LaTeX$ backslash
     
@@ -4785,7 +4785,7 @@ Note that there is a difference in the label syntax for figures and R Markdown t
    
 - we use single backslash .yellow-h[\] to label R Markdown tables
 
-    - e.i., <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">\label{handmade_table}</span> because the label is not in any string
+    - e.i., <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">\label{tab:handmade}</span> because the label is not in any string
     
     - there is no need for the escape operator
     
@@ -4849,21 +4849,6 @@ stargazer(data = list(lm1, lm2), type = "html", keep.stat = c("n", "rsq"),
 ]
 ]
 
-
----
-## Functionality Gaps &mdash; Examples &mdash; Cross-references &mdash; Note
-
-Note that we can cross-reference specific results in tables as well
-    
-- there is no gap here &mdash; this possible with inline code
-
-```{r, eval=FALSE}
-In Model 1, the coefficient for _Issues_ is 
-`r round(coef(summary(lm1))["issues", "Estimate"], digits = 2)`.
-
-```
-
-.out-t[In Model 1, the coefficient for _Issues_ is `r round(coef(summary(lm1))["issues", "Estimate"], digits = 2)`.]
 
 ---
 name: autoref-equation
@@ -5067,21 +5052,21 @@ manuscript
 ## Version Control &mdash; Git and GitHub &mdash; Definitions
 
 - Git
-    - a software that keeps track of versions of a set of files
-    - it is *local* to you, the records are kept on your computer
+    - a software that keeps track of the full history of files
+    - allows collaboration of groups
+    - handles diverging and converging threads of development.
 
 --
 
-- GitHub
-    - a hosting service, or a website, that can keep the records
-    - it is *remote* to you, like the Dropbox website
-    - but unlike Dropbox, GitHub is specifically structured to keep records with Git
+- GitHub/gitlab
+    - hosting services for git repositories used as hub for collaboration
+    - github: the biggest
+    - gitlab: open source, HU runs an instance
 
 --
 
 - Repository, or repo
-    - a set of files whose records are kept together, by Git and/or on GitHub
-    - it is like a folder, which can keep files and other folders containing files
+    - a directory and its subdirectories versioned by git.
 
 ---
 ## Version Control &mdash; Git and GitHub &mdash; Definitions
@@ -5132,6 +5117,8 @@ name: install-git
        - select 'Git from the command line and also from 3rd-party software'
        
 - For Mac, install 'Git', downloading from [https://git-scm.com/downloads](https://git-scm.com/downloads)
+
+- For Linux: install the package `git` from your distribution's software repository.
 
 ---
 class: action
@@ -5748,7 +5735,7 @@ class: action
 
 40) Non-simultaneous Collaboration
 
-- take in turns with your partner to work on the same document (of the same project)
+- take turns with your partner to work on the same document (of the same project)
     - *owner*: edit the first header in the document (i.e., "R Markdown"), save, commit, and push
     - *owner and collaborator*: observe the changes, if any, on your own `.Rmd` file, and/or on your GitHub repository
         - click on the relevant commit message on GitHub and observe the commit
