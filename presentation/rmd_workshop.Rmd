@@ -69,19 +69,19 @@ cp <- function(key, bib=mb, opts=bo){
   Citep(bib=bib, key, .opts=opts)
 }
 
-doc1 <- "`dutchge-1.pdf`"
-doc2 <- "`dutchge-2.pdf`"
-doc3 <- "`dutchge-3.pdf`"
-doc4 <- "`dutchge-4.pdf`"
-doc5 <- "`dutchge-5.pdf`"
-doc6 <- "`dutchge-6.pdf`"
-doc7 <- "`dutchge-7.pdf`"
-doc8 <- "`dutchge-8.pdf`"
-doc9 <- "`dutchge-9.pdf`"
-doc10 <- "`dutchge-10.pdf`"
-doc11 <- "`dutchge-11.pdf`"
-doc12 <- "`dutchge-12.pdf`"
-rmd1 <- "`variable-xrc.Rmd`"
+doc1 <- "`01/dutchge-1.pdf`"
+doc2 <- "`02/dutchge-2.pdf`"
+doc3 <- "`03/dutchge-3.pdf`"
+doc4 <- "`04/dutchge-4.pdf`"
+doc5 <- "`05/dutchge-5.pdf`"
+doc6 <- "`06/dutchge-6.pdf`"
+doc7 <- "`07/dutchge-7.pdf`"
+doc8 <- "`08/dutchge-8.pdf`"
+doc9 <- "`09/dutchge-9.pdf`"
+doc10 <- "`10/dutchge-10.pdf`"
+doc11 <- "`11/dutchge-11.pdf`"
+doc12 <- "`12/dutchge-12.pdf`"
+rmd1 <- "`13/variable-xrc.Rmd`"
 
 knitr::opts_chunk$set(cache=T,
                       warning=F,
@@ -1032,13 +1032,13 @@ break $\Delta$ `r delta`, total `r tot` min.
 
 **`.Rmd`** (RMarkdown) $\xrightarrow[\text{runs R code}]{\text{knitr}}$ **`.md`** (Markdown) $\xrightarrow[\text{converts}]{\text{pandoc}}$ whatevery **output** form and format you desire!
 
-- `knitr`<sup>*</sup>
+- `knitr`
      - is an R package, a central and powerful one.
      - executes the code chunks
      - optionally replacing it with the results 
      - pure `.md` (Markdown) remains.
 
-- `pandoc`<sup>**</sup> transforms the .md document into your preferred output format(s)
+- `pandoc` transforms the .md document into your preferred output format(s)
      - is **not** an R package, but a standalone conversion wonder program
      - e.g., HTML, $\LaTeX$, PDF, Word
      - RStudio comes with a copy of `pandoc` ([http://pandoc.org](http://pandoc.org)), so you do not have to install it separately. 
@@ -1048,7 +1048,7 @@ break $\Delta$ `r delta`, total `r tot` min.
 ---
 ## R Markdown Document &mdash; Notes
 
-- Behind the scenes, each .Rmd file is compiled in its own session, and therefore
+- Behind the scenes, each `.Rmd` file is compiled in its own session, and therefore
 
   - the code needs to stand alone, for reproducibility reasons
   - you might have already loaded a package and/or imported data elsewhere (e.g., in a separate .R and/or .Rmd file), but even in the same session, these won't be available to a given .Rmd file
@@ -1086,7 +1086,7 @@ estimate $\Delta$ `r delta`, total `r tot` min.
 ---
 ## YAML &mdash; Overview
 
-.Rmd documents start<sup>*</sup> with YAML
+`.Rmd` documents start<sup>*</sup> with YAML
 - it includes the metadata variables
     - e.g., title, output format    
 <br>    
@@ -1647,9 +1647,7 @@ class: action
 ## Exercise
 
 1. Open your `Rmd` file and fill in the YAML variables for the mock paper
-
 2. Compile to `PDF`
-
 3. Cycle through 1. and 2. until your `PDF` reproduces `r doc1` as closely as possible.
     - Use an author name of your liking.
     - Make sure to remove the table of contents.
@@ -1661,7 +1659,7 @@ Sys.Date()
 
 Getting help:
 
-* Ask your room mates
+* Ask your group mates
 * Google
 * Don't hesitate to call me in.
 
@@ -1706,6 +1704,9 @@ class: inverse, center, middle
    - That is quite important, since Markdown is not fully defined as `HTML` or `PDF`.   
    - for the complete rules of the syntax, see [Pandoc User's Guide](https://pandoc.org/MANUAL.html)
    - for a useful summary of the syntax, see the R Markdown Cheat Sheet
+- Well, this document is done with `xaringan` `r cp("xaringan")`, which does not follow pandoc's syntax.
+   - Version incompatibilities and caveats are quite common with markdown.
+   - We will here (mostly?) learn things which are common to all things markdown.
 
 ---
 ## Syntax &mdash; Lines
@@ -1725,17 +1726,12 @@ It is generally no bad idea to put each sentence on a new line.
 The output text does not show the line breaks.
 But versioning programs like git work on a line by line basis.
 By dividing the text into more than one line per paragraph we avoid conflicts.
-Those might otherwise arise whenever your collaborators edit a different sentence 
-within the same long paragraph.
 ```
 
 .out-t[It is generally no bad idea to put each sentence on a new line.
-The output text does not show the line break.
+The output text does not show the line breaks.
 But versioning programs like git work on a line by line basis.
-By dividing the text into more than one line per paragraph
-we avoid conflicts.
-Those might otherwise arise whenever your collaborators edit a different sentence 
-within the same long paragraph.
+By dividing the text into more than one line per paragraph we avoid conflicts.
 ]
 
 ---
@@ -2450,6 +2446,8 @@ The syntax **can** accept `width` or `height` attributes as follows
 
 But very often it does not... 
 
+In this presentation for example it does **not** work, because `xaringan`-presentations don't adhere to the pandoc syntax.
+
 ---
 ## Static Tables &mdash; Markdown Syntax
 
@@ -3140,9 +3138,6 @@ durationsGe %>% # remove one column
 ## Code Chunks &mdash; Options
 
 - Code chunks take options, listed on the same line with the first delimiter, in curly brackets
-
-- avoid spaces around the equal sign <span style="background-color: #ffff88;">=</span> between option tags and values
-  - such spaces might lead to errors
 - in the example below, the chunk is labelled as **`setup`**, and and the **`include`** option is set to **`FALSE`**.
 
 
@@ -3159,6 +3154,12 @@ some code
 - The list of options is available at <https://yihui.org/knitr/options>
 
     - R Markdown Cheat Sheet provides a helpful list as well
+
+???
+
+resul:
+- avoid spaces around the equal sign <span style="background-color: #ffff88;">=</span> between option tags and values
+  - such spaces might lead to errors
 
 
 ---
@@ -3411,8 +3412,7 @@ sleep <- sleep[1:10,]
 
 * add a setup chunk
   - set the default chunk options `echo`, `warning`, and `message` to `FALSE`
-  - load the packages `tidyverse` and `stargazer`.
-     - install them if they are not yet installed.
+  - load the packages `tidyverse` and `stargazer`. (install if they are not yet installed.)
   - add the following line of code to load the data we need:
 ```{r, eval=F}
 data("durationsGe", package = "languageR")
@@ -3466,7 +3466,7 @@ message("will I be there?")
   - show up, **if** `echoornot` is set to TRUE
   - **otherwise** it will not show up in the output document.
 * You can insert anything that can be evaluated to TRUE or FALSE:
-  - **`echo=Sys.Date() == "2021-05-28"`** (show that chunk only today)
+  - **`echo=Sys.Date() == "`<code>`r Sys.Date()`</code>`"`** (show that chunk only today)
   - **`eval=1>7`** (never evaluate)
   - **`message=!knitr::is_html_output()`** (Don't show messages in [`HTML` output](https://bookdown.org/yihui/rmarkdown-cookbook/multi-formats.html))
 
@@ -3478,10 +3478,10 @@ class: action
 
 * Open document `r rmd1`.
 * Add another code chunk above the two existing ones.
-* Define a variable there
+* Define one variable there
   - It is supposed to take the two values `TRUE` or `FALSE`.
   - What value you actually give it, is arbitrary
-* Add the options `echo` and `eval` in a way, that always
+* Add the options `echo` and `eval` to the predefined chunks in a way, that always
   - exactly one chunk is "echoed", but not "evaluated"
   - the other chunk is not "echoed", but "evaluated"
 
@@ -3528,16 +3528,14 @@ That had to be moved back here to the dynamic part because it involves code chun
 The `knitr` package offers a capable alternative with the `include_graphics()` function
 
 ````md
-`r ''````{r, screenshot, echo=FALSE, fig.cap="The CRC logo."}
-knitr::include_graphics("image/crc1412.png")
+`r ''````{r screenshot, echo=FALSE, fig.cap="`r logotext`"}
+knitr::include_graphics("`r demologo`")
 ```
 ````
 
-```{r, echo=FALSE, out.width="55%"}
-knitr::include_graphics("image/crc1412.png")
+```{r, echo=FALSE, out.width="40%", fig.cap=paste0("Figure 77: ", logotext)}
+knitr::include_graphics(demologo)
 ```
-
-<center>Figure 1: The CRC logo.</center> 
 
 ---
 ## Figures &mdash; Images &mdash; `knitr`
@@ -3545,16 +3543,14 @@ knitr::include_graphics("image/crc1412.png")
 Size is defined with the chunk options `out.width` or `out.hight` 
 
 ````md
-`r ''````{r ... `out.width="40%"`}
-knitr::include_graphics("image/crc1412.png")
+`r ''````{r screenshot, echo=FALSE, fig.cap="`r logotext`", `out.width="30%"`}
+knitr::include_graphics("`r demologo`")
 ```
 ````
 
-```{r, echo=FALSE, out.width="40%"}
-knitr::include_graphics("image/crc1412.png")
+```{r, echo=FALSE, fig.cap=paste0("Figure 77: ", logotext), out.width="30%"}
+knitr::include_graphics(demologo)
 ```
-
-<center>Figure 1: The CRC logo.</center> 
 
 ---
 ## Figures &mdash; Images &mdash; `knitr`
@@ -3563,16 +3559,14 @@ Most other chunk options are common with figures plotted within R Markdown, such
 
 
 ````md
-`r ''````{r ... `fig.align="center"`}
-knitr::include_graphics("image/crc1412.png")
+`r ''````{r screenshot, echo=FALSE, fig.cap="`r logotext`", out.width="30%", `fig.align="center"`}
+knitr::include_graphics("`r demologo`")
 ```
 ````
 
-```{r, echo=FALSE, fig.align="center", out.width="40%"}
-knitr::include_graphics("image/crc1412.png")
+```{r, echo=FALSE, fig.align="center", out.width="30%", fig.cap=paste0("Figure 77: ", logotext)}
+knitr::include_graphics(demologo)
 ```
-
-<center>Figure 1: The CRC logo.</center> 
 
 ---
 class: action
@@ -3593,8 +3587,8 @@ We skip this. It's similar to what we did before. Dynamic images are much more i
 - A huge amount is written on this package. See, for example, 
 
     - the [package documentation](https://www.rdocumentation.org/packages/ggplot2/versions/3.2.1)
-    - this [book](https://ggplot2-book.org/) by its creator Hadley Wickham
-    - this [reference page](https://ggplot2.tidyverse.org/reference/)
+    - this [book](https://ggplot2-book.org/) by its creator Hadley Wickham (https://ggplot2-book.org/)
+    - this [reference page](https://ggplot2.tidyverse.org/reference/) (https://ggplot2.tidyverse.org/reference/)
     - this [webinar](https://www.youtube.com/watch?v=h29g21z0a68) by one of its authors, Thomas Lin Pedersen  
     - these [extensions](https://exts.ggplot2.tidyverse.org/), maintained by the `ggplot2` community
 
