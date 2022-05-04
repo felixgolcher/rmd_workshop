@@ -2,7 +2,7 @@
 title: "Reuse Code"
 subtitle: "A Small Presentation"
 author: "You and Me"
-institute: "CRC 1412"
+institute: "The Invisible University"
 date: "`r Sys.Date()` (today)"
 output:
   xaringan::moon_reader:
