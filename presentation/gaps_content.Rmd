@@ -1,0 +1,305 @@
+
+---
+name: part7
+class: inverse, center, middle
+
+# Part 7. Addressing Functionality Gaps
+
+.footnote[
+
+[Back to the contents slide](#contents-slide).
+
+]
+
+---
+## Functionality Gaps
+
+- Not everything is possible to achieve with R Markdown syntax, code chunks, and/or code
+    - e.g., centering text
+
+--
+
+- Workarounds available through inclusion of other languages and/or syntaxes in .Rmd documents
+
+    - e.g., incorporating HTML or $\LaTeX$ code into R Markdown
+    - workarounds might be output specific
+       - e.g., $\LaTeX$-based workarounds may work only for $\LaTeX$ and PDF outputs
+
+--
+
+- There are no exclusive lists of gaps or workarounds
+
+    - these are specific to the output you want to achieve, problems you encounter
+    - after writing a few manuscripts with R Markdown, you will have addressed most typical gaps in your workflow
+
+---
+## Functionality Gaps &mdash; Examples
+
+#### Problem:
+
+How can we cross-reference figures, tables, and equations in R Markdown? 
+
+
+#### Solution:
+
+Insert a $\LaTeX$ label into the targets (figures, tables, and equations), and then use the .inline-c[\autoref{fig:figlabel}] syntax in text
+
+
+---
+name: autoref-figures
+
+## Functionality Gaps &mdash; Examples &mdash; Cross-references
+
+For .yellow-h[figures], insert a $\LaTeX$ label into the .yellow-h[`fig.caption`] option, and use the .inline-c[\autoref{fig:figlabel}] syntax in text
+
+````md
+`\autoref{fig:plot1}` visualises the relationship between the two journal metrics.
+
+
+`r ''````{r ... fig.caption = "A Scatter Plot `\\label{fig:plot1}`"}
+
+ggplot(data = df) + 
+       geom_point(...
+
+```
+
+````
+
+<br>
+
+.out-t[[Figure 1](#autoref-figures) visualises the relationship between the two journal metrics.]
+
+---
+name: autoref-tables
+
+## Functionality Gaps &mdash; Examples &mdash; Cross-references
+
+For .yellow-h[Markdown tables], insert a $\LaTeX$ label after the table caption, and use the .inline-c[\autoref{tab:tablabel}] syntax in text
+
+```md
+See `\autoref{tab:handmade}` for further details.
+
+
+: A hand-made table with R Markdown `\label{tab:handmade}`
+
++--------------------+--------------------+
+| Left-Aligned       | Centered           | 
+...
+    
+
+```
+
+<br>
+
+.out-t[See [Table 1](#autoref-tables) for further details.]
+
+
+---
+## Functionality Gaps &mdash; Examples &mdash; Cross-references &mdash; Note
+
+Note that there is a difference in the label syntax for figures and R Markdown tables
+
+- we use a double backslash .yellow-h[&#92; &#92;] to label figures
+
+    - i.e., <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">\\\label{fig:plot}</span> because the label goes into a string
+    
+    - the first is an escape operator for the second, $\LaTeX$ backslash
+    
+--
+   
+- we use single backslash .yellow-h[\] to label R Markdown tables
+
+    - e.i., <span style="background-color: #e5e5e5; border-radius: 3px; padding: 4px; font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;">\label{tab:handmade}</span> because the label is not in any string
+    
+    - there is no need for the escape operator
+    
+---
+class: action
+
+## Exercises
+
+29) Referring to Figures
+- see `reproduce_this.pdf`: pages 6 and 9
+- apply in `journals.Rmd`: paragraphs 19, 21, and 27
+
+<br>
+
+30) Referring to Markdown Tables
+- see `reproduce_this.pdf`: page 4
+- apply in `journals.Rmd`: paragraph 11
+
+
+`r countdown(minutes = 5, seconds = 00, top = 0)`
+
+---
+name: autoref-tables-2
+
+## Functionality Gaps &mdash; Examples &mdash; Cross-references
+
+For .yellow-h[`stargazer` tables], define a label with the `label` argument, and use the .inline-c[\autoref{latex_label}] syntax in text
+
+.pull-left-c[
+
+````md
+`r ''````{r, regression_table, echo=FALSE, results="asis"}
+
+stargazer(data = list(lm1, lm2), type = "latex", 
+          ...
+          `label = "regression_results"`)
+          
+```
+
+`\autoref{regression_results}` provides results from two OLS models.
+ 
+````
+.out-t[[Table 1](#autoref-tables-2) provides results from two OLS models.]
+
+]
+
+.pull-right-c[
+.medium[
+
+<center>Table 1: Regression Results</center> 
+
+```{r echo = FALSE, results = "asis"}
+
+stargazer(data = list(lm1, lm2), type = "html", keep.stat = c("n", "rsq"),
+          dep.var.labels = "H5 Index",
+          covariate.labels = c("Issues", "English"),
+          star.cutoffs = c(0.05, 0.01, 0.001),
+          label = "regression_results")
+
+```
+]
+]
+
+
+---
+name: autoref-equation
+
+## Functionality Gaps &mdash; Examples &mdash; Cross-references
+
+For .yellow-h[equations], insert a $\LaTeX$ label in an equation environment, and use the .inline-c[\autoref{latex_label}] syntax in text
+
+```md
+\begin{equation}
+\label{special_relativity}
+E = mc_{2}
+\end{equation}
+
+According to \autoref{special_relativity}, space and time are linked.
+
+```
+
+<br>
+
+.out-t[According to [Equation 1](#autoref-equation), space and time are linked.]
+
+---
+class: action
+
+## Exercises
+
+31) Referring to Tables
+- see `reproduce_this.pdf`: pages 7 and 9
+- apply in `journals.Rmd`: paragraph 23 and 29
+
+
+<br>
+
+32) Referring to Results in Regression Tables
+- see `reproduce_this.pdf`: page 9
+- apply in `journals.Rmd`: paragraph 29
+    - hint: to extract the standard error from the model, use the column `Std. Error`
+
+<br>
+
+33) Referring to Equations
+- see `reproduce_this.pdf`: page 7
+- apply in `journals.Rmd`: paragraph 22
+   - hint: transform the existing equation from R Markdown to $\LaTeX$ syntax, to be able to insert the label
+
+
+`r countdown(minutes = 7, seconds = 30, top = 0)`
+
+---
+
+## Functionality Gaps &mdash; Examples
+
+#### Problem:
+
+R Markdown adds the list of references to the end of documents. This might be undesirable for some manuscripts, for example those with an appendix. Similarly, some journals require tables and figures to be added after references.
+
+--
+
+#### Solution:
+
+Define where exactly the list of references should appear with the HMTL code .inline-c[<div id].inline-c[="refs"></div>]
+
+```{r eval = FALSE}
+# References
+<div id = "refs"></div>
+
+# Appendix
+```
+
+---
+## Functionality Gaps &mdash; Examples
+
+#### Problem:
+
+R Markdown produces outputs with single-line-spaced text while we might prefer or be required (e.g., by journal submission rules) to double-space our manuscripts.
+
+#### Solution:
+
+Use the `doublespacing` command from the $\LaTeX$ package `setspace` (Carlisle et al., 2011)
+- because the command comes from a package, we need to add it to YAML with `header-includes`
+- including commands in YAML ensures they are applied throught the output<sup>*</sup>  
+
+```yaml
+---
+...
+header-includes:
+    - \usepackage{setspace}\doublespacing
+---
+```
+
+.footnote[
+
+<sup>*</sup> This can be reversed anywhere in text, with the `singlespacing` command.
+
+]
+
+---
+class: action
+
+## Exercise
+
+34) Line Spacing
+- introduce 1.5 spacing to the manuscript
+    - hint: the command is called `onehalfspacing`    
+<br>
+- except for the Abstract, which should be single spaced
+
+`r countdown(minutes = 2, seconds = 00, top = 0)`
+
+---
+## Functionality Gaps &mdash; Examples
+
+#### Problem:
+
+Pages, tables, figures etc. are numbered continuously across an output. We might prefer or be required (e.g., by journal submission rules) to change this behaviour, for example for appendices.
+
+#### Solution:
+Use the `setcounter` in combination with the `renewcommand` command, outside code chunks
+
+```{r eval = FALSE}
+\setcounter{page}{1}
+\renewcommand*{\thepage}{A\arabic{page}}
+
+\setcounter{table}{0}
+\renewcommand*{\thetable}{A\arabic{table}}
+
+\setcounter{figure}{0}
+\renewcommand*{\thefigure}{A\arabic{figure}}
+```
