@@ -312,6 +312,7 @@ Mention that this is a directory tree...
 
 
 ---
+count: false
 template: findfigure
 
 Was it this one? 
@@ -319,6 +320,7 @@ Was it this one?
 ![](image/dutch-N01204.png)
 `final/dutch-1.png`
 ---
+count: false
 template: findfigure
 
 Or this one?
@@ -327,6 +329,7 @@ Or this one?
 `final-2/dutch-3.png`
 
 ---
+count: false
 template: findfigure
 
 Or that one? 
@@ -493,6 +496,7 @@ Then recompile.
 
 
 ---
+count: false
 template: md1
 
 ```{r, echo = FALSE, out.width = "100%"}
@@ -502,6 +506,7 @@ knitr::include_graphics("image/md1.png")
 the source
 
 ---
+count: false
 template: md1
 
 ```{r, echo = FALSE, out.width = "85%"}
@@ -511,6 +516,7 @@ knitr::include_graphics("image/mdout.png")
 the result
 
 ---
+count: false
 template: md1
 
 ```{r, echo = FALSE, out.width = "100%"}
@@ -520,6 +526,7 @@ knitr::include_graphics("image/md2.png")
 the modified source
 
 ---
+count: false
 template: md1
 
 ```{r, echo = FALSE, out.width = "85%"}
