@@ -650,6 +650,15 @@ estimate $\Delta$ `r delta`, total `r tot` min.
 ---
 ## The Workshop &mdash; Contents
 
+<!--
+see https://github.com/yihui/xaringan/issues/217
+for a discussion on table of contents in xaringan.
+For the numbers of the parts we could introduce counters.
+I won't do that now, but as it is it will be double numbers
+if the configured-off parts are included again.
+The labels should get mnemonic names.
+-->
+
 .pull-left[
 
 [Part 1. Getting the Tools Ready](#part1)
@@ -677,9 +686,12 @@ name: contents-slide
 [Part 6. The R of Rmarkdown](#part6)
    - Code Chunks and Inline Code
 
+[Part 7. Code chunks with figures](#part7)
+   - half and fully dynamic
+
 `r if(!showgaps)"<!--"`
 
-[Part 7. Addressing Functionality Gaps](#part7)
+[Part 8. Addressing Functionality Gaps](#part8)
    - e.g., adjusting line spacing
 
 `r if(!showgaps)"-->"`
@@ -689,10 +701,10 @@ name: contents-slide
 
 `r if(!showgit)"<!--"`
 
-[Part 8. Using Version Control](#part8)
+[Part 9. Using Version Control](#part9)
    - e.g., integrating Git and GitHub
 
-[Part 9. Collaborating with Others](#part9)
+[Part 10. Collaborating with Others](#part10)
    - e.g., working simultaneously with co-authors
 
 `r if(!showgit)"-->"`

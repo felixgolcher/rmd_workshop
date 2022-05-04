@@ -1,9 +1,9 @@
 
 ---
-name: part7
+name: part8
 class: inverse, center, middle
 
-# Part 7. Addressing Functionality Gaps
+# Part 8. Addressing Functionality Gaps
 
 .footnote[
 
