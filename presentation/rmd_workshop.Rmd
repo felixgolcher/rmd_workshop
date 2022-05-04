@@ -82,7 +82,7 @@ doc10 <- "`10/dutchge-10.pdf`"
 doc11 <- "`11/dutchge-11.pdf`"
 doc12 <- "`12/dutchge-12.pdf`"
 doc13 <- "`13/dutchge-13.pdf`"
-rmd1 <- "`13/variable-xrc.Rmd`"
+rmd1 <- "`14/variable-xrc.Rmd`"
 
 knitr::opts_chunk$set(cache=T,
                       warning=F,
@@ -195,9 +195,42 @@ Talk about why we make this workshop.
 
 Your experience in class.
 
+---
+## Assessing what you know
 
+* Did you ever open rstudio?
 
+--
+* Do you know a little bit (or more) of R?
 
+--
+* Do you know (a bit or more) how to work with ggplot?
+
+--
+* Do you know how to do
+  - headers, subheaders, subsubheaders in **Markdown**?
+  - bold face, italics etc?
+  - lists, numbered or bullets?
+
+--
+* Do you know what a chunk code is?
+
+--
+* Can you handle the most common code chunk options?
+  - `echo`
+  - `eval` etc?
+
+--
+* Can you fine tune the appearance of your figure code chunks?
+
+--
+* Can you work with `ref.label` and `child` documents?
+
+--
+* Can you invalidate the cache based upon changes in an external file?
+
+--
+* Do you write your own hooks (you might be of great help...)
 ---
 
 ## A normal situation
