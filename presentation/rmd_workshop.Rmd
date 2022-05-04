@@ -83,6 +83,13 @@ doc11 <- "`11/dutchge-11.pdf`"
 doc12 <- "`12/dutchge-12.pdf`"
 doc13 <- "`13/dutchge-13.pdf`"
 rmd1 <- "`14/variable-xrc.Rmd`"
+xar1 <- "`X1/xar-1.html`"
+xar2 <- "`X2/xar-2.html`"
+xar3 <- "`X3/xar-3.html`"
+xar4 <- "`X4/xar-4.html`"
+xar5 <- "`X5/xar-5.html`"
+xar6 <- "`X6/xar-6.html`"
+xar7 <- "`X7/xar-7.html`"
 
 knitr::opts_chunk$set(cache=T,
                       warning=F,
@@ -725,7 +732,8 @@ name: contents-slide
 [Part 8. Code chunks with tables](#part8)
    - the `stargazer` package
 
-<!-- part9 does not exist yet. S. preceding comment -->
+[Part 9. Reusing code chunks](#part9)
+   - the `ref.label` option
 
 `r if(!showgaps)"<!--"`
 
@@ -4571,6 +4579,255 @@ tot <- tot + delta
 
 solution $\Delta$ `r delta`, total `r tot` min.
 
+---
+name: part9
+class: inverse, center, middle
+
+# Part 9. Reusing code chunks: The `ref.label` option
+
+.footnote[
+
+[Back to the contents slide](#contents-slide).
+
+]
+
+---
+## Outline and Motivation
+
+* Sometimes you want to repeat a code chunk in your document.
+* In this case you usually want to change both instances of the code simultaneously.
+* There are many usecases, two examples of which are
+
+--
+
+1. You want to run exactly the same code in two different circumstances.
+  - Maybe you want to have the same figure with different data.
+  - Maybe you want to run the same model with different data.
+  - Maybe you want to run the same model for another variable
+  
+--
+
+2. You want to show the code itself at one place in your document, and the output/figure somewhere else.
+  - Maybe you want to run the model and report the model in the text and the code for the model in the appendix.
+  - Maybe you give a presentation on making plots and want the code here and the figure itself there.
+
+---
+## What's ahead
+
+* You will now step by step build up an RMarkdown presentation in `xaringan` `r cp("xaringan")`
+* Thereby you will learn two things:
+
+1) How to create (one kind of) RMarkdown presentations
+
+2) How to reuse your code chunks.
+
+---
+## setting up xaringan presentations
+
+* We need the package `xaringan`.
+* In the YAML header you specify the `output` as (there can be a lot of options, but that should do it for now)
+
+    `output: xaringan::moon_reader`
+
+* Specify the author and the title (at least) in the YAML header.
+* slides are done like this
+
+
+.inline-c[
+```
+# slide 1
+
+text slide 1
+
+---
+# slide 2
+
+text slide 2
+
+--
+
+incrementally shown text
+
+```
+]
+
+---
+class: action
+
+## Exercise
+
+Start an `Rmd` file so that the output matches `r xar1`.
+
+
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
+
+`r countdown(minutes = 7, seconds = sec, top = 0)`  
+
+???
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
+---
+# Place text in left and right columns
+
+* In the end we want to show the code on the left side and the plot on the right side.
+* In `xaringan` you can setup a two column design by saying
+
+.inline-c[
+```
+.pull-left[
+displayed on the left bla bla bla bla bla worra worra willy wonka
+]
+```
+]
+
+and
+
+.inline-c[
+```
+.pull-right[
+displayed on the right no, that's left, I said right, can't you hear me? 
+RIGHT!! A'right, now it's right.
+]
+```
+]
+
+.pull-left[.out-t[displayed on the left bla bla bla bla bla worra worra willy wonka]]
+
+.pull-right[.out-t[displayed on the right no, that's left, I said right, can't you hear me? 
+RIGHT!! A'right, now it's right.]]
+
+---
+class: action
+
+## Exercise
+
+Adapt your `Rmd` file so that the output matches `r xar2`.
+
+
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
+
+`r countdown(minutes = 7, seconds = sec, top = 0)`  
+
+???
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
+---
+class: action
+
+## Exercise
+
+Adapt your `Rmd` file so that the output matches `r xar3`.
+
+This step is easy: Place two identical code chunks in the left and the right column. You should see them and the picture they create side by side. The code is given in `r xar3`.
+
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
+
+`r countdown(minutes = 7, seconds = sec, top = 0)`  
+
+???
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
+---
+class: action
+
+## Exercise
+
+Adapt your `Rmd` file so that the output matches `r xar4`.
+
+* Now we want to see the code on the left side, but not the plot.
+* The plot is to be shown on the right, but without the code.
+
+code left, plot right.
+
+Remember the two code chunk options `eval` and `echo`.
+
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
+
+`r countdown(minutes = 7, seconds = sec, top = 0)`  
+
+???
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
+
+---
+## The code chunk option `ref.label`
+
+If you have a code chunk
+
+````md
+`r ''````{r toberepeated}
+
+cat("I say hi!")
+
+```
+````
+
+And another, empty one like
+
+````md
+`r ''````{r, ref.label="toberepeated"}
+
+
+```
+````
+
+Then **both** chunks will great you with
+
+```{r}
+cat("I say hi!")
+```
+
 
 <!-- 
 
@@ -4587,6 +4844,40 @@ The following code (child) only works if
 ```{r, child=if(showgit)c("git_content.Rmd")}
 ```
 
+---
+class: action
+
+## Exercise
+
+Adapt your `Rmd` file so that the output matches `r xar5`.
+
+* The last solution had a drawback:
+  - The same code was repeated for the second version of the chunk
+  - If you change the first version and forget the second, it'l be inconsistent.
+* Reuse the code of the first block explicitely in the second.
+  - Use the chunk option `ref.label` for that.
+  - Remember: You have to give the first chunk a name for that.
+
+
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
+
+`r countdown(minutes = 7, seconds = sec, top = 0)`  
+
+???
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
 
 
 ---
