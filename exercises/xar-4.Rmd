@@ -6,6 +6,7 @@ institute: "CRC 1412"
 date: "`r Sys.Date()` (today)"
 output:
   xaringan::moon_reader:
+    self_contained: true
     lib_dir: libs
     nature:
       highlightStyle: github
