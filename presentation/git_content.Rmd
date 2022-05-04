@@ -1,9 +1,9 @@
 
 ---
-name: part9
+name: part11
 class: inverse, center, middle
 
-# Part 9. Using Version Control
+# Part 11. Using Version Control
 
 .footnote[
 
@@ -20,7 +20,7 @@ class: inverse, center, middle
 
 .footnote[
 
-<sup>*</sup> They also often written by multiple authors and/or on different computers, increasing the number of versions created. Here I assume projects are single-authored on a single computer, leaving the topic of collaboration (including, with oneself) to the next section &mdash; Part 10.
+<sup>*</sup> They also often written by multiple authors and/or on different computers, increasing the number of versions created. Here I assume projects are single-authored on a single computer, leaving the topic of collaboration (including, with oneself) to the next section &mdash; Part 12.
 
 ]
 
@@ -102,7 +102,7 @@ manuscript
 
 .footnote[
 
-<sup>*</sup> For projects that are single-authored on a single computer, merging is typically automatic. It becomes an issue for collaborated projects, which we will cover in the next section &mdash; Part 10.
+<sup>*</sup> For projects that are single-authored on a single computer, merging is typically automatic. It becomes an issue for collaborated projects, which we will cover in the next section &mdash; Part 12.
 
 ]
 
@@ -572,10 +572,10 @@ class: action
 `r countdown(minutes = 5, seconds = 00, top = 0)`
 
 ---
-name: part10
+name: part12
 class: inverse, center, middle
 
-# Part 10. Collaborating with Others
+# Part 12. Collaborating with Others
 
 .footnote[
 

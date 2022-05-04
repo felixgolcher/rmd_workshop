@@ -689,9 +689,14 @@ name: contents-slide
 [Part 7. Code chunks with figures](#part7)
    - half and fully dynamic
 
+[Part 8. Code chunks with tables](#part8)
+   - the `stargazer` package
+
+<!-- part9 does not exist yet. S. preceding comment -->
+
 `r if(!showgaps)"<!--"`
 
-[Part 8. Addressing Functionality Gaps](#part8)
+[Part 10. Addressing Functionality Gaps](#part10)
    - e.g., adjusting line spacing
 
 `r if(!showgaps)"-->"`
@@ -701,10 +706,10 @@ name: contents-slide
 
 `r if(!showgit)"<!--"`
 
-[Part 9. Using Version Control](#part9)
+[Part 11. Using Version Control](#part11)
    - e.g., integrating Git and GitHub
 
-[Part 10. Collaborating with Others](#part10)
+[Part 12. Collaborating with Others](#part12)
    - e.g., working simultaneously with co-authors
 
 `r if(!showgit)"-->"`
@@ -3555,6 +3560,19 @@ tot <- tot + delta
 ```
 
 solution $\Delta$ `r delta`, total `r tot` min.
+
+---
+name: part7
+class: inverse, center, middle
+
+# Part 7. Code chunks with figures: half and fully dynamic
+
+.footnote[
+
+[Back to the contents slide](#contents-slide).
+
+]
+
 ---
 ## More flexible, but static Figures &mdash; Images &mdash; `knitr`
 
@@ -3633,7 +3651,7 @@ We skip this. It's similar to what we did before. Dynamic images are much more i
 
 ---
 
-## Code Chunks with Figures
+## Code Chunks with fully dynamic Figures
 
 .pull-left-c[
 
@@ -3828,7 +3846,7 @@ solution $\Delta$ `r delta`, total `r tot` min.
 
 
 ---
-## Cross references
+## Cross references to figures within code chunks
 
 Here comes one reason, why chunk labels are so important sometimes
 
@@ -3913,6 +3931,19 @@ tot <- tot + delta
 ```
 
 solution $\Delta$ `r delta`, total `r tot` min.
+
+---
+name: part8
+class: inverse, center, middle
+
+# Part 8. Code chunks with tables: The `stargazer` package
+
+.footnote[
+
+[Back to the contents slide](#contents-slide).
+
+]
+
 
 
 ---
