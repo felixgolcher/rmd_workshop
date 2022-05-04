@@ -1046,6 +1046,7 @@ break $\Delta$ `r delta`, total `r tot` min.
      - is **not** an R package, but a standalone conversion wonder program
      - e.g., HTML, $\LaTeX$, PDF, Word
      - RStudio comes with a copy of `pandoc` ([http://pandoc.org](http://pandoc.org)), so you do not have to install it separately. 
+
 - This process is automated by the `rmarkdown` package
 
 
@@ -1065,6 +1066,37 @@ break $\Delta$ `r delta`, total `r tot` min.
   - websites, with `blogdown` `r cp("blogdown")`
   - interactive web applications, with `shiny` `r cp("shiny")`
 * Here we will focus mostly on research papers, maybe with a digression to presentations.
+
+---
+## How to use and how not to use RMarkdown files
+
+* Rmarkdown mixes text and code.
+* The code (besides what it does as code itself, like writing files or whatever) produces output.
+* This output is filtered in a completely customizable manner
+* and inserted in, around, and between the plain text.
+* Further processing can transform the result in
+  - a website
+  - a fully publishable research article
+  - whatever
+
+--
+
+Often people do not really use this workflow. We have RMarkdown docs that are...
+
+* Not written with _any_ audience in mind (not even myself)
+* Not written with _any_ end result in mind.
+  - In paralell some article might be written in another format.
+* Used exclusively interactively
+  - just like an normal R-script.
+* Never compiled.
+
+--
+
+In this way, you forsake all the power this format gives you. All you get is an extra cluttered R-script.
+
+--
+
+> Compile often, get rid of errors at once and check the result!
 
 ---
 name: part3
