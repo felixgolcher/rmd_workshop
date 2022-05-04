@@ -1,0 +1,25 @@
+
+---
+## Dynamic Figures with `ggplot2` &mdash; Overview
+
+- `ggplot2` is a very, very powerful package for visualising data.
+
+- Used widely, not only by academics, but also by large corporations such as the New York Times
+
+- A huge amount is written on this package. See, for example, 
+
+    - the [package documentation](https://www.rdocumentation.org/packages/ggplot2/versions/3.2.1)
+    - this [book](https://ggplot2-book.org/) by its creator Hadley Wickham (https://ggplot2-book.org/)
+    - this [reference page](https://ggplot2.tidyverse.org/reference/) (https://ggplot2.tidyverse.org/reference/)
+    - this [webinar](https://www.youtube.com/watch?v=h29g21z0a68) by one of its authors, Thomas Lin Pedersen  
+    - these [extensions](https://exts.ggplot2.tidyverse.org/), maintained by the `ggplot2` community
+
+- Among its alternatives are the `base` and `plotly` `r cp("plotly")` packages
+- We are not talking about R here so `ggplot` will not be covered explicitely.
+
+???
+
+We will skip the ggplot slides.
+
+They are there
+

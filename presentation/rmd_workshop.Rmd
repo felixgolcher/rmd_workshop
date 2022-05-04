@@ -81,6 +81,7 @@ doc9 <- "`09/dutchge-9.pdf`"
 doc10 <- "`10/dutchge-10.pdf`"
 doc11 <- "`11/dutchge-11.pdf`"
 doc12 <- "`12/dutchge-12.pdf`"
+doc13 <- "`13/dutchge-13.pdf`"
 rmd1 <- "`13/variable-xrc.Rmd`"
 
 knitr::opts_chunk$set(cache=T,
@@ -162,6 +163,7 @@ demologo <- "image/rueg2.png"
 getex <- "getex_git.Rmd"
 showgit <- F
 showgaps <- F
+showggplot <- F # it is very unlikely that you want to change that.
 if(file.exists("config.R"))
   source("config.R")
 ```
@@ -3613,29 +3615,9 @@ We skip this. It's similar to what we did before. Dynamic images are much more i
 
 `r countdown(minutes = 0, seconds = 00, top = 0)`
 
----
-## Dynamic Figures with `ggplot2` &mdash; Overview
+```{r, child=if(showggplot)"ggplot_prolog.Rmd"}
+```
 
-- `ggplot2` is a very, very powerful package for visualising data.
-
-- Used widely, not only by academics, but also by large corporations such as the New York Times
-
-- A huge amount is written on this package. See, for example, 
-
-    - the [package documentation](https://www.rdocumentation.org/packages/ggplot2/versions/3.2.1)
-    - this [book](https://ggplot2-book.org/) by its creator Hadley Wickham (https://ggplot2-book.org/)
-    - this [reference page](https://ggplot2.tidyverse.org/reference/) (https://ggplot2.tidyverse.org/reference/)
-    - this [webinar](https://www.youtube.com/watch?v=h29g21z0a68) by one of its authors, Thomas Lin Pedersen  
-    - these [extensions](https://exts.ggplot2.tidyverse.org/), maintained by the `ggplot2` community
-
-- Among its alternatives are the `base` and `plotly` `r cp("plotly")` packages
-- We are not talking about R here so `ggplot` will not be covered explicitely.
-
-???
-
-We will skip the ggplot slides.
-
-They are there
 
 ---
 
@@ -3783,238 +3765,11 @@ gg1
 ```
 
 
-
----
-class: skipped
-
-## Figures &mdash; `ggplot2` &mdash; Basics
-
-1) The `ggplot` function and the `data` argument
-- specify a data frame in the main `ggplot` function
-
-```{r, eval=FALSE, tidy=FALSE}
-ggplot(data = df)
+```{r, child=if(showggplot)"ggplot_content.Rmd"}
 ```
 
---
 
-2) The mapping aesthetics, or .yellow-h[aes]; most importantly, the variable(s) that we want to plot
-- specify as an additional argument in the same `ggplot` function
 
-```{r, eval=FALSE, tidy=FALSE}
-ggplot(data = df, `mapping = aes(x = h5_median, y = h5_index, color = subfield)`)
-```
-
---
-
-3) The geometric objects, or .yellow-h[geom]; the visual representations
-- specify, after a plus sign .yellow-h[+], as an additional function
-
-```{r, eval=FALSE, tidy=FALSE}
-ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) `+`
-       geom_point() #<<
-```
-
----
-class: skipped
-
-## Figures &mdash; `ggplot2`
-
-Put the code in a chunk, and give it a caption
-
-.pull-left-c[
-
-````md
-`r ''````{r, scatterplot, `fig.cap = "A scatterplot of journal metrics."`}
-
-ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
-       geom_point()
-
-```
-````
-
-]
-
-.pull-right-c[
-
-```{r, echo=FALSE, fig.height=6, fig.width=9}
-
-ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
-       geom_point()
-
-```
-
-Figure 1. A scatterplot of journal metrics.
-
-]
-
----
-class: skipped
-
-## Figures &mdash; `ggplot2`
-
-Add facets for subgroups, e.g., `branch`
-
-.pull-left-c[
-
-````md
-`r ''````{r, scatterplot, fig.cap = "A scatterplot of journal metrics."}
-
-ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
-       geom_point() `+`
-       `facet_wrap(. ~ branch)`
-
-```
-````
-
-]
-
-.pull-right-c[
-
-```{r, echo=FALSE, fig.height=6, fig.width=9}
-
-ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
-       geom_point() +
-       facet_wrap(. ~ branch)
-
-```
-
-Figure 1. A scatterplot of journal metrics.
-
-]
-
----
-class: skipped
-
-## Figures &mdash; `ggplot2`
-
-Scale the colour to improve the legend
-
-
-.pull-left-c[
-
-````md
-`r ''````{r, scatterplot, fig.cap = "A scatterplot of journal metrics."}
-
-ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
-       geom_point() +
-       facet_wrap(. ~ branch) `+`
-       `scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield")`)    
-
-```
-````
-
-]
-
-.pull-right-c[
-
-```{r, echo=FALSE, fig.height=6, fig.width=9}
-
-ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
-       geom_point() +
-       facet_wrap(. ~ branch) + 
-       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield"))
-
-```
-
-Figure 1. A scatterplot of journal metrics.
-
-]
-
----
-class: skipped
-
-## Figures &mdash; `ggplot2`
-
-Change the theme
-
-
-.pull-left-c[
-
-````md
-`r ''````{r, scatterplot, fig.cap = "A scatterplot of journal metrics."}
-
-ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
-       geom_point() +
-       facet_wrap(. ~ branch) +
-       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield")) `+`
-       `theme_bw()`
-                             
-                             
-
-```
-````
-
-]
-
-.pull-right-c[
-
-```{r, echo=FALSE, fig.height=6, fig.width=9}
-
-ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
-       geom_point() +
-       facet_wrap(. ~ branch) + 
-       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield")) +
-       theme_bw()
-
-```
-
-Figure 1. A scatterplot of journal metrics.
-
-]
-
----
-class: skipped
-
-## Figures &mdash; `ggplot2`
-
-Improve the axis labels, e.g., with capital first letters
-
-
-.pull-left-c[
-
-````md
-`r ''````{r, scatterplot, fig.cap = "A scatterplot of journal metrics."}
-
-ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
-       geom_point() +
-       facet_wrap(. ~ branch) +
-       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield")) +
-       theme_bw() `+`
-       `labs(x = "H5 Median", y = "H5 Index")`
-
-```
-````
-
-]
-
-.pull-right-c[
-
-```{r, echo=FALSE, fig.height=6, fig.width=9}
-
-ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
-       geom_point() +
-       facet_wrap(. ~ branch) + 
-       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield")) +
-       theme_bw() +
-       labs(x = "H5 Median", y = "H5 Index")
-
-```
-
-Figure 1. A scatterplot of journal metrics.
-
-]
-
-
----
-class: skipped
-
-## Figures &mdash; `ggplot2` &mdash; Notes
-
-`geom_point` is one of many geoms avilable
-- see this <https://ggplot2.tidyverse.org/reference> for other options, including
-    - `geom_bar` for bar charts
-    - `geom_boxplot` for box and whiskers plots
 
 ---
 class: action
@@ -4713,12 +4468,32 @@ class: action
 
 ## Exercise
 
-28) Regression Tables
-- see `reproduce_this.pdf`: table 3 on page 10
-- apply in `journals.Rmd`: table 3, between paragraphs 30 and 31
+Update your `Rmd` file so the output matches `r doc13`.
 
-`r countdown(minutes = 7, seconds = 30, top = 0)`
+* Add what you find in the "Results" section.
+* The function used for the models is `lm()` on the data set `durationsGe`.
+* model formulas can be stringified with .inline-c[`Reduce(paste, deparse(formula(yourmodel)))`].
+* You might want to look at the argument `omit` for the stargazer function.
 
+```{r, include=FALSE}
+mn <- 7
+sec <- 30
+delta <- mn + sec/60
+tot <- tot + delta
+```
+
+`r countdown(minutes = 7, seconds = sec, top = 0)`  
+
+???
+
+estimate $\Delta$ `r delta`, total `r tot` min.
+
+```{r, include=FALSE}
+delta <- 7
+tot <- tot + delta
+```
+
+solution $\Delta$ `r delta`, total `r tot` min.
 
 
 <!-- 

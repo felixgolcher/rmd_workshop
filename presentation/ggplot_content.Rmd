@@ -1,0 +1,232 @@
+
+---
+class: skipped
+
+## Figures &mdash; `ggplot2` &mdash; Basics
+
+1) The `ggplot` function and the `data` argument
+- specify a data frame in the main `ggplot` function
+
+```{r, eval=FALSE, tidy=FALSE}
+ggplot(data = df)
+```
+
+--
+
+2) The mapping aesthetics, or .yellow-h[aes]; most importantly, the variable(s) that we want to plot
+- specify as an additional argument in the same `ggplot` function
+
+```{r, eval=FALSE, tidy=FALSE}
+ggplot(data = df, `mapping = aes(x = h5_median, y = h5_index, color = subfield)`)
+```
+
+--
+
+3) The geometric objects, or .yellow-h[geom]; the visual representations
+- specify, after a plus sign .yellow-h[+], as an additional function
+
+```{r, eval=FALSE, tidy=FALSE}
+ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) `+`
+       geom_point() #<<
+```
+
+---
+class: skipped
+
+## Figures &mdash; `ggplot2`
+
+Put the code in a chunk, and give it a caption
+
+.pull-left-c[
+
+````md
+`r ''````{r, scatterplot, `fig.cap = "A scatterplot of journal metrics."`}
+
+ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
+       geom_point()
+
+```
+````
+
+]
+
+.pull-right-c[
+
+```{r, echo=FALSE, fig.height=6, fig.width=9}
+
+ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
+       geom_point()
+
+```
+
+Figure 1. A scatterplot of journal metrics.
+
+]
+
+---
+class: skipped
+
+## Figures &mdash; `ggplot2`
+
+Add facets for subgroups, e.g., `branch`
+
+.pull-left-c[
+
+````md
+`r ''````{r, scatterplot, fig.cap = "A scatterplot of journal metrics."}
+
+ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
+       geom_point() `+`
+       `facet_wrap(. ~ branch)`
+
+```
+````
+
+]
+
+.pull-right-c[
+
+```{r, echo=FALSE, fig.height=6, fig.width=9}
+
+ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
+       geom_point() +
+       facet_wrap(. ~ branch)
+
+```
+
+Figure 1. A scatterplot of journal metrics.
+
+]
+
+---
+class: skipped
+
+## Figures &mdash; `ggplot2`
+
+Scale the colour to improve the legend
+
+
+.pull-left-c[
+
+````md
+`r ''````{r, scatterplot, fig.cap = "A scatterplot of journal metrics."}
+
+ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
+       geom_point() +
+       facet_wrap(. ~ branch) `+`
+       `scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield")`)    
+
+```
+````
+
+]
+
+.pull-right-c[
+
+```{r, echo=FALSE, fig.height=6, fig.width=9}
+
+ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
+       geom_point() +
+       facet_wrap(. ~ branch) + 
+       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield"))
+
+```
+
+Figure 1. A scatterplot of journal metrics.
+
+]
+
+---
+class: skipped
+
+## Figures &mdash; `ggplot2`
+
+Change the theme
+
+
+.pull-left-c[
+
+````md
+`r ''````{r, scatterplot, fig.cap = "A scatterplot of journal metrics."}
+
+ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
+       geom_point() +
+       facet_wrap(. ~ branch) +
+       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield")) `+`
+       `theme_bw()`
+                             
+                             
+
+```
+````
+
+]
+
+.pull-right-c[
+
+```{r, echo=FALSE, fig.height=6, fig.width=9}
+
+ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
+       geom_point() +
+       facet_wrap(. ~ branch) + 
+       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield")) +
+       theme_bw()
+
+```
+
+Figure 1. A scatterplot of journal metrics.
+
+]
+
+---
+class: skipped
+
+## Figures &mdash; `ggplot2`
+
+Improve the axis labels, e.g., with capital first letters
+
+
+.pull-left-c[
+
+````md
+`r ''````{r, scatterplot, fig.cap = "A scatterplot of journal metrics."}
+
+ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
+       geom_point() +
+       facet_wrap(. ~ branch) +
+       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield")) +
+       theme_bw() `+`
+       `labs(x = "H5 Median", y = "H5 Index")`
+
+```
+````
+
+]
+
+.pull-right-c[
+
+```{r, echo=FALSE, fig.height=6, fig.width=9}
+
+ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
+       geom_point() +
+       facet_wrap(. ~ branch) + 
+       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield")) +
+       theme_bw() +
+       labs(x = "H5 Median", y = "H5 Index")
+
+```
+
+Figure 1. A scatterplot of journal metrics.
+
+]
+
+
+---
+class: skipped
+
+## Figures &mdash; `ggplot2` &mdash; Notes
+
+`geom_point` is one of many geoms avilable
+- see this <https://ggplot2.tidyverse.org/reference> for other options, including
+    - `geom_bar` for bar charts
+    - `geom_boxplot` for box and whiskers plots
