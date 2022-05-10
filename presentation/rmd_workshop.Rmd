@@ -203,6 +203,16 @@ Talk about why we make this workshop.
 Your experience in class.
 
 ---
+class: center
+
+## Where to find this presentation
+
+```{r, echo = FALSE, out.width= "40%"}
+knitr::include_graphics("image/presi.png")
+```
+
+[https://amor.cms.hu-berlin.de/~golchefe/rmd/rmd_workshop.html](https://amor.cms.hu-berlin.de/~golchefe/rmd/rmd_workshop.html)
+---
 ## Assessing what you know
 
 * Did you ever open rstudio?
@@ -741,6 +751,9 @@ name: contents-slide
 
 [Part 9. Reusing code chunks](#part9)
    - the `ref.label` option
+
+[Part 10. lookout and outlook](#part10)
+   - What else we could learn
 
 `r if(!showgaps)"<!--"`
 
@@ -4886,6 +4899,28 @@ tot <- tot + delta
 
 solution $\Delta$ `r delta`, total `r tot` min.
 
+---
+name: part10
+class: inverse, center, middle
+
+# Part 10. Lookout and outlook: What else we could learn
+
+.footnote[
+
+[Back to the contents slide](#contents-slide).
+
+]
+
+---
+## Hot Topics
+
+* Other ways of reusing code
+* child documents
+  - partitioning large docs
+  - make configurable inclusions
+* cache management
+  - external files
+* output hooks
 
 ---
 class: middle, center
